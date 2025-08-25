@@ -1,0 +1,125 @@
+﻿@model WebDeshiHutBazar.MenuObjectModel
+
+<div class="advance-search-container-background" data-adv-search="modal"></div>
+<form class="advance-search-container" data-adv-search="content" method="post" action="@Url.Action("AdvancedSearch","SearchMarket")">
+    <h4>@Common.Language.LanguageResource.LabelAdvancedSearch</h4>
+    <div class="row padding-margin-zero">
+        <div class="col-sm-12">
+            <input name="SearchKey" type="search" class="fff" placeholder="@Common.Language.LanguageResource.PlaceHolderSimpleSearchTextBox" value="@Model.SearchKey" />
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <select name="CategoryID" class="fff">
+                @foreach (var cat in Model.AV_Category)
+                {
+                    var selected = Model.CategoryID.HasValue &&  Model.CategoryID.Value.ToString().Equals(cat.Value) ? "selected='selected'" : "";
+                    if (string.IsNullOrEmpty(cat.Value))
+                    {
+                        <option value="" @selected>@Common.Language.LanguageResource.PlaceholderSelectCategory</option>
+                        continue;
+                    }
+                    <option value="@cat.Value" @selected>@cat.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <select name="SubCategoryID" class="fff">
+                @foreach (var cat in Model.AV_SubCategory)
+                {
+                    var selected = Model.SubCategoryID.Equals(cat.Value) ? "selected" : "";
+
+                    if (string.IsNullOrEmpty(cat.Value))
+                    {
+                        <option value="" @selected >@Common.Language.LanguageResource.PlaceholderSelectSubCategory</option>
+                        continue;
+                    }
+
+                    <option value="@cat.Value" @selected>@cat.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <select name="StateID" class="fff">
+                @foreach (var cat in Model.AV_State)
+                {
+                    var selected = Model.StateID.Equals(cat.Value) ? "selected" : "";
+
+                    if (string.IsNullOrEmpty(cat.Value))
+                    {
+                        <option value=""  @selected>@Common.Language.LanguageResource.PlaceholderSelectState</option>
+                        continue;
+                    }
+
+                    <option value="@cat.Value" @selected>@cat.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <input name="AreaDescription" type="text" class="fff" placeholder="@Common.Language.LanguageResource.PlaceholderSpecificAreaDetails" />
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <input name="PriceLow" type="tel" class="fff" placeholder="@Common.Language.LanguageResource.PlaceholderPriceStartsFrom" />
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <input name="PriceHigh" type="tel" class="fff" placeholder="@Common.Language.LanguageResource.PlaceholderPriceEndsWith" />
+        </div>
+        <div class="col-sm-12">
+            <div class="chip-container">
+                <label class="chip">
+                    <input name="IsUrgent" type="checkbox" value="true" checked="@Model.IsUrgent" />
+                    <span>
+                        @Common.Language.LanguageResource.ButtonTextUrgentSale
+                    </span>
+                </label>
+                <label class="chip">
+                    <input name="IsUsed" type="checkbox" value="true" checked="@Model.IsUsed"/>
+                    <span>
+                        @Common.Language.LanguageResource.ButtonTextUsedItem
+                    </span>
+                </label>
+                <label class="chip">
+                    <input name="IsBrandNew" type="checkbox" value="true"  checked="@Model.IsBrandNew"/>
+                    <span>
+                        @Common.Language.LanguageResource.ButtonTextNewItem
+                    </span>
+                </label>
+                <label class="chip">
+                    <input name="IsForSell" type="checkbox" value="true" checked="@Model.IsForSell" />
+                    <span>
+                        @Common.Language.LanguageResource.ButtonTextForSale
+                    </span>
+                </label>
+                <label class="chip">
+                    <input name="IsForRent" type="checkbox" value="true" checked="@Model.IsForRent" />
+                    <span>
+                        @Common.Language.LanguageResource.ButtonTextForRent
+                    </span>
+                </label>
+                <label class="chip">
+                    <input name="IsPrivateSeller" type="checkbox" value="true" checked="@Model.IsPrivateSeller" />
+                    <span>
+                        @Common.Language.LanguageResource.ButtonTextIndividualAd
+                    </span>
+                </label>
+                <label class="chip">
+                    <input name="IsCompanySeller" type="checkbox" value="true" checked="@Model.IsCompanySeller" />
+                    <span>
+                        @Common.Language.LanguageResource.ButtonTextCompanyAd
+                    </span>
+                </label>
+                <div class="row margin-padding-zero">
+                <div class="col-md-6">
+                    <button class="primary-button" type="submit">
+                        <i class="fa fa-search"></i>
+                        @Common.Language.LanguageResource.ButtonTextAdvancedSearch
+                    </button>
+                </div>
+                    <div class="col-md-6">
+                        <button class="light-button  col-md-6" type="button" data-adv-search="modal">
+                            @Common.Language.LanguageResource.ButtonTextClose
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

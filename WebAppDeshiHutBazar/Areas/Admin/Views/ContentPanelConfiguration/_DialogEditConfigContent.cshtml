@@ -1,0 +1,33 @@
+﻿@model WebDeshiHutBazar.GroupPanelConfigurationViewModel
+
+@Html.HiddenFor(a => a.GroupPanelConfigID)
+
+<div class="input-field col-md-6 col-xs-12 col-sm-6 col-lg-6">
+    <label>Show / Hide</label>
+    @Html.DropDownListFor(a => a.ShowOrHide, Model.AV_ShowHide, new { @class = "fff" })
+    @Html.ValidationMessageFor(m => m.ShowOrHide, "", new { @class = "custom-inline-field-error" })
+</div>
+<div class="input-field col-md-6 col-xs-12 col-sm-6 col-lg-6">
+    <label>User</label>
+    @Html.DropDownListFor(a => a.PanelConfigUserID, Model.AV_Users, new { @class = "fff" })
+</div>
+<div class="input-field col-md-12 col-xs-12 col-sm-12 col-lg-12">
+    <label>Panel Title</label>
+    @Html.EditorFor(a => a.GroupPanelTitle, new { htmlAttributes = new { @class = "fff" } })
+    @Html.ValidationMessageFor(m => m.GroupPanelTitle, "", new { @class = "custom-inline-field-error" })
+</div>
+<div class="input-field col-md-12 col-xs-12 col-sm-12 col-lg-12">
+    <label>Device Type</label>
+    @Html.DropDownListFor(a => a.Device, Model.AV_Device, new { @class = "fff" })
+    @Html.ValidationMessageFor(m => m.Device, "", new { @class = "custom-inline-field-error" })
+</div>
+<div class="input-field col-md-12 col-xs-12 col-sm-12 col-lg-12">
+    <label>Portal Page</label>
+    @Html.DropDownListFor(a => a.PublicPage, Model.AV_EnumPublicPage, new { @class = "fff" })
+    @Html.ValidationMessageFor(m => m.PublicPage, "", new { @class = "custom-inline-field-error" })
+</div>
+<div class="input-field col-md-12 col-xs-12 col-sm-12 col-lg-12">
+    <label>Display Position:</label>
+    @Html.DropDownListFor(a => a.EnumPanelDisplayStyle, Model.AV_EnumPanelDisplayStyle, new { @class = "fff" })
+    @Html.ValidationMessageFor(m => m.EnumPanelDisplayStyle, "", new { @class = "custom-inline-field-error" })
+</div>

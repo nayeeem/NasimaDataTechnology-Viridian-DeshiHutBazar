@@ -1,0 +1,46 @@
+﻿@model WebDeshiHutBazar.AccountViewModel
+
+<form id="frmMamageAccount" class="card-form row">
+    @Html.HiddenFor(a => a.UserID)
+    <h5 class="sub-title">@Common.Language.LanguageDefault.AccountInformation</h5>
+
+    <div class="input-field col-lg-8">
+        <label for="Email">
+            @Common.Language.LanguageDefault.AccountSettingsEmail
+        </label>
+        @Html.EditorFor(a => a.Email, new { htmlAttributes = new { @class = "fff", disabled = "disabled" } })
+    </div>
+
+    <div class="chip-container col-lg-4">
+        <label class="chip">
+            <input name="role" type="checkbox" value="true" checked="@Model.IsCompanySeller" disabled="disabled" />
+            <span>
+                @Common.Language.LanguageDefault.AccountSettingsCompany
+            </span>
+        </label>
+        <label class="chip">
+            <input name="role" type="checkbox" value="true" checked="@Model.IsPrivateSeller" disabled="disabled" />
+            <span>
+                @Common.Language.LanguageDefault.AccountSettingsIndividual
+            </span>
+        </label>
+    </div>
+    <div class="input-field col-lg-6">
+        <label for="ClientName">
+            @Common.Language.LanguageDefault.AccountSettingsName
+        </label>
+        @Html.EditorFor(a => a.ClientName, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-lg-6">
+        <label for="Phone">
+            @Common.Language.LanguageDefault.AccountSettingsPhone
+        </label>
+        @Html.EditorFor(a => a.Phone, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="submit-field col-md-6 col-md-offset-3">
+        <input id="btnSubmitAccount"
+               type="button"
+               class="update-post primary-button "
+               value=" @Common.Language.LanguageDefault.AccountSettingsUPDATEACCOUNT" />
+    </div>
+</form>

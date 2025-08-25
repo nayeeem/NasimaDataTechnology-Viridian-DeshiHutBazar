@@ -1,0 +1,82 @@
+﻿@model WebDeshiHutBazar.ContentInfoViewModel
+@{
+    if (Model.ListGroupPanelConfiguration != null)
+    {
+        var listAllConfigs = Model.ListGroupPanelConfiguration
+            .Where(a =>
+                a.Device == Common.EnumDeviceType.Desktop &&
+                a.ShowOrHide == Common.EnumShowOrHide.Yes)
+            .OrderBy(a => a.Order).ToList();
+        foreach (var config in listAllConfigs)
+        {
+            if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.MostPopularProduct)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_MostPopularProduct", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.PopularCategory)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_PopularCategory", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.StarPanel)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_StarPanel", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.TrianglePanel)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_TrianglePanel", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.DoubleBlockSquarePanel)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_DoubleBlockPanel", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.GroupSection)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_SixerGroupPanel", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.MaxGroupSection)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_MaxGroupPanel", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.VideoPost)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_PostVideoPanel", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.VideoComment)
+            {
+                @Html.Partial("../Shared/_VideoCommentPanel", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.MarketPanel)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_MarketPanel", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.AllFixedButtons)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_AllFixedButton", config.FabiaInformationViewModel)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.QuardMarketPanel)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_QuardMarketPanel", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.SimilarItemsMarketPanel)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_SimilarItemsMarketPanel", config)
+            }
+            @*else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.BannerCarousel)
+                {
+                    @Html.Partial("../Shared/ProductTemplates/_BannerCarousel", config)
+                }*@
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.TriangleCarousel)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_TriangleCarousel", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.StarCarousel)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_StarCarousel", config)
+            }
+            else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.SingleBanner)
+            {
+                @Html.Partial("../Shared/ProductTemplates/_SingleBanner", config)
+            }
+        }
+    }
+}

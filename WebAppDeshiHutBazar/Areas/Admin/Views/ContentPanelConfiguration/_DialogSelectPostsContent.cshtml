@@ -1,0 +1,13 @@
+﻿@model WebDeshiHutBazar.GroupPanelConfigurationViewModel
+<br />
+<div class="row">
+    <div class="col-md-12" id="divSelectPostContainer-9999">
+        @if (Model.ListSelectPost != null && Model.ListSelectPost.Count > 0)
+        {
+            foreach (var item in Model.ListSelectPost.ToList())
+            {
+                @Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_SingleSelectPost", (WebDeshiHutBazar.PostViewModel)item)
+            }
+        }
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model WebDeshiHutBazar.FabiaProviderViewModel
+<h4 class="sub-title">Service Area/Skill Set</h4>
+<form class="row">
+    <div class="input-field col-md-6 col-xs-12">
+        <label for="FabiaServiceID">
+            Servide Area*
+        </label>
+        @Html.DropDownListFor(a => a.FabiaServiceID, Model.AV_FabiaServiceCategory, new { @class = "fff" })
+        @Html.ValidationMessageFor(m => m.FabiaServiceID, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-6 col-xs-12">
+        <label for="FabiaServiceID">
+            State*
+        </label>
+        @Html.DropDownListFor(a => a.StateID, Model.AV_State, new { @class = "fff" })
+        @Html.ValidationMessageFor(m => m.StateID, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-6 col-xs-12">
+        <label for="Service Title">
+            Service Title
+        </label>
+        @Html.EditorFor(a => a.ServiceTitle, new { htmlAttributes = new { @class = "fff" } })
+        @Html.ValidationMessageFor(m => m.ServiceTitle, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-6 col-xs-12">
+        <label for="Service Title">
+            Service Charge (@Model.Currency)
+        </label>
+        @Html.EditorFor(a => a.ServiceCharge, new { htmlAttributes = new { @class = "fff" } })
+        @Html.ValidationMessageFor(m => m.ServiceCharge, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-12 col-xs-12">
+        <label for="Service Title">
+            Service Details
+        </label>
+        @Html.TextAreaFor(a => a.ServiceDescription, new { @class = "fff" })
+    </div>
+</form>

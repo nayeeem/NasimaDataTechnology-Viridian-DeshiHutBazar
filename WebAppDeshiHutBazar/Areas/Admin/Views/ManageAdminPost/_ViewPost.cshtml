@@ -1,0 +1,115 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    var formid = Guid.NewGuid();
+}
+<form class="post-view-root">
+    @Html.HiddenFor(a => a.DisplayCategory)
+    @Html.HiddenFor(a => a.IsBrandNew)
+    @Html.HiddenFor(a => a.IsUsed)
+    @Html.HiddenFor(a => a.IsForRent)
+    @Html.HiddenFor(a => a.IsForSell)
+    <div class="row"
+         id="postviewroot-@formid">
+        <div class="image-field col-md-12">
+            <label> @Common.Language.LanguageDefault.Picture</label>
+            @foreach (var image in Model.ListImages.Where(s => s != null))
+            {
+                @Html.Partial("../../Areas/Admin/Views/ManageAdminPost/_Image", image)
+            }
+        </div>
+        <div class="input-field  col-md-12">
+            <label for="Title">
+                @Common.Language.LanguageDefault.NewPostLabelWebsiteUrl
+            </label>
+            <input id="Title" class="fff" value="@Model.WebsiteUrl" disabled="disabled" />
+        </div>
+        <div class="input-field  col-md-6">
+            <label for="Title">
+                @Common.Language.LanguageDefault.NewPostLabelTitle
+            </label>
+            <input id="Title" class="fff" value="@Model.Title" disabled="disabled" />
+        </div>
+        <div class="input-field  col-md-6">
+            <label for="FormattedPriceValue">
+                @Common.Language.LanguageDefault.NewPostLabelPrice
+            </label>
+            <input id="FormattedPriceValue" class="fff" value="@Model.FormattedPriceValue" disabled="disabled" />
+        </div>
+        <div class="input-field  col-md-6">
+            <label for="Description">
+                @Common.Language.LanguageDefault.NewPostLabelItemDescription
+            </label>
+            <textarea id="Description" class="fff" disabled="disabled">@Model.Description</textarea>
+        </div>
+        <div class="input-field  col-md-6">
+            <label for="SearchTag">
+                @Common.Language.LanguageDefault.NewPostLabelSearchTag
+            </label>
+            <textarea id="SearchTag" class="fff" disabled="disabled">@Model.SearchTag</textarea>
+        </div>
+        <div class="input-field  col-md-6 col-lg-3">
+            <label for="DisplayCategory">
+                @Common.Language.LanguageDefault.NewPostLabelCategory
+            </label>
+            <input id="DisplayCategory" class="fff" value="@Model.DisplayCategory" disabled="disabled" />
+        </div>
+        <div class="input-field  col-md-6  col-lg-3">
+            <label for="DisplaySubCategory">
+                @Common.Language.LanguageDefault.NewPostLabelSubCategory
+            </label>
+            <input id="DisplaySubCategory" class="fff" value="@Model.DisplaySubCategory" disabled="disabled" />
+        </div>
+        <div class="input-field  col-md-6  col-lg-3">
+            <label for="DisplayState">
+                @Common.Language.LanguageDefault.Location
+            </label>
+            <input id="DisplayState" class="fff" value="@Model.DisplayState" disabled="disabled" />
+        </div>
+        <div class="input-field  col-md-6  col-lg-3">
+            <label for="AreaDescription">
+                @Common.Language.LanguageDefault.NewPostLabelArea
+            </label>
+            <input id="AreaDescription" class="fff" value="@Model.AreaDescription" disabled="disabled" />
+        </div>
+        <div class="input-field  col-md-6 col-lg-4">
+            <label for="IsForSell">
+                @Common.Language.LanguageDefault.NewPostLabelThisAdFor
+            </label>
+            @{ var forSellText = Model.IsForSell ? Common.Language.LanguageDefault.NewPostSpanItemForSellText : Common.Language.LanguageDefault.NewPostSpanItemForRentText; }
+            <input id="IsForSell" class="fff" value="@forSellText" disabled="disabled" />
+        </div>
+        <div class="input-field  col-md-6 col-lg-4">
+            <label for="IsBrandNew">
+                @Common.Language.LanguageDefault.NewPostLabelCondition
+            </label>
+            @{ var conditionText = Model.IsBrandNew ? Common.Language.LanguageDefault.NewPostSpanItemBrandNewText : Common.Language.LanguageDefault.NewPostSpanItemUsedText; }
+            <input id="IsBrandNew" class="fff" value="@conditionText" disabled="disabled" />
+        </div>
+
+        <div class="input-field  col-md-6 col-lg-4">
+            <label for="IsUrgent">
+                @Common.Language.LanguageDefault.NewPostLabelThisAdIs
+            </label>
+            @{ var urgentText = Model.IsUrgent ? Common.Language.LanguageDefault.NewPostSpanThisAdUrgentSellText : "This ad is not for an urgent sell."; }
+            <input id="IsUrgent" class="fff" value="@urgentText" disabled="disabled" />
+        </div>
+        <div class="input-field col-md-6 col-lg-4">
+            <label for="ClientName">
+                @Common.Language.LanguageDefault.AccountOwner
+            </label>
+            <input id="ClientName" class="fff" value="@Model.ClientName" disabled="disabled" />
+        </div>
+        <div class="input-field  col-md-6 col-lg-4">
+            <label for="PosterName">
+                @Common.Language.LanguageDefault.AdvertisedBY
+            </label>
+            <input id="PosterName" class="fff" value="@Model.PosterName" disabled="disabled" />
+        </div>
+        <div class="input-field  col-md-6 col-lg-4">
+            <label for="PosterContactNumber">
+                @Common.Language.LanguageDefault.ContactNumber
+            </label>
+            <input id="PosterContactNumber" class="fff" value="@Model.PosterContactNumber" disabled="disabled" />
+        </div>
+    </div>
+</form>

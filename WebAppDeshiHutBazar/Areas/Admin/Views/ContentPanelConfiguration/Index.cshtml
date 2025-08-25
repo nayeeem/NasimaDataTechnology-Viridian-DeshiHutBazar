@@ -1,0 +1,644 @@
+﻿@model WebDeshiHutBazar.GroupPanelInformationViewModel
+@{
+    ViewBag.Title = "Content Panels Configuration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+    var device = (int)Common.EnumDeviceType.Mobile;
+    var marketPanel = (int)Common.EnumPanelDisplayStyle.MarketPanel;
+    var fabiaButtons = (int)Common.EnumPanelDisplayStyle.AllFixedButtons;
+    var similarItemTemplate = (int)Common.EnumPanelDisplayStyle.SimilarItemsMarketPanel;
+    var quardTemplate = (int)Common.EnumPanelDisplayStyle.QuardMarketPanel;
+}
+<script type="text/javascript">
+    var imageloaadmodifymodeurl = '@Url.Action("ImageLoadModifyMode", "ContentPanelConfiguration")';
+    var uploadimageurl = '@Url.Action("ImageUploadModify", "ContentPanelConfiguration")';
+    var editpostbyidurl = '@Url.Action("EditPostByPostId", "ContentPanelConfiguration")';
+    var viewpostbyidurl = '@Url.Action("ViewPostByPostId", "ContentPanelConfiguration")';
+    var updateposturl = '@Url.Action("UpdatePost", "ContentPanelConfiguration")';
+    var deletepostbyidurl = '@Url.Action("DeletePostByPostId", "ContentPanelConfiguration")';
+    var getsubcategoriesurl = '@Url.Action("GetSubCategories", "ContentPanelConfiguration")';
+    var manageposturl = '@Url.Action("ManagePost", "ContentPanelConfiguration")';
+    var getcategorytexturl = '@Url.Action("GetCategoryText", "ContentPanelConfiguration")';
+    var templateFetchURL = '@Url.Action("GetTemplates", "ContentPanelConfiguration")';
+</script>
+<div style="padding:5px;margin:5px;">
+    <h3 class="main-title">Content Panel Configuration</h3>
+    <a data-toggle="modal"
+       class="primary-button flex"
+       data-target="#modal-add-group-panel">
+        CREATE NEW PANEL
+    </a>
+    @{
+        var buttonId = "";
+        if (Model.EnumDevice.HasValue && Model.EnumDevice.Value == Common.EnumDeviceType.Desktop)
+        {
+            buttonId = "btnUpdateDesktopDisplayOrder";
+        }
+        else if (Model.EnumDevice.HasValue && Model.EnumDevice.Value == Common.EnumDeviceType.Mobile)
+        {
+            buttonId = "btnUpdateDisplayOrderMobile";
+        }
+    }
+    <a class="primary-button flex" id="@buttonId" role="button">
+        UPDATE ORDER
+    </a>
+    <a id="btnPublishPage" class="secondary-light-button flex" role="button">Publish Page</a>
+    <div class="gap"></div>
+    <div class="card-form row">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="col-md-3 input-field col-xs-12">
+                @Html.DropDownListFor(a => a.EnumPublicPage, Model.AV_PageList, new { @class = "fff" })
+            </div>
+            <div class="col-md-3  input-field  col-xs-12">
+                @Html.DropDownListFor(a => a.EnumDevice, Model.AV_Device, new { @class = "fff" })
+            </div>
+            <div class="col-md-3 col-xs-12" style="padding-top:5px;">
+                <input type="submit" value="VIEW PANEL CONFIGS" class="light-button flex" />
+            </div>
+        }
+    </div>
+    <br />
+    <div id="managePanelGroupConfigDesktop">
+        @Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_IndexContent", Model)
+    </div>
+</div>
+@Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_DialogAddConfig", Model.GroupPanelConfigurationViewModel)
+@Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_DialogGroupPosts", new WebDeshiHutBazar.GroupPanelConfigurationViewModel())
+@Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_DialogSelectPosts", new WebDeshiHutBazar.GroupPanelConfigurationViewModel())
+@Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_DialogEditConfig", new WebDeshiHutBazar.GroupPanelConfigurationViewModel())
+@Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_DialogOrderGroupPosts", new WebDeshiHutBazar.GroupPanelConfigurationViewModel())
+@section scriptsapp {
+    <script src="~/Scripts/jquery-sortable.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var clickedGroupConfigID = 0;
+        function loadEditConfigContent(configId) {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetEditConfigPartial", "ContentPanelConfiguration")?groupConfigID=' + configId,
+                cache: false,
+                success: (function (result) {
+                    $("#editConfigContainer").empty().html(result);
+                }),
+                error: (function (e) {
+                })
+            });
+        }
+
+        function loadGroupPostContent(configId) {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetGroupPostsPartial", "ContentPanelConfiguration")?groupConfigID=' + configId,
+                cache: false,
+                success: (function (result) {
+                    $("#groupPostsContainer").empty().html(result);
+                }),
+                error: (function (e) {
+                })
+            });
+        }
+
+        function loadOrderGroupPostContent(configId) {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetOrderGroupPostsPartial", "ContentPanelConfiguration")?groupConfigID=' + configId,
+                cache: false,
+                success: (function (result) {
+                    $("#groupOrderPostsContainer").empty().html(result);
+                    $('.sorted_table').sortable({
+                        containerSelector: 'table',
+                        itemPath: '> tbody',
+                        itemSelector: 'tr',
+                        placeholder: '<tr class="placeholder"/>'
+                    });
+                }),
+                error: (function (e) {
+                })
+            });
+        }
+
+        function populateSubCategoryList(items, that) {
+            $(that).closest(".new-modal-content").find("#SubCategoryID").empty();
+            $.each(items, function (i, item) {
+                $(that).closest(".new-modal-content").find("#SubCategoryID").append($('<option>', {
+                    value: item.Value,
+                    text: item.Text
+                }));
+            });
+        }
+
+        function populateTemplateList(items, that) {
+            $(that).closest(".new-modal-content").find("#EnumPanelDisplayStyle").empty();
+            $.each(items, function (i, item) {
+                $(that).closest(".template-modal-content").find("#EnumPanelDisplayStyle").append($('<option>', {
+                    value: item.Value,
+                    text: item.Text
+                }));
+            });
+        }
+
+        function getModel() {
+            var deviceID = $("#EnumDevice").val();
+            var page = $("#EnumPublicPage").val();
+            window.location = '@Url.Action("Index", "ContentPanelConfiguration")?EnumDevice='
+                + deviceID + '&EnumPublicPage='
+                + page;
+        }
+
+        function hideAllDesktopGrids() {
+            $(".desktop-panel-config-grid-parent-container").hide();
+        }
+
+        function hideAllMobileGrids() {
+            $(".mobile-panel-config-grid-parent-container").hide();
+        }
+
+        function updateOrder(objNewDisplayOrder) {
+            $.ajax({
+                url: '@Url.Action("UpdateDisplayOrder", "ContentPanelConfiguration")',
+                type: 'POST',
+                data: JSON.stringify(objNewDisplayOrder),
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                error: function (xhr) {
+                },
+                success: function (result) {
+                    getModel();
+                },
+                processData: false
+            });
+        }
+
+        function createDisplayOrderModel(device) {
+            var bannerArr = [];
+            $("#allConfig" + device).find(".sorted_head").find("tr").each(function (index, item) {
+                var id = $(item).find(".GroupPanelConfigID").val();
+                if (id != '' || id != null || id != 0 || id != undefined) {
+                    bannerArr.push(id);
+                }
+            });
+            var objNewDisplayOrder =
+            {
+                "AllConfigList": bannerArr
+            };
+            return objNewDisplayOrder;
+        }
+
+        function updatePostOrder(objNewDisplayOrder) {
+            $.ajax({
+                url: '@Url.Action("UpdatePostDisplayOrder", "ContentPanelConfiguration")',
+                type: 'POST',
+                data: JSON.stringify(objNewDisplayOrder),
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                error: function (xhr) {
+                },
+                success: function (result) { },
+                processData: false
+            });
+        }
+
+        $(function () {
+            PAGE_NAME = 'Group Panel Config';
+            var fileId = 0;
+            var deviceMobile = '@device';
+
+            $(document).on("change", "#PublicPage", function () {
+                var that = this;
+                var pageID = $(this).val();
+                    var requestData = { "pageID": $.trim(pageID) };
+                    $.ajax({
+                        url: templateFetchURL,
+                        type: 'POST',
+                        data: JSON.stringify(requestData),
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        error: function (xhr) {
+                        },
+                        success: function (items) {
+                            populateTemplateList(items, that)
+                        },
+                        processData: false,
+                        cache: false
+                    });
+            });
+
+
+            $(document).on("change", "#EnumPanelDisplayStyle", function () {
+                var value = $(this).val();
+                if (value == '@marketPanel' || value == '@fabiaButtons' || value == '@similarItemTemplate') {
+                    $(".display-template").hide();
+                }
+                else if (value == '@quardTemplate') {
+                    $(".display-template").hide();
+                    $(".display-category").show();
+                }
+                else {
+                    $(".display-template").show();
+                }
+            });
+
+            $(document).on("click", ".add-posts-btn", function () {
+                clickedGroupConfigID = $(this).data("configid");
+            });
+
+            $(document).on("change", "#Device", function () {
+                var value = $(this).val();
+                if (value == deviceMobile) {
+                    $(".columns-desktop").hide();
+                    $(".columns-mobile").show();
+                }
+                else {
+                    $(".columns-mobile").hide();
+                    $(".columns-desktop").show();
+                }
+            });
+
+            $(document).on("click", 'input[type="checkbox"]', function () {
+                if ($(this).prop("checked") == true) {
+                    fileId = $(this).data("fileid");
+                }
+                else if ($(this).prop("checked") == false) {
+                }
+            });
+
+            $(document).on("click", ".btn-edit-config", function () {
+                var configId = $(this).data("configid");
+                loadEditConfigContent(configId);
+            });
+
+            $(document).on("click", ".panel-posts-btn", function () {
+                var configId = $(this).data("configid");
+                loadGroupPostContent(configId);
+            });
+
+            $(document).on("click", ".panel-order-posts-btn", function () {
+                var configId = $(this).data("configid");
+                loadOrderGroupPostContent(configId);
+            });
+
+            $(document).on("click", ".btn-remove-post", function () {
+                var groupPostID = $(this).data("postid");
+                var that = this;
+                $.ajax({
+                    url: '@Url.Action("RemoveSelectedPost", "ContentPanelConfiguration")?groupPostID=' + groupPostID,
+                    type: 'GET',
+                    error: function (xhr) {
+                    },
+                    success: function (result) {
+                        $(that).closest(".panel").remove();
+                    },
+                    processData: false
+                });
+            });
+
+            $(document).on("click", ".btn-select-post", function () {
+                if (clickedGroupConfigID != 0) {
+                    var postID = $(this).data("postid");
+                    var that = this;
+                    $.ajax({
+                        url: '@Url.Action("AddSelectedPost", "ContentPanelConfiguration")?postID=' + postID + '&groupConfigID=' + clickedGroupConfigID + '&fileId=' + fileId,
+                        type: 'GET',
+                        error: function (xhr) {
+                        },
+                        success: function (result) {
+                            $(that).closest(".panel").hide();
+                            fileId = 0;
+                        },
+                        processData: false
+                    });
+                }
+            });
+
+            $(document).on("change", "#CategoryID", function () {
+                var that = this;
+                var categoryID = $(this).val();
+                $.ajax({
+                    url: '@Url.Action("GetSubCategories", "ContentPanelConfiguration")?categoryID=' + categoryID,
+                    type: 'GET',
+                    error: function (xhr) {
+                    },
+                    success: function (items) {
+                        populateSubCategoryList(items, that);
+                    },
+                    processData: false,
+                    cache: false
+                });
+            });
+
+            $(document).on("click", "#btnAddNewConfig", function () {
+                var panelPosition = $(this).closest(".new-modal").find("#EnumPanelDisplayStyle").val();
+                if (panelPosition == '@marketPanel' || panelPosition == '@fabiaButtons') {
+                    var categoryID = null;
+                    var subCategoryID = null;
+                    var columnID = null;
+                    var imageCategory = null;
+                    var noOfRows = null;
+                    var showOrHide = $(this).closest(".new-modal").find("#ShowOrHide").val();
+                    var deviceID = $(this).closest(".new-modal").find("#Device").val();
+                    var panelTitle = $(this).closest(".new-modal").find("#GroupPanelTitle").val();
+                    var page = $(this).closest(".new-modal").find("#PublicPage").val();
+                    var userId = $(this).closest(".new-modal").find("#PanelConfigUserID").val();
+                }
+                else {
+                    var categoryID = $(this).closest(".new-modal").find("#CategoryID").val();
+                    var subCategoryID = $(this).closest(".new-modal").find("#SubCategoryID").val();
+                    var showOrHide = $(this).closest(".new-modal").find("#ShowOrHide").val();
+                    var deviceID = $(this).closest(".new-modal").find("#Device").val();
+                    var columnID = $(this).closest(".new-modal").find("#Column").val();
+                    var imageCategory = $(this).closest(".new-modal").find("#EnumImageCategory").val();
+                    var panelTitle = $(this).closest(".new-modal").find("#GroupPanelTitle").val();
+                    var page = $(this).closest(".new-modal").find("#PublicPage").val();
+                    var userId = $(this).closest(".new-modal").find("#PanelConfigUserID").val();
+                    var noOfRows = $(this).closest(".new-modal").find("#NoOfRows").val();
+                }
+                var requestData = {
+                    "CategoryID": categoryID,
+                    "SubCategoryID": subCategoryID,
+                    "ShowOrHide": showOrHide,
+                    "Device": deviceID,
+                    "Column": columnID,
+                    "EnumPanelDisplayStyle": panelPosition,
+                    "EnumImageCategory": imageCategory,
+                    "GroupPanelTitle": panelTitle,
+                    "PublicPage": page,
+                    "PanelConfigUserID": userId,
+                    "NoOfRows": noOfRows
+                };
+
+                $.ajax({
+                    url: '@Url.Action("AddNewGroupConfig", "ContentPanelConfiguration")',
+                    type: 'POST',
+                    data: JSON.stringify(requestData),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    error: function (xhr) {
+                    },
+                    success: function (result) {
+                        $('#modal-add-group-panel').modal('hide');
+                        getModel();
+                    },
+                    processData: false
+                });
+            });
+
+            $(document).on("click", "a.btn-update-config", function () {
+                var groupConfigID = $(this).closest(".parent-update-config").find("#GroupPanelConfigID").val();
+                var categoryID = $(this).closest(".parent-update-config").find("#CategoryID").val();
+                var subCategoryID = $(this).closest(".parent-update-config").find("#SubCategoryID").val();
+                var order = $(this).closest(".parent-update-config").find("#Order").val();
+                var showOrHide = $(this).closest(".parent-update-config").find("#ShowOrHide").val();
+                var deviceID = $(this).closest(".parent-update-config").find("#Device").val();
+                var columnID = $(this).closest(".parent-update-config").find("#Column").val();
+                var imageCategory = $(this).closest(".parent-update-config").find("#EnumImageCategory").val();
+                var panelContentType = $(this).closest(".parent-update-config").find("#EnumPanelContentType").val();
+                var panelPosition = $(this).closest(".parent-update-config").find("#EnumPanelDisplayStyle").val();
+                var panelTitle = $(this).closest(".parent-update-config").find("#GroupPanelTitle").val();
+                var page = $(this).closest(".parent-update-config").find("#PublicPage").val();
+                var noOfRows = $(this).closest(".parent-update-config").find("#NoOfRows").val();
+                var requestData = {
+                    "CategoryID": categoryID,
+                    "SubCategoryID": subCategoryID,
+                    "ShowOrHide": showOrHide,
+                    "GroupPanelConfigID": groupConfigID,
+                    "Device": deviceID,
+                    "Column": columnID,
+                    "EnumImageCategory": imageCategory,
+                    "EnumPanelContentType": panelContentType,
+                    "EnumPanelDisplayStyle": panelPosition,
+                    "GroupPanelTitle": panelTitle,
+                    "PublicPage": page,
+                    "NoOfRows": noOfRows
+                };
+                $.ajax({
+                    url: '@Url.Action("UpdateGroupConfig", "ContentPanelConfiguration")',
+                    type: 'POST',
+                    data: JSON.stringify(requestData),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    error: function (xhr) {
+                    },
+                    success: function (result) {
+                        $('#modal-edit-group-panel-9999').modal('hide');
+                        getModel();
+                    },
+                    processData: false
+                });
+            });
+
+            $(document).on("click", ".btn-remove-group-config", function () {
+                var groupConfigID = $(this).data("groupconfigid");
+                $.ajax({
+                    url: '@Url.Action("RemoveGroupConfig", "ContentPanelConfiguration")?groupConfigID=' + groupConfigID,
+                    type: 'GET',
+                    error: function (xhr) {
+                    },
+                    success: function (items) {
+                        getModel();
+                    },
+                    processData: false,
+                    cache: false
+                });
+            });
+
+            $(document).on("click", ".desktop-tab-link", function () {
+                $(".desktop-tab-link").parents().removeClass("active");
+                $(this).parent().addClass("active");
+
+                if ($(this).hasClass("desktop-banner")) {
+                    hideAllDesktopGrids();
+                    $(".desktop-banner-content").show();
+                }
+                else if ($(this).hasClass("desktop-allconfig")) {
+                    hideAllDesktopGrids();
+                    $(".desktop-allconfig-content").show();
+                }
+            });
+
+            $(document).on("click", ".mobile-tab-link", function () {
+                $(".mobile-tab-link").parents().removeClass("active");
+                $(this).parent().addClass("active");
+
+                if ($(this).hasClass("mobile-banner")) {
+                    hideAllMobileGrids();
+                    $(".mobile-banner-content").show();
+                }
+                else if ($(this).hasClass("mobile-allconfig")) {
+                    hideAllMobileGrids();
+                    $(".mobile-allconfig-content").show();
+                }
+            });
+
+            var notify;
+            $(document).on("click", "#btnPublishPage", function () {
+                var deviceID = $("#EnumDevice").val();
+                var page = $("#EnumPublicPage").val();
+                if (deviceID != null && deviceID != undefined && deviceID != '' &&
+                    page != null && page != undefined && page != '') {
+                    notify = $.notify('<strong><i class="fa fa-spinner"></i>&nbsp;Publishing</strong>...', {
+                        type: 'info'
+                    });
+                    var requestData = {
+                        "device": deviceID,
+                        "page": page
+                    };
+                    $.ajax({
+                        url: '@Url.Action("PublishGroupPanelConfig", "ContentPanelConfiguration")',
+                        type: 'POST',
+                        data: JSON.stringify(requestData),
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        error: function (xhr) {
+                        },
+                        success: function (result) {
+                            notify.update({
+                                type: 'success',
+                                message: '<strong><i class="fa fa-thumbs-up"></i>&nbsp;Success</strong> Configuration published.',
+                                allow_dismiss: true,
+                                placement: {
+                                    from: "top",
+                                    align: "right"
+                                },
+                                delay: { show: 80, hide: 50 },
+                                template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                                    '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                                    '<span data-notify="icon"></span>' +
+                                    '<span data-notify="title">{1}</span>' +
+                                    '<span data-notify="message">{2}</span>' +
+                                    '</div>'
+                            });
+                        },
+                        processData: false
+                    });
+                } else {
+                    notify = $.notify('<strong>Please select a page and device to publish!</strong>', {
+                        type: 'info'
+                    });
+                }
+            });
+
+            $('.sorted_table').sortable({
+                containerSelector: 'table',
+                itemPath: '> tbody',
+                itemSelector: 'tr',
+                placeholder: '<tr class="placeholder"/>'
+            });
+
+            $(document).on("click", "#btnUpdateDesktopDisplayOrder", function () {
+                updateOrder(createDisplayOrderModel("Desktop"));
+            });
+
+            $(document).on("click", "#btnUpdateDisplayOrderMobile", function () {
+                updateOrder(createDisplayOrderModel("Mobile"));
+            });
+
+            $(document).on("click", "#btnUpdatePostDisplayOrder", function () {
+                var sidePanelArr = [];
+                $("#groupOrderPostsContainer").find("tr").each(function (index, item) {
+                    var id = $(item).find(".GroupPostID").val();
+                    if (id != '' || id != null || id != 0 || id != undefined) {
+                        sidePanelArr.push(id);
+                    }
+                });
+                var objNewDisplayOrder =
+                {
+                    "groupPostList": sidePanelArr
+                };
+                updatePostOrder(objNewDisplayOrder);
+            });
+
+            $(document).on("click", "#btnSearchSelectPost", function () {
+                var CategoryID = $("#panelSearchPosts").find("#CategoryID").val();
+                var SubCategoryID = $("#panelSearchPosts").find("#SubCategoryID").val();
+                var PostTypeID = $("#panelSearchPosts").find("#PostTypeID").val();
+                if (CategoryID == '')
+                    CategoryID = 0;
+                if (SubCategoryID == '')
+                    SubCategoryID = 0;
+                if (PostTypeID == '')
+                    PostTypeID = 1;
+                SearchAction();
+                $("#selectPostsContainer").empty();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("AdvancedSearchPanel", "ContentPanelConfiguration")?PostTypeID=' + PostTypeID + "&CategoryID=" + CategoryID + "&SubCategoryID=" + SubCategoryID,
+                    cache: false
+                }).done(function (result) {
+                    HideSearchingLabel();
+                    $("#selectPostsContainer").empty().html(result);
+                });
+            });
+
+            function HideSearchingLabel() {
+                $("#divSearchingMessage").hide();
+            }
+
+            function ShowSearchingLabel() {
+                $("#divSearchingMessage").show();
+            }
+
+            function HideSearchPanel() {
+                $("#divAdvancedSearchPanel").hide();
+            }
+
+            function ShowSearchPanel() {
+                $("#divAdvancedSearchPanel").show();
+            }
+
+            function ShowUpButton() {
+                $("#icoUp").show();
+            }
+
+            function ShowDownButton() {
+                $("#icoDown").show();
+            }
+
+            function HideDownButton() {
+                $("#icoDown").hide();
+            }
+
+            function HideUpButton() {
+                $("#icoUp").hide();
+            }
+
+            function SearchAction() {
+                HideSearchPanel();
+                HideUpButton();
+                ShowDownButton();
+                ShowSearchingLabel();
+            }
+
+            function UpAction() {
+                HideSearchingLabel();
+                HideSearchPanel();
+                HideUpButton();
+                ShowDownButton();
+
+            }
+
+            function DownAction() {
+                HideSearchingLabel();
+                HideDownButton();
+                ShowUpButton();
+                ShowSearchPanel();
+            }
+
+            $(document).on("click", "#icoDown", function () {
+                DownAction();
+            });
+
+            $(document).on("click", "#icoUp", function () {
+                UpAction();
+            });
+        });//end ready
+    </script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/ajaxupload.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+}
+
+
+

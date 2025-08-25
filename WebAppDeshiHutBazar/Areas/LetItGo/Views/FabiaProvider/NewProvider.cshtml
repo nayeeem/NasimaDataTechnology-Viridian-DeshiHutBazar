@@ -1,0 +1,76 @@
+﻿@model WebDeshiHutBazar.FabiaProviderViewModel
+@{
+    ViewBag.Title = "New Procvider Application Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<script type="text/javascript">
+    var checkemailexistsnewpost = '@Url.Action("CheckUserAccountExistByEmail", "Account")';
+    var saveProviderUrl = '@Url.Action("SaveProvider", "FabiaProvider")';
+    var imgLoadProfileUrl = '@Url.Action("ImageLoadProfile", "FabiaProvider")';
+    var imgLoadServiceUrl = '@Url.Action("ImageLoadService", "FabiaProvider")';
+    var imgUploadProfileUrl = '@Url.Action("ImageUploadProfile", "FabiaProvider")';
+    var imgUploadServiceUrl = '@Url.Action("ImageUploadService", "FabiaProvider")';
+    var updateProviderDataUrl = '@Url.Action("UpdateNewProviderData", "FabiaProvider")';
+    var addNewServiceUrl = '@Url.Action("AddNewService", "FabiaProvider")';
+    var reloadUrlIndex = '@Url.Action("ProviderCreateSuccess", "FabiaProvider")';
+</script>
+    <div class="container">
+        <div id="fabiaNewProviderRoot" class="row">
+            <div class="new-provider-content col-md-12 col-xs-12">
+                <h4 class="main-title">Provider Application Form</h4>
+                <div class="provider-tab-content-body-panel">
+                    <div class="content1 card-form row">
+                        @Html.Partial("../../Areas/LetItGo/Views/FabiaProvider/_NewServiceCategory", Model)
+                    </div>
+                    <div class="content2 card-form row" style="display:none;">
+                        @Html.Partial("../../Areas/LetItGo/Views/FabiaProvider/_NewProviderInformation", Model)
+                    </div>
+                    <div class="content3 card-form row" style="display:none;">
+                        @Html.Partial("../../Areas/LetItGo/Views/FabiaProvider/_NewLogin", Model)
+                    </div>
+                </div>
+                <div class="text-center tab-footer-button-panel">
+                    <button id="btnPrev"
+                            class="provider-tab-prev-next-btn"
+                            data-current="1"
+                            data-lastpos="1"
+                            data-curcontent="content1">
+                        BACK
+                    </button>
+                    <button id="btnNext"
+                            class="provider-tab-prev-next-btn"
+                            data-current="1"
+                            data-lastpos="3"
+                            data-curcontent="content1">
+                        NEXT
+                    </button>
+                    <button id="btnSubmitProvider"
+                            style="display:none;"
+                            class="provider-tab-prev-next-finish-btn">
+                        FINISH
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+        var data = {};
+    </script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.password.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/ajaxupload.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.fabia.newprovider.js" type="text/javascript"></script>
+}
+
+
+
+
+
+
+

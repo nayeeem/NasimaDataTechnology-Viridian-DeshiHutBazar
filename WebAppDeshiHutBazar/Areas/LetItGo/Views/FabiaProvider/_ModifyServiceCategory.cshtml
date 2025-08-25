@@ -1,0 +1,40 @@
+﻿@model WebDeshiHutBazar.FabiaProviderViewModel
+<form>
+    <div class="row">
+        <div class="input-field col-md-6 col-xs-12">
+            <label for="DisplayServiceCategory">
+                Servide Area*
+            </label>
+            @Html.HiddenFor(a => a.ProviderID)
+            @Html.HiddenFor(a => a.Email)
+            @Html.DisplayFor(a => a.DisplayServiceCategory)
+        </div>
+        <div class="input-field col-md-6 col-xs-12">
+            <label for="FabiaServiceID">
+                State*
+            </label>
+            @Html.DropDownListFor(a => a.StateID, Model.AV_State, new { @class = "fff" })
+            @Html.ValidationMessageFor(m => m.StateID, "", new { @class = "custom-inline-field-error" })
+        </div>
+        <div class="input-field col-md-6 col-xs-12">
+            <label for="Service Title">
+                Service Title
+            </label>
+            @Html.EditorFor(a => a.ServiceTitle, new { htmlAttributes = new { @class = "fff" } })
+            @Html.ValidationMessageFor(m => m.ServiceTitle, "", new { @class = "custom-inline-field-error" })
+        </div>
+        <div class="input-field col-md-6 col-xs-12">
+            <label for="Service Title">
+                Service Charge (@Model.Currency)
+            </label>
+            @Html.EditorFor(a => a.ServiceCharge, new { htmlAttributes = new { @class = "fff" } })
+            @Html.ValidationMessageFor(m => m.ServiceCharge, "", new { @class = "custom-inline-field-error" })
+        </div>
+        <div class="input-field col-md-12 col-xs-12">
+            <label for="Service Title">
+                Service Details
+            </label>
+            @Html.TextAreaFor(a => a.ServiceDescription, new { @class = "fff" })
+        </div>
+    </div>
+</form>

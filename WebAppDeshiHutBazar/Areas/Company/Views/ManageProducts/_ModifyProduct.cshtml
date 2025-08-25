@@ -1,0 +1,332 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    var formid = Guid.NewGuid();
+    var dataId = Model.PostID;
+
+    var listCarousels = new List<WebDeshiHutBazar.FileViewModel>();
+    var listThumbnails = new List<WebDeshiHutBazar.FileViewModel>();
+    var listSquares = new List<WebDeshiHutBazar.FileViewModel>();
+    var listRectangles = new List<WebDeshiHutBazar.FileViewModel>();
+    if (Model.ListImages != null && Model.ListImages.Any())
+    {
+        listCarousels = Model.ListImages.Where(a => a.EnumPhoto == Common.EnumPhoto.Carousel).ToList();
+        listThumbnails = Model.ListImages.Where(a => a.EnumPhoto == Common.EnumPhoto.Thumbnail).ToList();
+        listSquares = Model.ListImages.Where(a => a.EnumPhoto == Common.EnumPhoto.Square).ToList();
+        listRectangles = Model.ListImages.Where(a => a.EnumPhoto == Common.EnumPhoto.Rectangle).ToList();
+    }
+}
+<div class="row-fluid modify-post-root"
+     id="posteditroot-@formid"
+     title="Displaying modify mode to update post.">
+    
+    <div class="image-field col-md-12 col-xs-12 col-lg-12" id="divCarousel" style="margin-bottom:35px;">
+        <div class="image-field col-md-3 col-xs-12">
+            <button type="button" class="light-button UploadCarousel">
+                ADD PICTURE
+            </button>
+        </div>
+        <div class="image-field col-md-9 col-xs-12">
+        </div>
+        @foreach (var item in listCarousels.ToList())
+        {
+            <div class="image-content">
+                <div title="Image for @item.FileName">
+                    <a class="thumbnail">
+                        @if (item != null && item.Image != null && item.Image.Length > 1)
+                        {
+                            string imageBase64 = Convert.ToBase64String(item.Image);
+                            string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                            <img src="@imageSrc"
+                                 class="img-responsive new-post-mobile-image"
+                                 alt="Post image is not avaliable"
+                                 style="max-height:140px; max-width:100%;width:100%;" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/Home/camera.png"
+                                 class="img-responsive new-post-mobile-image"
+                                 alt="Post image is not avaliable"
+                                 style="max-height:140px; max-width:100%;width:100%;" />
+                            <span id="infoErrorUpload1" style="display:none;color:red;font-size:smaller;">
+                                File size must be <=7MB!
+                            </span>
+                        }
+                    </a>
+                </div>
+                <button type="button" class="light-button btn-remove-image" data-id="@item.FileID">
+                    REMOVE
+                </button>
+            </div>
+        }
+    </div>
+
+    <div class="image-field col-md-12 col-xs-12 col-lg-12" id="divThumbnail" style="margin-bottom:35px;">
+        <div class="image-field col-md-3 col-xs-12">
+            <button type="button" class="light-button UploadThumbnail">
+                ADD THUMBNAIL
+            </button>
+        </div>
+        <div class="image-field col-md-9 col-xs-12">
+        </div>
+        @foreach (var item in listThumbnails.ToList())
+        {
+            <div class="image-content">
+                <div title="Image for @item.FileName">
+                    <a class="thumbnail">
+                        @if (item != null && item.Image != null && item.Image.Length > 1)
+                        {
+                            string imageBase64 = Convert.ToBase64String(item.Image);
+                            string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                            <img src="@imageSrc"
+                                 class="img-responsive new-post-mobile-image"
+                                 alt="Post image is not avaliable"
+                                 style="max-height:140px; max-width:100%;width:100%;" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/Home/camera.png"
+                                 class="img-responsive new-post-mobile-image"
+                                 alt="Post image is not avaliable"
+                                 style="max-height:140px; max-width:100%;width:100%;" />
+                            <span id="infoErrorUpload1" style="display:none;color:red;font-size:smaller;">
+                                File size must be <=7MB!
+                            </span>
+                        }
+                    </a>
+                </div>
+                <button type="button" class="light-button btn-remove-image" data-id="@item.FileID">
+                    REMOVE
+                </button>
+            </div>
+        }
+    </div>
+
+    <div class="image-field col-md-12 col-xs-12 col-lg-12" id="divSquare" style="margin-bottom:35px;">
+        <div class="image-field col-md-3 col-xs-12">
+            <button type="button" class="light-button UploadSquare">
+                ADD SQUARE PHOTO
+            </button>
+        </div>
+        <div class="image-field col-md-9 col-xs-12">
+        </div>
+        @foreach (var item in listSquares.ToList())
+        {
+            <div class="image-content">
+                <div title="Image for @item.FileName">
+                    <a class="thumbnail">
+                        @if (item != null && item.Image != null && item.Image.Length > 1)
+                        {
+                            string imageBase64 = Convert.ToBase64String(item.Image);
+                            string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                            <img src="@imageSrc"
+                                 class="img-responsive new-post-mobile-image"
+                                 alt="Post image is not avaliable"
+                                 style="max-height:140px; max-width:100%;width:100%;" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/Home/camera.png"
+                                 class="img-responsive new-post-mobile-image"
+                                 alt="Post image is not avaliable"
+                                 style="max-height:140px; max-width:100%;width:100%;" />
+                            <span id="infoErrorUpload1" style="display:none;color:red;font-size:smaller;">
+                                File size must be <=7MB!
+                            </span>
+                        }
+                    </a>
+                </div>
+                <button type="button" class="light-button btn-remove-image" data-id="@item.FileID">
+                    REMOVE
+                </button>
+            </div>
+        }
+    </div>
+
+    <div class="image-field col-md-12 col-xs-12 col-lg-12" id="divRectangle" style="margin-bottom:35px;">
+        <div class="image-field col-md-3 col-xs-12">
+            <button type="button" class="light-button UploadRectangle">
+                ADD RECTANGLE PHOTO
+            </button>
+        </div>
+        <div class="image-field col-md-9 col-xs-12">
+        </div>
+        @foreach (var item in listRectangles.ToList())
+        {
+            <div class="image-content">
+                <div title="Image for @item.FileName">
+                    <a class="thumbnail">
+                        @if (item != null && item.Image != null && item.Image.Length > 1)
+                        {
+                            string imageBase64 = Convert.ToBase64String(item.Image);
+                            string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                            <img src="@imageSrc"
+                                 class="img-responsive new-post-mobile-image"
+                                 alt="Post image is not avaliable"
+                                 style="max-height:140px; max-width:100%;width:100%;" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/Home/camera.png"
+                                 class="img-responsive new-post-mobile-image"
+                                 alt="Post image is not avaliable"
+                                 style="max-height:140px; max-width:100%;width:100%;" />
+                            <span id="infoErrorUpload1" style="display:none;color:red;font-size:smaller;">
+                                File size must be <=7MB!
+                            </span>
+                        }
+                    </a>
+                </div>
+                <button type="button" class="light-button btn-remove-image" data-id="@item.FileID">
+                    REMOVE
+                </button>
+            </div>
+        }
+    </div>
+    <form id="frmPostRowEdit-@dataId" class="modify-product-root">
+        @Html.HiddenFor(a => a.PostID)
+        @Html.HiddenFor(a => a.IsBrandNew)
+        @Html.HiddenFor(a => a.IsUsed)
+        <div class="card-form row" style="margin-top:35px;">
+            <h4 class="sub-title">Product Information</h4>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                <label for="Title">
+                    Product Name*
+                    <a title="Product Name: Write down the name of your product. Examle: iPhone 6, Windows Phone Lumia 650 or Dell Inspiron etc.">
+                        <img alt="Help" src="~/Images/Icons/help.png" class="help-icon" />
+                    </a>
+                </label>
+                @Html.EditorFor(a => a.Title, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(m => m.Title, "", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                <label for="CategoryID">
+                    Product Category*
+                    <a title="Product Category: This is item category. Please select from the dropdown. Example: Electronics, Women Fashion">
+                        <img alt="Help" src="~/Images/Icons/help.png" class="help-icon" />
+                    </a>
+                </label>
+                @Html.DropDownListFor(a => a.CategoryID, Model.AV_Category, new { @class = "fff" })
+                @Html.ValidationMessageFor(m => m.CategoryID, "", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                <label for="SubCategoryID">
+                    Product Sub-Category*
+                    <a title="Product Sub-Category: This is item sub-category. Each category has a set of sub-categories. Please select from the dropdown. Example: Electronics, Women Fashion">
+                        <img alt="Help" src="~/Images/Icons/help.png" class="help-icon" />
+                    </a>
+                </label>
+                @Html.DropDownListFor(a => a.SubCategoryID, Model.AV_SubCategory, new { @class = "fff" })
+                @Html.ValidationMessageFor(m => m.SubCategoryID, "", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                <label for="StateID">
+                    State / Region
+                    <a title="State / Region: Select the region/state in Bangladesh in the dropdown following. Your shop must be located in that state/region.">
+                        <img alt="Help" src="~/Images/Icons/help.png" class="help-icon" />
+                    </a>
+                </label>
+                @Html.DropDownListFor(a => a.StateID, Model.AV_State, new { @class = "fff" })
+                @Html.ValidationMessageFor(m => m.StateID, "", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                <label for="AreaDescription">
+                    Shop Location
+                    <a title="Shop Location: Some extra details about your shop location can be written here. Example: Road 4, House 11, Dghanmondi R/A, 1/1 Asad Gate etc.">
+                        <img alt="Help" src="~/Images/Icons/help.png" class="help-icon" />
+                    </a>
+                </label>
+                @Html.EditorFor(a => a.AreaDescription, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                <label for="SearchTag">
+                    Search Tags
+                    <a title="Search Tags: Put comma seperated key words which can easily find your product when people search in search engine.">
+                        <img alt="Help" src="~/Images/Icons/help.png" class="help-icon" />
+                    </a>
+                </label>
+                @Html.EditorFor(a => a.SearchTag, new { htmlAttributes = new { @class = "fff" } })
+            </div>            
+            <div class="input-field col-md-8 col-sm-8 col-lg-8 col-xs-12">
+                <label for="Description">
+                    Product Details
+                    <a title="">
+                        <img alt="Help" src="~/Images/Icons/help.png" class="help-icon" />
+                    </a>
+                </label>
+                @Html.TextAreaFor(a => a.Description, new { @class = "fff" })
+            </div>
+        </div>
+
+        <div class="card-form row">
+            <h4 class="sub-title">Price Information</h4>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                <label for="Price">
+                    Product Price (Taka)* &nbsp;
+                    <a title="Product Price: Product Price (Taka) is shop defined product price.">
+                        <img alt="Help" src="~/Images/Icons/help.png" class="help-icon" />
+                    </a>
+                </label>
+                @Html.EditorFor(a => a.Price, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                <label for="Price">
+                    Discounted Product Price (Taka)*
+                    &nbsp;
+                    <a title="Discounted Product Price: Discounted Product Price is a revised Product Price set by the shop owner. Discounted Product Price is thefinal Product Price set by shop. If shop has no discounted price, please put same amount in both price fields.">
+                        <img alt="Help" src="~/Images/Icons/help.png" class="help-icon" />
+                    </a>
+                </label>
+                @Html.EditorFor(a => a.DiscountedPrice, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                <label for="PaymentGatewayCommision">
+                    Payment Gateway Commission* &nbsp;
+                    <a title="Payment Gateway Commission: This amount Bkash deducts from total transaction amount done during a purchase. So, for your Product Price payment gateway commission will be deducted.">
+                        <img alt="Help" src="~/Images/Icons/help.png" class="help-icon" />
+                    </a>
+                </label>
+                @Html.EditorFor(a => a.PaymentGatewayCommision, new { htmlAttributes = new { @class = "fff disabled" } })
+            </div>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                <label for="DeshiHutCommissionPrice">
+                    Shop Proposed Deshi Hut Bazar Commission (Taka)
+                </label>
+                @Html.EditorFor(a => a.DeshiHutCommissionAmount, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                <label for="DeshiHutCommissionPrice">
+                    Portal Display Price(Taka) &nbsp;
+                    <a title="Portal Display Price(Taka): This is the price displayed in online market. Buyers will pay this amount to purchase the product.">
+                        <img alt="Help" src="~/Images/Icons/help.png" class="help-icon" />
+                    </a>
+                </label>
+                @Html.EditorFor(a => a.PortalProductPrice, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                <label for="PortalProductPrice">
+                    Shop Product Sale Share (Taka) &nbsp;
+                    <a title="Shop Product Sale Share (Taka): Shop Product Sale Share (Taka) = Discounted Price - (Discounted Price * Payment Gateway Commission / 100) - Deshi Hut Bazar Commission Amount. Shop Owner will get this amount.">
+                        <img alt="Help" src="~/Images/Icons/help.png" class="help-icon" />
+                    </a>
+                </label>
+                @Html.EditorFor(a => a.ShopShareAmount, new { htmlAttributes = new { @class = "fff disabled" } })
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <input data-valueid="@Model.PostID"
+                   id="btnSubmitPost-@formid"
+                   type="button"
+                   class="update-post btn-submit-post-modify-mode primary-button"
+                   value="@Common.Language.LanguageDefault.ButtonUPDATE" />
+        </div>
+    </form>
+    <div class="col-md-6">
+        <a data-id="@Model.PostID"
+           class="delete-post light-button"
+           id="btnDelete-@dataId">
+            @Common.Language.LanguageDefault.ModifyPostDELETE
+        </a>
+    </div>
+</div>
+

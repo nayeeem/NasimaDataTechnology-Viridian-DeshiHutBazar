@@ -1,0 +1,10 @@
+﻿@model WebDeshiHutBazar.AccountViewModel
+
+@foreach (var item in Model.ListBikashBills)
+{
+    if (item.UserOrderModel != null)
+    {
+        @Html.Partial("../../Areas/Advertizer/Views/AccountSettings/_SingleOrderDetailsMobile", item.UserOrderModel)
+    }
+}
+@Html.Partial("../../Areas/Advertizer/Views/AccountSettings/_ListUserBikashBillsMobile", Model.ListBikashBills.AsEnumerable())

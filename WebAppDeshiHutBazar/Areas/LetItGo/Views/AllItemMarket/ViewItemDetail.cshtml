@@ -1,0 +1,248 @@
+﻿@model WebDeshiHutBazar.PostDisplayViewModel
+@{
+    ViewBag.Title = Common.Language.LanguageDefault.ViewBagTitleItemDetailsPage;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<div class="request-container-background" data-request="modal"></div>
+<div class="request-container" data-request="content">
+    <div id="requestForm">
+        <h4>@Common.Language.LanguageDefault.ItemDetailsSUBMITREQUEST</h4>
+        <b>@Common.Language.LanguageDefault.CommentPInfoNote</b>
+        <p class="note">@Common.Language.LanguageDefault.ItemDetailsPleaseFillupTheFormBelow</p>
+        <div class="gap"></div>
+        <div class="row padding-margin-zero">
+            @Html.HiddenFor(a => a.Email)
+            <div class="input-field col-md-6">
+                <label for="contactname">
+                    @Common.Language.LanguageDefault.PhoneField
+                </label>
+                <input type="text" class="fff" id="contactphone" placeholder="@Common.Language.LanguageDefault.EnterYourPhoneNumber">
+            </div>
+            <div class="input-field col-sm-6">
+                <label for="contactemail">
+                    @Common.Language.LanguageDefault.ItemDetailsEmailAddress
+                </label>
+                <input type="email"
+                       class="fff"
+                       id="contactemail"
+                       placeholder="@Common.Language.LanguageDefault.ItemDetailsEnterEmailForSigninOrSignup">
+            </div>
+        </div>
+        <div class="row padding-margin-zero">
+            <div class="col-md-6">
+                <button id="btnSubmitContactAdvertiser" class="primary-button" type="button">
+                    @Common.Language.LanguageDefault.ItemDetailsSUBMITREQUEST
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button class="light-button" type="button" data-request="modal">
+                    @Common.Language.LanguageDefault.Close
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="accordioncontactdetail" style="display:none;">
+        <h4>@Common.Language.LanguageDefault.ItemDetailsADVERTISERDETAILS</h4>
+        <div class="gap"></div>
+        <div class="input-field col-md-12">
+            <label>@Common.Language.LanguageDefault.NewPostLabelFullName</label>
+            @{
+                var fullName = "N/A";
+                if (!string.IsNullOrEmpty(Model.PosterName))
+                {
+                    fullName = @Model.PosterName;
+                }
+                else if (!string.IsNullOrEmpty(Model.ClientName))
+                {
+                    fullName = @Model.ClientName;
+                }
+            }
+            <input type="text" class="fff" disabled="disabled" value="@fullName">
+        </div>
+        <div class="input-field col-md-12">
+            <label>@Common.Language.LanguageDefault.ContactNumber</label>
+            @{
+                var phone = "N/A";
+                if (!string.IsNullOrEmpty(Model.PosterContactNumber))
+                {
+                    phone = @Model.PosterContactNumber;
+                }
+                else if (!string.IsNullOrEmpty(Model.Phone))
+                {
+                    phone = @Model.Phone;
+                }
+            }
+            <input type="text" class="fff" disabled="disabled" value="@phone">
+        </div>
+        <div class="col-md-12">
+            <button class="primary-button" type="button" data-request="modal">
+                @Common.Language.LanguageDefault.Close
+            </button>
+        </div>
+    </div>
+</div>
+<div class="request-container-background" id="requestVisitorEmailBackground"></div>
+<div class="request-container" id="requestVisitorEmailFormContent">
+    <div id="requestVisitorEmailForm">
+        <h4>
+            @Common.Language.LanguageDefault.ContactRequestInfo
+
+        </h4>
+        <div class="gap"></div>
+        <div class="row padding-margin-zero">
+            <div class="input-field col-sm-6">
+                <label for="contactmessage">
+                    @Common.Language.LanguageDefault.EmailField
+                </label>
+                <input type="email"
+                       class="fff"
+                       id="visitorEmail"
+                       placeholder="@Common.Language.LanguageDefault.EnterYourEmailAddress">
+            </div>
+            <div class="input-field col-sm-6">
+                <label for="contactnumber">
+                    @Common.Language.LanguageDefault.PhoneField
+                </label>
+                <input type="text"
+                       class="fff"
+                       id="visitorPhone"
+                       placeholder="@Common.Language.LanguageDefault.EnterYourPhoneNumber">
+            </div>
+        </div>
+        <div class="row padding-margin-zero">
+            <div class="col-md-6">
+                <button id="btnSubmitVisitorEmail" class="primary-button" type="button">
+                    @Common.Language.LanguageDefault.VisitorEmailSubmit
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button id="visitorEmailClose" class="light-button" type="button" data-request="modal">
+                    @Common.Language.LanguageDefault.Close
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div id="marketItemDetailDesktop" class="padding-margin-zero">
+        @Html.HiddenFor(a => a.PostID)
+        <div class="market-detail-container">
+            <div class="market-images">
+                @Html.Partial("../../Areas/LetItGo/Views/AllItemMarket/_CarouselDesktop", Model)
+            </div>
+            <div class="market-info">
+                <h3>@Model.Title</h3>
+                @if (Model.IsUrgent)
+                {
+                    <span class="tag urgent"><i class="fa fa-exclamation fa-fw"></i> @Common.Language.LanguageDefault.MarketItemUrgentSell</span>
+                }
+
+                @if (Model.IsBrandNew)
+                {
+                    <span class="tag new"><i class="fa fa-check fa-fw"></i> @Common.Language.LanguageDefault.MarketItemNewItem</span>
+                }
+                <a class="sub-content" href="#comment">
+                    <span class="main">
+                        @Model.CommentsCount
+                    </span>
+                    <span class="content">
+                        @Common.Language.LanguageDefault.MarketItemComments
+                    </span>
+                </a>
+                <div class="price-detail">
+                    @Model.FormattedPriceValue
+                </div>
+                <ul class="ads-detail">
+                    <li>
+                        <span class="title">
+                            @Common.Language.LanguageDefault.ItemDetailsLocation
+                        </span>
+                        <span class="value">
+                            @if (!string.IsNullOrEmpty(Model.DisplayState))
+                            {
+                                @Model.DisplayState
+                                <span>,</span>
+                                @Model.AreaDescription
+                            }
+                        </span>
+                    </li>
+                    <li>
+                        <span class="title">
+                            @Common.Language.LanguageDefault.ItemDetailsDealer
+                        </span>
+                        <span class="value">
+                            @if (!string.IsNullOrEmpty(Model.DealerTypeDisplay))
+                            {
+                                @Model.DealerTypeDisplay
+                            }
+                        </span>
+                    </li>
+                    <li>
+                        <span class="title">
+                            @Common.Language.LanguageDefault.ItemDetailsThisAdFor
+                        </span>
+                        <span class="value">
+                            @if (Model.IsForRent && Model.IsForSell)
+                            {
+                                @Common.Language.LanguageDefault.ItemDetailsSellOrRent
+                            }
+
+                            else if (Model.IsForSell)
+                            {
+                                @Common.Language.LanguageDefault.ItemDetailsSell
+                            }
+                            else if (Model.IsForRent)
+                            {
+                                @Common.Language.LanguageDefault.ItemDetailsRent
+                            }
+                        </span>
+                    </li>
+                    <li>
+                        <span class="title">
+                            @Common.Language.LanguageDefault.ItemDetailsDescription
+                        </span>
+                        <span class="value">
+                            @Model.Description
+                        </span>
+                    </li>
+                </ul>
+
+                <a class="primary-button flex ads-button large" data-request="button">
+                    <i class="fa fa-phone fa-fw"></i>
+                    @Common.Language.LanguageDefault.ItemDetailsRequestAdvertiserContact
+                </a>
+            </div>
+        </div>
+        <div class="market-comment-container" id="comment">
+            <h5>@Common.Language.LanguageDefault.ItemDetailsPublicComments</h5>
+            @Html.Partial("../../Areas/LetItGo/Views/AllItemMarket/_ItemComment", Model)
+        </div>
+    </div>
+    @Html.Partial("../Shared/_PageContent", Model.ContentInfoViewModel)
+</div>
+<script type="text/javascript">
+    var checkUserAccountExistByEmail = '@Url.Action("CheckUserAccountExistByEmail", "Account")';
+    var savecontactsingleitempageurl = '@Url.Action("SaveContactRequestMessage", "Message")';
+    var commentUrl = '@Url.Action("AddComments", "AllItemMarket")';
+</script>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+        createJSON('@Model.CategoryID');
+    </script>
+    
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.password.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.itemdetail.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.log.visitor.email.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.market.js" type="text/javascript"></script>
+}
+
+
+
+

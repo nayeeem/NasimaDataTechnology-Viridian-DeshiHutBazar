@@ -1,0 +1,241 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    ViewBag.Title = Common.Language.LanguageDefault.ViewBagTitleItemDetailsPage;
+    Layout = "~/Views/Shared/_Layout.Tablet.cshtml";
+    ViewBag.ExcludeHeader = false;
+    bool show = false;
+    if (Model.ItemDetailsCompanyAboutPanelDesktop != null)
+    {
+        show = true;
+    }
+}
+<div class="request-container-background" data-request="modal"></div>
+<div class="request-container" data-request="content">
+    <div id="requestForm">
+        <h4>@Common.Language.LanguageDefault.ItemDetailsSUBMITREQUEST</h4>
+        <b>@Common.Language.LanguageDefault.CommentPInfoNote</b>
+        <p class="note">@Common.Language.LanguageDefault.ItemDetailsPleaseFillupTheFormBelow</p>
+        <div class="gap"></div>
+        <div class="row padding-margin-zero">
+            @Html.HiddenFor(a => a.Email)
+            <div class="input-field col-md-6">
+                <label for="contactname">
+                    @Common.Language.LanguageDefault.PhoneField
+                </label>
+                <input type="text" class="fff" id="contactphone" placeholder="@Common.Language.LanguageDefault.EnterYourPhoneNumber">
+            </div>
+            <div class="input-field col-sm-6">
+                <label for="contactmessage">
+                    @Common.Language.LanguageDefault.ItemDetailsEmailAddress
+                </label>
+                <input type="email"
+                       class="fff"
+                       id="contactemail"
+                       placeholder="@Common.Language.LanguageDefault.ItemDetailsEnterEmailForSigninOrSignup">
+            </div>
+        </div>
+        <div class="row padding-margin-zero">
+            <div class="col-md-6">
+                <button id="btnSubmitContactAdvertiser" class="primary-button" type="button">
+                    @Common.Language.LanguageDefault.ItemDetailsSUBMITREQUEST
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button class="light-button" type="button" data-request="modal">
+                    @Common.Language.LanguageDefault.Close
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="accordioncontactdetail" style="display:none;">
+        <h4>@Common.Language.LanguageDefault.ItemDetailsADVERTISERDETAILS</h4>
+        <div class="gap"></div>
+        <div class="input-field col-md-12">
+            <label>@Common.Language.LanguageDefault.NewPostLabelFullName</label>
+            @{
+                var fullName = "N/A";
+                if (!string.IsNullOrEmpty(Model.PosterName))
+                {
+                    fullName = @Model.PosterName;
+                }
+                else if (!string.IsNullOrEmpty(Model.ClientName))
+                {
+                    fullName = @Model.ClientName;
+                }
+            }
+            <input type="text" class="fff" disabled="disabled" value="@fullName">
+        </div>
+        <div class="input-field col-md-12">
+            <label>@Common.Language.LanguageDefault.ContactNumber</label>
+            @{
+                var phone = "N/A";
+                if (!string.IsNullOrEmpty(Model.PosterContactNumber))
+                {
+                    phone = @Model.PosterContactNumber;
+                }
+                else if (!string.IsNullOrEmpty(Model.Phone))
+                {
+                    phone = @Model.Phone;
+                }
+            }
+            <input type="text" class="fff" disabled="disabled" value="@phone">
+        </div>
+        <div class="col-md-12">
+            <button class="primary-button" type="button" data-request="modal">
+                @Common.Language.LanguageDefault.Close
+            </button>
+        </div>
+    </div>
+</div>
+<div class="request-container-background" id="requestVisitorEmailBackground"></div>
+<div class="request-container" id="requestVisitorEmailFormContent">
+    <div id="requestVisitorEmailForm">
+        <h4>
+            @Common.Language.LanguageDefault.ContactRequestInfo
+        </h4>
+        <div class="gap"></div>
+        <div class="row padding-margin-zero">
+            <div class="input-field col-sm-6">
+                <label for="contactmessage">
+                    @Common.Language.LanguageDefault.EmailField
+                </label>
+                <input type="email"
+                       class="fff"
+                       id="visitorEmail"
+                       placeholder="@Common.Language.LanguageDefault.EnterYourEmailAddress">
+            </div>
+            <div class="input-field col-sm-6">
+                <label for="contactnumber">
+                    @Common.Language.LanguageDefault.PhoneField
+                </label>
+                <input type="text"
+                       class="fff"
+                       id="visitorPhone"
+                       placeholder="@Common.Language.LanguageDefault.EnterYourPhoneNumber">
+            </div>
+        </div>
+        <div class="row padding-margin-zero">
+            <div class="col-md-6">
+                <button id="btnSubmitVisitorEmail" class="primary-button" type="button">
+                    @Common.Language.LanguageDefault.VisitorEmailSubmit
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button id="visitorEmailClose" class="light-button" type="button" data-request="modal">
+                    @Common.Language.LanguageDefault.Close
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="layoutBodyContainer" class="container">
+    @if (Model.ListPostProcess.Count > 0)
+    {
+        <h4 class="sub-title">Basic Fabia @Model.Title Service Process Steps</h4>
+        @Html.Partial("../../Areas/LetItGo/Views/FabiaService/_ListProcess", Model)
+    }
+    <div id="marketItemDetailDesktop" class="padding-margin-zero">
+        @Html.HiddenFor(a => a.PostID)
+        <div class="market-detail-container">
+            <div class="market-images">
+                @Html.Partial("../../Areas/LetItGo/Views/FabiaService/_CarouselDesktop", Model)
+            </div>
+            <div class="market-info">
+                <h3>@Model.Title</h3>
+                @if (Model.IsUrgent)
+                {
+                    <span class="tag urgent"><i class="fa fa-exclamation fa-fw"></i> @Common.Language.LanguageDefault.MarketItemUrgentSell</span>
+                }
+                @if (Model.IsBrandNew)
+                {
+                    <span class="tag new"><i class="fa fa-check fa-fw"></i> @Common.Language.LanguageDefault.MarketItemNewItem</span>
+                }
+                <a class="sub-content" href="#comment">
+                    <span class="main">
+                        @Model.CommentsCount
+                    </span>
+                    <span class="content">
+                        @Common.Language.LanguageDefault.MarketItemComments
+                    </span>
+                </a>
+                <div class="price-detail">
+                    @Model.FormattedPriceValue
+                </div>
+                <ul class="ads-detail">
+
+                    <li>
+                        <span class="value">
+                            @Model.Description
+                        </span>
+                    </li>
+                </ul>
+                <a class="primary-button flex ads-button large" data-request="button">
+                    <i class="fa fa-phone fa-fw"></i>
+                    @Common.Language.LanguageDefault.ItemDetailsRequestAdvertiserContact
+                </a>
+            </div>
+        </div>
+    </div>
+    @if (Model.ListPostService.Count > 0)
+    {
+        <div class="card-form row" style="margin-bottom:10px;">
+            <h4 class="sub-title">Basic Fabia @Model.Title Services</h4>
+            @Html.Partial("../../Areas/LetItGo/Views/FabiaService/_ListService", Model)
+        </div>
+    }
+    @if (Model.ListFabiaProvider.Count > 0)
+    {
+        foreach (var itemDesktop in Model.ListFabiaProvider)
+        {
+            if (itemDesktop.ProfileImage != null)
+            {
+                <div class="modal fade new-modal"
+                     id="img-@itemDesktop.ProviderID"
+                     tabindex="-1" role="dialog"
+                     aria-labelledby="add-group-panel-Title"
+                     aria-hidden="true"
+                     style="width:400px; max-width:400px;text-align:center;height:400px;max-height:400px;">
+                    <div class="new-modal-content" style="width:400px;max-width:400px;text-align:center;">
+                        @Html.Partial("../Shared/DesktopPostType/_Image", itemDesktop.ProfileImage);
+                    </div>
+                    <div class="new-modal-footer">
+                        <button type="button" class="flat-button flex pull-right" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            }
+        }
+        <div class="card-form row" style="margin-bottom:10px;">
+            <h4 class="sub-title">Fabia Service Providers</h4>
+            @Html.Partial("../../Areas/LetItGo/Views/FabiaService/_ListProviderMobile", Model)
+        </div>
+    }
+    <div class="market-comment-container" id="comment">
+        <h5>@Common.Language.LanguageDefault.ItemDetailsPublicComments</h5>
+        @Html.Partial("../../Areas/LetItGo/Views/FabiaService/_ItemComment", Model)
+    </div>
+    @Html.Partial("../Shared/_PageContent", Model.ContentInfoViewModel)
+</div>
+<script type="text/javascript">
+    var checkUserAccountExistByEmail = '@Url.Action("CheckUserAccountExistByEmail", "Account")';
+    var savecontactsingleitempageurl = '@Url.Action("SaveContactRequestMessage", "Message")';
+    var commentUrl = '@Url.Action("AddComments", "AllItemMarket")';
+</script>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    </script>
+    
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.password.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.itemdetail.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.log.visitor.email.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.market.js" type="text/javascript"></script>
+}
+
+
+
+

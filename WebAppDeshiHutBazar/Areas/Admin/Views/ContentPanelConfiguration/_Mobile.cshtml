@@ -1,0 +1,198 @@
+﻿@model WebDeshiHutBazar.GroupPanelInformationViewModel
+<style type="text/css">
+    body.dragging, body.dragging * {
+        cursor: move !important;
+    }
+    .dragged {
+        position: absolute;
+        opacity: 0.5;
+        z-index: 2000;
+    }
+    tbody.example tr.placeholder {
+        position: relative;
+    }
+        tbody.example tr.placeholder:before {
+            position: absolute;
+        }
+</style>
+<ul class="nav nav-tabs new-nav-tabs">
+    <li class="active"><a href="#" class="mobile-banner mobile-tab-link">PANEL CONFIGURATIONS</a></li>
+    <li role="presentation">
+        <a href="#" class="mobile-allconfig mobile-tab-link">PREVIEW</a>
+    </li>
+</ul>
+<div id="bannerMobile" class="table-responsive mobile-panel-config-grid-parent-container mobile-banner-content container">
+    <div class="row">
+        <div class="col-md-1 col-xs-12 col-sm-1 col-lg-1">Order</div>
+        <div class="col-md-1 col-xs-12 col-sm-1 col-lg-1">Show?</div>
+        <div class="col-md-3 col-xs-12 col-sm-3 col-lg-3">Grp. Title</div>
+        <div class="col-md-1 col-xs-12 col-sm-1 col-lg-1">Columns</div>
+        <div class="col-md-1 col-xs-12 col-sm-1 col-lg-1">Cat.</div>
+        <div class="col-md-2 col-xs-12 col-sm-1 col-lg-1">Sub-Cat.</div>
+        <div class="col-md-3 col-xs-12 col-sm-3 col-lg-3"></div>
+    </div>
+    @foreach (var itemDesktop in Model.ListGroupPanelTemplateConfiguration.Where(a =>
+                                a.Device == Common.EnumDeviceType.Mobile)
+                                .OrderBy(a => a.Order).ToList())
+    {
+        <div class="row" style="border-bottom: 3px solid white; margin-bottom:10px;padding:3px;">
+            <div data-label="Order" class="col-md-1 col-xs-12 col-sm-1 col-lg-1 truncate">
+                @Html.HiddenFor(a => itemDesktop.GroupPanelConfigID, new { @class = "GroupPanelConfigID" })
+                @Html.DisplayFor(modelItem => itemDesktop.Order)
+            </div>
+            <div data-label="Show" class="col-md-1 col-xs-12 col-sm-1 col-lg-1 truncate">
+                @if (itemDesktop.ShowOrHide == Common.EnumShowOrHide.Yes)
+                {
+                    <b class="text-success">SHOW</b>
+                }
+                else if (itemDesktop.ShowOrHide == Common.EnumShowOrHide.No)
+                {
+                    <b class="text-danger">HIDE</b>
+                }
+            </div>
+            <div data-label="Display" class="col-md-3 col-xs-12 col-sm-3 col-lg-3 truncate">
+                @Html.DisplayFor(modelItem => itemDesktop.EnumPanelDisplayStyle) &nbsp;
+                @Html.DisplayFor(modelItem => itemDesktop.GroupPanelTitle)
+            </div>
+            <div data-label="Columns" class="col-md-1 col-xs-12 col-sm-1 col-lg-1 truncate">
+                @Html.DisplayFor(modelItem => itemDesktop.Column)
+            </div>
+            <div data-label="Category" class="col-md-1 col-xs-12 col-sm-1 col-lg-1 truncate">
+                @Html.DisplayFor(modelItem => itemDesktop.DisplayCategory)
+            </div>
+            <div data-label="Sub Category" class="col-md-2 col-xs-12 col-sm-1 col-lg-1 truncate">
+                @Html.DisplayFor(modelItem => itemDesktop.DisplaySubCategory)
+            </div>
+            <div data-label="Action" class="col-md-3 col-xs-12 col-sm-3 col-lg-3">
+                <a data-toggle="modal"
+                   class="light-button small flex btn-sm btn-edit-config"
+                   data-configid="@itemDesktop.GroupPanelConfigID"
+                   data-target="#modal-edit-group-panel-9999">
+                    EDIT
+                </a>
+                <a data-toggle="modal"
+                   class="light-button small flex btn-sm btn-remove-group-config"
+                   data-groupconfigid="@itemDesktop.GroupPanelConfigID">
+                    REMOVE
+                </a>
+                @if (itemDesktop.HasToShowPostsOrOrder)
+                {
+                    <a data-toggle="modal"
+                       class="secondary-light-button small flex btn-sm add-posts-btn"
+                       data-target="#modal-select-posts-9999"
+                       data-configid="@itemDesktop.GroupPanelConfigID"
+                       data-categoryid="@itemDesktop.CategoryID"
+                       data-subcategoryid="@itemDesktop.SubCategoryID">
+                        ADD
+                    </a>
+                    <a data-toggle="modal"
+                       class="secondary-light-button small flex btn-sm panel-posts-btn"
+                       data-target="#modalGroupPosts"
+                       data-configid="@itemDesktop.GroupPanelConfigID">
+                        POSTS
+                    </a>
+                    <a data-toggle="modal"
+                       class="secondary-light-button small flex btn-sm panel-order-posts-btn"
+                       data-target="#modalOrderPosts"
+                       data-configid="@itemDesktop.GroupPanelConfigID">
+                        ORDER
+                    </a>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<div id="allConfigMobile"
+     class="table-responsive mobile-panel-config-grid-parent-container mobile-allconfig-content container">
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4 col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-4 col-lg-4">
+            <table class="new sorted_table table">
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="example sorted_head">
+                    @{
+                        var listAllConfigs = Model.ListGroupPanelTemplateConfiguration.Where(a =>
+                        a.Device == Common.EnumDeviceType.Mobile).OrderBy(a => a.Order).ToList();
+                    }
+                    <tr class="placeholder"></tr>
+                    @foreach (var config in listAllConfigs.ToList())
+                    {
+                        <tr>
+                            <td class="selecttd">
+                                @Html.HiddenFor(a => config.GroupPanelConfigID, new { @class = "GroupPanelConfigID" })
+                                <span style="padding:15px;background-color:orange; margin-left:5px; margin-right:10px;">
+                                    @Html.DisplayFor(modelItem => config.Order)
+                                </span>
+                                @if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.TopSubBanner)
+                                {
+                                    @Html.Partial("../Shared/_WrapperPanel", config)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.TopBanner)
+                                {
+                                    @Html.Partial("../Shared/_WrapperPanel", config)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.GroupSection)
+                                {
+                                    @Html.Partial("../Shared/_GroupPanel", config)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.VideoPost)
+                                {
+                                    @Html.Partial("../Shared/_PostVideoPanel", config)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.VideoComment)
+                                {
+                                    @Html.Partial("../Shared/_VideoCommentPanel", config)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.VideoAboutCompany)
+                                {
+                                    @Html.Partial("../Shared/_VideoAboutCompanyPanel", config)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.MarketPanel)
+                                {
+                                    @Html.Partial("../Shared/_MarketPanel", config)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.AllFixedButtons)
+                                {
+                                    @Html.Partial("../Shared/_AllFixedButton", config.FabiaInformationViewModel)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.SimilarItemsMarketPanel)
+                                {
+                                    @Html.Partial("../Shared/_SimilarItemsMarketPanel", config)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.ExportButton)
+                                {
+                                    @Html.Partial("../Shared/_ExportButton", config.FabiaInformationViewModel)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.ImportButton)
+                                {
+                                    @Html.Partial("../Shared/_ImportButton", config.FabiaInformationViewModel)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.RequestButton)
+                                {
+                                    @Html.Partial("../Shared/_RequestButton", config.FabiaInformationViewModel)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.FabiaButton)
+                                {
+                                    @Html.Partial("../Shared/_FabiaButton", config.FabiaInformationViewModel)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.SpecialButton)
+                                {
+                                    @Html.Partial("../Shared/_SpecialButton", config.FabiaInformationViewModel)
+                                }
+                                else if (config.EnumPanelDisplayStyle == Common.EnumPanelDisplayStyle.MarketButton)
+                                {
+                                    @Html.Partial("../Shared/_MarketButton", config.FabiaInformationViewModel)
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

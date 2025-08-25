@@ -1,0 +1,23 @@
+﻿@model WebDeshiHutBazar.CartSingleItemViewModel
+<tr class="single-cart-row">
+    @Html.HiddenFor(a => a.PostID)
+    @Html.HiddenFor(a => a.SlNo)
+    <td class="sl-no" data-label="SL NO">
+        @Model.SlNo
+    </td>
+    <td data-label="PRODUCT NAME">
+        @Model.ProductName
+    </td>
+    <td class="product-count-container" data-label="UNITS">
+        <span class="product-quantity">@Model.Quantity</span>
+    </td>
+    <td data-label="PRICE">
+        @Model.UnitPrice
+    </td>
+    <td class="package-name" data-label="DISCOUNTED PRICE">
+        <span class="product-discounted-price">@Model.UnitDiscountedPrice</span>
+    </td>
+    <td class="package-name" data-label="TOTAL PRICE (UNITS * DISCOUNTED PRICE)">
+        <span class="product-total-price">@Model.TotalUnitsPrice</span>
+    </td>
+</tr>

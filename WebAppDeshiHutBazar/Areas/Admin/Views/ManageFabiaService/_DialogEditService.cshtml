@@ -1,0 +1,75 @@
+﻿@model WebDeshiHutBazar.PostServiceViewModel
+
+<div class="modal fade new-modal edit-container" id="modal-edit-service-@Model.PostServiceID" tabindex="-1" role="dialog" aria-labelledby="edit-service" aria-hidden="true">   
+    <form id="frmAddNewConfigPanel" class="new-modal-content">
+        <h4 class="main-title">
+            Update Service Area
+        </h4>
+        <div class="col-md-4" style="height:200px;max-height:200px;">
+            <label>@Common.Language.LanguageDefault.Picture</label>
+            @if (Model.ServiceImage != null)
+            {
+                @Html.Partial("../../Areas/Admin/Views/ManageFabiaService/_Image", Model.ServiceImage);
+            }
+            else
+            {
+                <img src="../../../../Images/Home/camera.png"
+                     class="img-responsive new-post-mobile-image"
+                     alt="Post image is not avaliable"
+                     style="max-height:140px; max-width:100%;width:100%;" />
+            }
+        </div>
+        @Html.HiddenFor(a => a.PostID)
+        @Html.HiddenFor(a => a.PostServiceID)
+        <div class="image-field col-md-4">
+            <button type="button" class="light-button browse-service" >
+                @Common.Language.LanguageDefault.ModifyPostBROWSE
+            </button>
+            <span id="spnUpdateUpload" style="display:none; color:green;">Uploaded!</span>
+        </div>
+        <div class="input-field col-md-12">
+            <label>Title</label>
+            @Html.EditorFor(a => a.Title, new { htmlAttributes = new { @class = "fff" } })
+        </div>
+        <div class="input-field col-md-12">
+            <label>
+                Description
+            </label>
+            @Html.TextAreaFor(a => a.Description, new { @class = "fff" })
+        </div>
+        <div class="input-field col-md-6">
+            <label>
+                Price
+            </label>
+            @Html.EditorFor(a => a.ServicePrice, new { htmlAttributes = new { @class = "fff" } })
+        </div>
+        <div class="input-field col-md-6">
+            <label>
+                Discount
+            </label>
+            @Html.EditorFor(a => a.Discount, new { htmlAttributes = new { @class = "fff" } })
+        </div>
+        <div class="input-field col-md-6">
+            <label>Paid By</label>
+            @Html.DropDownListFor(a => a.PaidBy, Model.AV_PaidBy, new { @class = "fff" })
+        </div>
+        <div class="input-field col-md-12">
+            <label>Reason For Payment</label>
+            @Html.TextAreaFor(a => a.ReasonPayment, new { @class = "fff" })
+        </div>
+        <div class="input-field col-md-12">
+            <label>Service Policy</label>
+            @Html.TextAreaFor(a => a.ServicePolicy, new { @class = "fff" })
+        </div>
+        <div class="input-field col-md-12">
+            <label>Transport Policy</label>
+            @Html.TextAreaFor(a => a.TransportPolicy, new { @class = "fff" })
+        </div>
+
+
+    </form>
+    <div class="new-modal-footer">
+        <button type="button" class="flat-button flex pull-right" data-dismiss="modal">CLOSE</button>
+        <a class="flat-button flex pull-right btn-update-service">UPDATE SERVICE</a>
+    </div>
+</div>

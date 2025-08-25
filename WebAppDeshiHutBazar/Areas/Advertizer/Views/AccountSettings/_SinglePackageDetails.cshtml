@@ -1,0 +1,64 @@
+﻿@model WebDeshiHutBazar.PackageDetailViewModel
+
+<div class="modal fade new-modal"
+     id="modal-package-@Model.UserPackageID.ToString().Trim()"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="@Model.UserPackageID-Title"
+     aria-hidden="true">
+    <div class="new-modal-content">
+        <h4 class="main-title">
+            @Common.Language.LanguageDefault.PackageDetailsSubscriptionName
+            &nbsp;
+            @Model.PackageName
+        </h4>
+        <div class="container-fluid">
+            <div class="col-md-12">
+                    @Common.Language.LanguageDefault.PackageDetailsSubscription
+                &nbsp;
+                @Model.PackageName
+            </div>
+            <div class="col-md-12">
+                    @Common.Language.LanguageDefault.PackagePrice
+                &nbsp;
+                @Model.PackagePrice
+            </div>
+            <div class="col-md-12">
+                    @Common.Language.LanguageDefault.SubscriptionPeriod
+                &nbsp;
+                @Model.SubscriptionPeriod
+            </div>
+            <div class="col-md-12">
+                    @Common.Language.LanguageDefault.PackageDetailsDescription
+                &nbsp;
+                @Model.Descriptinon
+            </div>
+            <div class="col-md-12">
+                    @Common.Language.LanguageDefault.PackageDetailsTotalAdQuota
+                &nbsp;
+                @Model.TotalFreePost
+            </div>
+            <div class="col-md-12">
+                    @Common.Language.LanguageDefault.TotalPremiumPost
+                &nbsp;
+                @Model.TotalPremiumPost
+            </div>
+           
+            <div class="col-md-12">
+                    @Common.Language.LanguageDefault.UserTotalFreePost
+                &nbsp;
+                @Model.UserTotalFreePost
+            </div>
+            <div class="col-md-12">
+                    @Common.Language.LanguageDefault.UserTotalPremiumPost
+                &nbsp;
+                @Model.UserTotalPremiumPost
+            </div>            
+        </div>
+    </div>
+    <div class="new-modal-footer">
+        <button type="button" class="flat-button flex pull-right" data-dismiss="modal">
+            @Common.Language.LanguageDefault.ModalButtonClose
+        </button>
+    </div>
+</div>

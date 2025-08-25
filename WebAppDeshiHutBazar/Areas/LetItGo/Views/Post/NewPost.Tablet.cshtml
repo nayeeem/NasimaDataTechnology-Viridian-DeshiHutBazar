@@ -1,0 +1,40 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    ViewBag.Title = Common.Language.LanguageDefault.ViewBagTitleNewPost;
+    Layout = "~/Views/Shared/_Layout.Tablet.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<script type="text/javascript">
+    var checkemailexistsnewpost = '@Url.Action("CheckUserAccountExistByEmail", "Account")';
+    var savenewposturl = '@Url.Action("SavePost", "Post")';
+    var getcategorytexturl = '@Url.Action("GetCategoryText", "Post")';
+    var getsubcategoryurl = '@Url.Action("GetSubCategories", "Post")';
+    var getsubcatetexturl = '@Url.Action("GetSubCategoryText", "Post")';
+    var getcitybystateurl = '@Url.Action("GetCityByState", "Post")';
+    var imgload1url = '@Url.Action("ImageLoad", "Post")';
+    var imgupload1url = '@Url.Action("ImageUpload", "Post")';
+</script>
+<div id="posteditrootnewpostNP" class="container">
+    @Html.Partial("../../Areas/LetItGo/Views/Post/_NewPostContentDesktop", Model)
+    @Html.Partial("../Shared/_PageContent", Model.ContentInfoViewModel)
+</div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';        
+    </script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.password.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/ajaxupload.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.newpost.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.market.js" type="text/javascript"></script>
+}
+
+
+
+
+
+
+

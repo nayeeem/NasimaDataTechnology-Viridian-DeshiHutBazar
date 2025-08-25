@@ -1,0 +1,258 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    ViewBag.Title = "Fabia Service";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var guid = Guid.NewGuid();
+    ViewBag.ExcludeHeader = false;
+}
+
+<script type="text/javascript">
+    var imageloaadmodifymodeurl = '@Url.Action("ImageLoadModifyMode", "ManageFabiaService")';
+    var uploadimageurl = '@Url.Action("ImageUploadModify", "ManageFabiaService")';
+    var updateposturl = '@Url.Action("UpdatePost", "ManageFabiaService")';
+    var editpostbyidurl = '@Url.Action("EditPostByPostId", "ManageFabiaService")' + '?postId=' + @Model.PostID;
+    var deleteUrl = '@Url.Action("DeleteSingleService", "ManageFabiaService")';
+    var postid = '@Model.PostID';
+    var imageLoadProcessUrl = '@Url.Action("ImageLoadProcess", "ManageFabiaService")';
+    var imageLoadServiceUrl = '@Url.Action("ImageLoadService", "ManageFabiaService")';
+    var uploadProcesImageUrl = '@Url.Action("ImageUploadProcess", "ManageFabiaService")';
+    var uploadServiceImageUrl = '@Url.Action("ImageUploadService", "ManageFabiaService")';
+    var reloadUrl = '@Url.Action("ManageSingleService", "ManageFabiaService")?postid=' + postid;
+</script>
+<div id="top" class="container">
+    <h4 class="main-title">Manage Service:</h4>
+    @foreach (var singleProcessItem in Model.ListPostProcess)
+    {
+        @Html.Partial("../../Areas/Admin/Views/ManageFabiaService/_DialogEditProcess", singleProcessItem)
+    }
+    @foreach (var singleServiceItem in Model.ListPostService)
+    {
+        @Html.Partial("../../Areas/Admin/Views/ManageFabiaService/_DialogEditService", singleServiceItem)
+    }
+    @Html.Partial("../../Areas/Admin/Views/ManageFabiaService/_DialogAddProcess", Model.PostProcessViewModel)
+    @Html.Partial("../../Areas/Admin/Views/ManageFabiaService/_DialogAddService", Model.PostServiceViewModel)
+    <a data-toggle="modal"
+       class="primary-button flex max"
+       data-target="#modal-add-service">
+        CREATE SERVICE
+    </a>
+    <br />
+    @Html.Partial("../../Areas/Admin/Views/ManageFabiaService/_ListService", Model)
+    <br />
+    <a data-toggle="modal"
+       class="primary-button flex max"
+       data-target="#modal-add-process">
+        CREATE PROCESS
+    </a>
+    <br />
+    @Html.Partial("../../Areas/Admin/Views/ManageFabiaService/_ListProcess", Model)
+    <br />
+    <div class="gap"></div>
+    <div>
+    </div>
+    @Html.Partial("../../Areas/Admin/Views/ManageFabiaService/_ModifyFabiaPost", Model)
+</div>
+@section scriptsapp {
+    <script src="~/Scripts/ajaxupload.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.fabia.service.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            $(document).on("click", "#btnAddNewService", function () {
+                var container = $("#modal-add-service");
+                var postID = $(container).find("#PostID").val();
+                var title = $(container).find("#Title").val();
+                var description = $(container).find("#Description").val();
+                var servicePrice = $(container).find("#ServicePrice").val();
+                var discount = $(container).find("#Discount").val();
+                var reasonPayment = $(container).find("#ReasonPayment").val();
+                var paidBy = $(container).find("#PaidBy").val();
+                var servicePolicy = $(container).find("#ServicePolicy").val();
+                var transportPolicy = $(container).find("#TransportPolicy").val();
+
+                var requestData = {
+                    "PostID": postID,
+                    "Title": title,
+                    "Description": description,
+                    "ServicePrice": servicePrice,
+                    "Discount": discount,
+                    "ReasonPayment": reasonPayment,
+                    "PaidBy": paidBy,
+                    "ServicePolicy": servicePolicy,
+                    "TransportPolicy": transportPolicy
+                };
+
+                $.ajax({
+                    url: '@Url.Action("SaveService", "ManageFabiaService")',
+                    type: 'POST',
+                    data: JSON.stringify(requestData),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    error: function (xhr) {
+                    },
+                    success: function (result) {
+                        $('#modal-add-service').modal('hide');
+                        window.location = '@Url.Action("ManageSingleService", "ManageFabiaService")?postid=' + postid;
+                    },
+                    processData: false
+                });
+            });
+
+            $(document).on("click", "#btnAddNewProcess", function () {
+                var container = $("#modal-add-process");
+                var postID = $(container).find("#PostID").val();
+                var stepNo = $(container).find("#StepNo").val();
+                var stepName = $(container).find("#StepName").val();
+                var description = $(container).find("#Description").val();
+                var price = $(container).find("#Price").val();
+                var reasonPayment = $(container).find("#ReasonPayment").val();
+                var paidBy = $(container).find("#PaidBy").val();
+
+                var requestData = {
+                    "PostID": postID,
+                    "StepNo": stepNo,
+                    "StepName": stepName,
+                    "Description": description,
+                    "Price": price,
+                    "ReasonPayment": reasonPayment,
+                    "PaidBy": paidBy
+                };
+
+                $.ajax({
+                    url: '@Url.Action("SaveProcess", "ManageFabiaService")',
+                    type: 'POST',
+                    data: JSON.stringify(requestData),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    error: function (xhr) {
+                    },
+                    success: function (result) {
+                        $('#modal-add-process').modal('hide');
+                        window.location = '@Url.Action("ManageSingleService", "ManageFabiaService")?postid=' + postID;
+                    },
+                    processData: false
+                });
+            });
+
+            $(document).on("click", ".btn-update-service", function () {
+                var container = $(this).closest(".edit-container");
+                var postID = $(container).find("#PostID").val();
+                var postServiceID = $(container).find("#PostServiceID").val();
+                var title = $(container).find("#Title").val();
+                var description = $(container).find("#Description").val();
+                var servicePrice = $(container).find("#ServicePrice").val();
+                var discount = $(container).find("#Discount").val();
+                var reasonPayment = $(container).find("#ReasonPayment").val();
+                var paidBy = $(container).find("#PaidBy").val();
+
+                var requestData = {
+                    "PostID": postID,
+                    "PostServiceID": postServiceID,
+                    "Title": title,
+                    "Description": description,
+                    "ServicePrice": servicePrice,
+                    "Discount": discount,
+                    "ReasonPayment": reasonPayment,
+                    "PaidBy": paidBy
+                };
+
+                $.ajax({
+                    url: '@Url.Action("UpdateService", "ManageFabiaService")',
+                    type: 'POST',
+                    data: JSON.stringify(requestData),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    error: function (xhr) {
+                    },
+                    success: function (result) {
+                        $('#modal-edit-service-' + postServiceID).modal('hide');
+                        window.location = '@Url.Action("ManageSingleService", "ManageFabiaService")?postid=' + postID;
+                    },
+                    processData: false
+                });
+            });
+
+            $(document).on("click", ".btn-update-process", function () {
+                var container = $(this).closest(".edit-container");
+                var postID = $(container).find("#PostID").val();
+                var postProcessID = $(container).find("#PostProcessID").val();
+                var stepNo = $(container).find("#StepNo").val();
+                var stepName = $(container).find("#StepName").val();
+                var description = $(container).find("#Description").val();
+                var price = $(container).find("#Price").val();
+                var reasonPayment = $(container).find("#ReasonPayment").val();
+                var paidBy = $(container).find("#PaidBy").val();
+
+                var requestData = {
+                    "PostID": postID,
+                    "PostProcessID": postProcessID,
+                    "StepNo": stepNo,
+                    "StepName": stepName,
+                    "Description": description,
+                    "Price": price,
+                    "ReasonPayment": reasonPayment,
+                    "PaidBy": paidBy
+                };
+
+                $.ajax({
+                    url: '@Url.Action("UpdateProcess", "ManageFabiaService")',
+                    type: 'POST',
+                    data: JSON.stringify(requestData),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    error: function (xhr) {
+                    },
+                    success: function (result) {
+                        $('#modal-edit-process-' + postProcessID).modal('hide');
+                        window.location = '@Url.Action("ManageSingleService", "ManageFabiaService")?postid=' + postID;
+                    },
+                    processData: false
+                });
+            });
+
+
+
+            $(document).on("click", ".btn-remove-process", function () {
+                var postId = $(this).data("postid");
+                var processId = $(this).data("processid");
+                var that = this;
+                $.ajax({
+                    url: '@Url.Action("RemoveProcess", "ManageFabiaService")?postId=' + postId + '&processId=' + processId,
+                    type: 'GET',
+                    error: function (xhr) {
+                    },
+                    success: function (result) {
+                        $(that).closest("tr").remove();
+                    },
+                    processData: false
+                });
+            });
+
+            $(document).on("click", ".btn-remove-service", function () {
+                var postId = $(this).data("postid");
+                var serviceId = $(this).data("serviceid");
+                var that = this;
+                $.ajax({
+                    url: '@Url.Action("RemoveService", "ManageFabiaService")?postId=' + postId + '&serviceId=' + serviceId,
+                    type: 'GET',
+                    error: function (xhr) {
+                    },
+                    success: function (result) {
+                        $(that).closest("tr").remove();
+                    },
+                    processData: false
+                });
+            });
+
+            getPostInfo();
+
+        });
+    </script>
+}
+
+
+

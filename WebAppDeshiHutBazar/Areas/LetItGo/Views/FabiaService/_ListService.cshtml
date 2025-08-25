@@ -1,0 +1,15 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@if (Model.ListPostService != null)
+{
+    foreach (var itemDesktop in Model.ListPostService.ToList())
+    {
+            <div class="col-md-10">
+                <label for="Description">Service Details:</label>
+                @itemDesktop.Description
+            </div>
+            <div class="col-md-2">
+                <label for="Description">Service Charge (Approx.):</label>
+                @itemDesktop.ServicePrice &nbsp;(BDT)
+            </div>                       
+    }
+}

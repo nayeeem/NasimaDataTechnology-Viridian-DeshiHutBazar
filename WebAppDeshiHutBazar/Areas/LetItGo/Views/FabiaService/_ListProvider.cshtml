@@ -1,0 +1,55 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@if (Model.ListFabiaProvider != null)
+{
+    <div class="col-md-1 col-xs-12" style="margin-bottom:5px;">
+        <label for="DisplayState">State</label>
+    </div>
+    <div class="col-md-2 col-xs-12" style="margin-bottom:5px;">
+        <label for="ProviderName">Provider Name</label>
+    </div>
+    <div class="col-md-1 col-xs-12" style="margin-bottom:5px;">
+        <label for="Photo">Photo</label>
+    </div>
+    <div class="col-md-4 col-xs-12" style="margin-bottom:5px;">
+        <label for="ServiceTitle">Service Title</label>
+    </div>
+    <div class="col-md-2 col-xs-12" style="margin-bottom:5px;">
+        <label for="ServiceCharge">Service Charge</label>
+    </div>
+    <div class="col-md-2  col-xs-12" style="margin-bottom:5px;">
+        <label for="Contact Number">Contact Number</label>
+    </div>
+    foreach (var itemDesktop in Model.ListFabiaProvider)
+    {
+        <div class="col-md-1 col-xs-12" style="margin-bottom:5px;">
+            @itemDesktop.DisplayState
+        </div>
+        <div class="col-md-2 col-xs-12" style="margin-bottom:5px;">
+            @itemDesktop.ProviderName
+        </div>
+        <div class="col-md-1 col-xs-12" style="margin-bottom:5px;">
+            @if (itemDesktop.ProfileImage != null)
+            {
+                <a data-toggle="modal"
+                   data-target="#img-@itemDesktop.ProviderID"
+                   class="primary-button small-flex max">
+                    PHOTO
+                </a>
+            }
+        </div>
+        <div class="col-md-4 col-xs-12" style="margin-bottom:5px;">
+            @itemDesktop.ServiceTitle &nbsp;
+        </div>
+        <div class="col-md-2 col-xs-12" style="margin-bottom:5px;">
+            @itemDesktop.ServiceCharge &nbsp;(@Model.Currency)
+        </div>
+        <div class="phone-container col-md-2  col-xs-12" style="margin-bottom:5px;">
+            <button class="phone-text primary-button small-flex max" data-id="@itemDesktop.ProviderID" style="display:none;">
+                @itemDesktop.ProviderPhone
+            </button>
+            <button class="btn-show-please primary-button small-flex max" data-id="@itemDesktop.ProviderID">
+                Phone Number
+            </button>
+        </div>
+    }
+}

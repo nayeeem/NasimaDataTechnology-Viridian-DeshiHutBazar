@@ -1,0 +1,12 @@
+﻿@model WebDeshiHutBazar.AccountViewModel
+<div class="card-form">
+    <h5 class="sub-title">@Common.Language.LanguageDefault.MyBikashTransaction</h5>
+    @foreach (var item in Model.ListBikashBills)
+    {
+        if (item.UserOrderModel != null)
+        {
+            @Html.Partial("../../Areas/Advertizer/Views/AccountSettings/_SingleOrderDetails", item.UserOrderModel)
+        }
+    }
+    @Html.Partial("../../Areas/Advertizer/Views/AccountSettings/_ListUserBikashBills", Model.ListBikashBills.AsEnumerable())
+</div>

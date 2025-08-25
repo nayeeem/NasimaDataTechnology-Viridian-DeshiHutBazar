@@ -1,0 +1,87 @@
+﻿@model WebDeshiHutBazar.ShippingAddressViewModel
+<div class="row">
+    <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+        <h4 class="main-title">Contact Details</h4>
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="CustomerName">
+            Name
+        </label>
+        @Html.DisplayFor(a => a.CustomerName, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="CustomerEmail">
+            Email
+        </label>
+        @Html.DisplayFor(a => a.CustomerEmail, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="CustomerPhone">
+            Phone
+        </label>
+        @Html.DisplayFor(a => a.CustomerPhone, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="margin-top:40px;margin-bottom:20px;">
+        <h4 class="main-title">Shipping Address</h4>
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="State">
+            State/Region
+        </label>
+        @Html.DisplayFor(a => a.StateID, new { @class = "fff" })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="City">
+            City
+        </label>
+        @Html.DisplayFor(a => a.City, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="ZipCode">
+            Zip Code
+        </label>
+        @Html.DisplayFor(a => a.ZipCode, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="Area">
+            Area
+        </label>
+        @Html.DisplayFor(a => a.Area, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="HouseNo">
+            House No
+        </label>
+        @Html.DisplayFor(a => a.HouseNo, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="RoadNo">
+            Road No
+        </label>
+        @Html.DisplayFor(a => a.RoadNo, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="Block">
+            Block
+        </label>
+        @Html.DisplayFor(a => a.Block, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="ApartmentNo">
+            Apartment No
+        </label>
+        @Html.DisplayFor(a => a.ApartmentNo, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="LandMark">
+            Land Mark
+        </label>
+        @Html.DisplayFor(a => a.LandMark, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-12 col-xs-12 col-sm-12 col-lg-12">
+        <label for="AddressDetails">
+            Address Details
+        </label>
+        @Html.DisplayFor(a => a.AddressDetails, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+</div>

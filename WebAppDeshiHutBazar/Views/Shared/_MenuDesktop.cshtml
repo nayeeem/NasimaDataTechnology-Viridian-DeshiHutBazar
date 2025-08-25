@@ -1,0 +1,494 @@
+﻿@model WebDeshiHutBazar.MenuObjectModel
+@{
+    var loggedOutDisplayClass = "";
+    var adminLinkDisplayClass = "";
+    var advertiserLinkDisplayClass = "";
+    var contentAdminLinkDisplayClass = "";
+    var isUserSignedClass = "";
+    var isShowHomeLabelClass = "";
+    string clientName = "";
+    var companyLinkDisplayClass = "";
+
+    if (Request.IsAuthenticated && User.IsInRole("SuperAdmin"))
+    {
+        loggedOutDisplayClass = "show";
+        adminLinkDisplayClass = "show";
+        advertiserLinkDisplayClass = "hide";
+        companyLinkDisplayClass = "hide";
+        contentAdminLinkDisplayClass = "hide";
+        isUserSignedClass = "show";
+        isShowHomeLabelClass = "hide";
+        clientName = Request.Cookies["ClientName"].Value == null ? "" : Request.Cookies["ClientName"].Value;
+    }
+    else if (Request.IsAuthenticated && User.IsInRole("Company, Advertiser"))
+    {
+        loggedOutDisplayClass = "show";
+        adminLinkDisplayClass = "hide";
+        contentAdminLinkDisplayClass = "hide";
+        companyLinkDisplayClass = "hide";
+        advertiserLinkDisplayClass = "show";
+        isUserSignedClass = "show";
+        isShowHomeLabelClass = "hide";
+        clientName = Request.Cookies["ClientName"].Value == null ? "" : Request.Cookies["ClientName"].Value;
+    }
+    else if (Request.IsAuthenticated && User.IsInRole("Advertiser"))
+    {
+        loggedOutDisplayClass = "show";
+        adminLinkDisplayClass = "hide";
+        contentAdminLinkDisplayClass = "hide";
+        companyLinkDisplayClass = "hide";
+        advertiserLinkDisplayClass = "show";
+        isUserSignedClass = "show";
+        isShowHomeLabelClass = "hide";
+        clientName = Request.Cookies["ClientName"].Value == null ? "" : Request.Cookies["ClientName"].Value;
+    }
+    else if (Request.IsAuthenticated && User.IsInRole("ContentAdmin"))
+    {
+        loggedOutDisplayClass = "show";
+        adminLinkDisplayClass = "hide";
+        advertiserLinkDisplayClass = "hide";
+        companyLinkDisplayClass = "hide";
+        contentAdminLinkDisplayClass = "show";
+        isUserSignedClass = "show";
+        isShowHomeLabelClass = "hide";
+        clientName = Request.Cookies["ClientName"].Value == null ? "" : Request.Cookies["ClientName"].Value;
+    }
+    else if (Request.IsAuthenticated && User.IsInRole("Company"))
+    {
+        loggedOutDisplayClass = "show";
+        adminLinkDisplayClass = "hide";
+        contentAdminLinkDisplayClass = "hide";
+        advertiserLinkDisplayClass = "hide";
+        companyLinkDisplayClass = "show";
+        isUserSignedClass = "show";
+        isShowHomeLabelClass = "hide";
+        clientName = Request.Cookies["ClientName"].Value == null ? "" : Request.Cookies["ClientName"].Value;
+    }
+    else
+    {
+        loggedOutDisplayClass = "hide";
+        contentAdminLinkDisplayClass = "hide";
+        adminLinkDisplayClass = "hide";
+        advertiserLinkDisplayClass = "hide";
+        companyLinkDisplayClass = "hide";
+        isUserSignedClass = "hide";
+        isShowHomeLabelClass = "show";
+        clientName = "";
+    }
+}
+<header id="layoutHeaderContainer">
+    <div class="top-header">
+        <div class="header-container">
+            <ul>
+                <li>
+                    <span class="@isShowHomeLabelClass">
+                       @Common.Language.LanguageResource.LabelHi
+                        <a id="ancorSignin_Account"
+                           href="@Url.Action("Login", "Account")">
+                            @Common.Language.LanguageResource.ButtonTextSignin
+                        </a>
+                        /
+                        <a id="ancorSignup_Account"
+                           href="@Url.Action("Signup", "Account")">
+                            @Common.Language.LanguageResource.LinkRegister
+                        </a>
+                    </span>
+                    <div class="dropdown @isUserSignedClass">
+                        <a id="ancorMyHome"
+                           href="#"
+                           class="dropdown-toggle truncate"
+                           data-toggle="dropdown"
+                           role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false"
+                           data-userid="@Model.UserID">
+                            <i class="fa fa-user fa-fw fa-1x">
+                            </i>
+                            &nbsp;  @clientName &nbsp;
+                            <span class='caret'>
+                            </span>
+                        </a>
+                        <ul class="dropdown dropdown-menu" id="divMenuMyHomeSignin">
+                            <li class="Company, Advertiser-menu @advertiserLinkDisplayClass">
+                                <a href="@Url.Action("ManageAccount", "AccountSettings")">
+                                    <i class="fa fa-cog fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkManageAccount
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="Company, Advertiser-menu @advertiserLinkDisplayClass">
+                                <a href="@Url.Action("Index", "PostLogReport")">
+                                    <i class="fa fa-cog fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkBusinessIntelligence
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="Company, Advertiser-menu  @advertiserLinkDisplayClass">
+                                <a href="@Url.Action("OnlyPublishedPosts", "ManagePost", new {pageNumber = "1"})">
+                                    <i class="fa fa-ad fa-fw">
+                                    </i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkPublishedPosts
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="Company, Advertiser-menu  @advertiserLinkDisplayClass">
+                                <a href="@Url.Action("UnpaidPost", "ManagePost", new {pageNumber = "1"})">
+                                    <i class="fa fa-pencil-alt fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkUnpaidPosts
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="Company, Advertiser-menu  @advertiserLinkDisplayClass">
+                                <a href="@Url.Action("Index", "FabiaProvider", new {pageNumber = "1"})">
+                                    <i class="fa fa-pencil-alt fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkMyFabiaServiceProviders
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="admin-menu @adminLinkDisplayClass">
+                                <a href="@Url.Action("ManageAccount", "AccountSettings")">
+                                    <i class="fa fa-cog fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkManageAccount
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="admin-menu @adminLinkDisplayClass">
+                                <a href="@Url.Action("NewTextContent", "ShortTextContent")">
+                                    <i class="fa fa-connectdevelop fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkAddShortContent
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="admin-menu @adminLinkDisplayClass">
+                                <a href="@Url.Action("OnlyAdminPosts", "ManageAdminPost", new { pageNumber = 1 } )">
+                                    <i class="fa fa-connectdevelop fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkManageAdminContents
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="admin-menu @adminLinkDisplayClass">
+                                <a href="@Url.Action("Index", "ManageFabiaService", new { pageNumber = 1 } )">
+                                    <i class="fa fa-connectdevelop fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkFabiaServices
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="admin-menu @adminLinkDisplayClass">
+                                <a href="@Url.Action("Index", "ContentPanelConfiguration")">
+                                    <i class="fa fa-columns fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkConfigurePanels
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="admin-menu @adminLinkDisplayClass">
+                                <a href="@Url.Action("Index", "PackageConfiguration")">
+                                    <i class="fa fa-object-group fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkConfigurePackage
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="admin-menu @adminLinkDisplayClass">
+                                <a href="@Url.Action("Index", "ManageConfiguration")">
+                                    <i class="fa fa-usd fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkConfigurePrice
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="admin-menu @adminLinkDisplayClass">
+                                <a href="@Url.Action("Index", "BikashBillTransactons")">
+                                    <i class="fa fa-address-book fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkManageBikashBills
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="admin-menu @adminLinkDisplayClass">
+                                <a href="@Url.Action("Index", "Image")">
+                                    <i class="fa fa-image fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkEditImages
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="admin-menu @adminLinkDisplayClass">
+                                <a href="@Url.Action("Index", "ApplicationLogReport")">
+                                    <i class="fa fa-image fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkBusinessIntelligence
+
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="Company, Advertiser-menu @companyLinkDisplayClass">
+                                <a href="@Url.Action("ManageAccount", "CompanySettings")">
+                                    <i class="fa fa-cog fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkManageAccount
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="Company, Advertiser-menu @companyLinkDisplayClass">
+                                <a href="@Url.Action("Index", "PostLogReport")">
+                                    <i class="fa fa-cog fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkBusinessIntelligence
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="Company, Advertiser-menu  @companyLinkDisplayClass">
+                                <a href="@Url.Action("OnlyPublishedPosts", "ManagePost", new {pageNumber = "1"})">
+                                    <i class="fa fa-ad fa-fw">
+                                    </i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkPublishedPosts
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="Company, Advertiser-menu  @companyLinkDisplayClass">
+                                <a href="@Url.Action("UnpaidPost", "ManagePost", new {pageNumber = "1"})">
+                                    <i class="fa fa-pencil-alt fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkUnpaidPosts
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="Company, Advertiser-menu  @companyLinkDisplayClass">
+                                <a href="@Url.Action("Index", "FabiaProvider", new {pageNumber = "1"})">
+                                    <i class="fa fa-pencil-alt fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkMyFabiaServiceProviders
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="content-admin-menu @contentAdminLinkDisplayClass">
+                                <a href="@Url.Action("NewTextContent", "ShortTextContent")">
+                                    <i class="fa fa-connectdevelop fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkAddShortContent
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="content-admin-menu @contentAdminLinkDisplayClass">
+                                <a href="@Url.Action("OnlyAdminPosts", "ManageAdminPost", new { pageNumber = 1 } )">
+                                    <i class="fa fa-connectdevelop fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkManageAdminContents
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="content-admin-menu @contentAdminLinkDisplayClass">
+                                <a href="@Url.Action("Index", "ManageFabiaService", new { pageNumber = 1 } )">
+                                    <i class="fa fa-connectdevelop fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkFabiaServices
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="content-admin-menu @contentAdminLinkDisplayClass">
+                                <a href="@Url.Action("Index", "ContentPanelConfiguration")">
+                                    <i class="fa fa-columns fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkConfigurePanels
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="content-admin-menu @contentAdminLinkDisplayClass">
+                                <a href="@Url.Action("Index", "Image")">
+                                    <i class="fa fa-image fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkEditImages
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="@loggedOutDisplayClass">
+                                <a id="ancor_Logout_Index_Home"
+                                   href="@Url.Action("LogOff", "Account")">
+                                    <i class="fa fa-sign-out-alt fa-fw"></i>
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkLogout
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a id="ancor_AllItemMarket_Market" class="active"
+                       href="@Url.Action("Market", "AllItemMarket", new {  pageNumber = "1" })">
+                        <i class="fa fa-ad fa-1x"> </i>
+                    </a>
+                </li>
+                <li>
+                    <a id="ancor_Cart_Product_Shop" class="active"
+                       href="@Url.Action("GetShoppingCart", "ProductShoppingCart", new {  pageNumber = "1" })">
+                        <i class="fa fa-shopping-basket fa-1x">  </i>
+                        @*&nbsp; @Common.Language.LanguageResource.LinkAds @Common.Language.LanguageResource.LinkCart*@
+                    </a>
+                </li>
+            </ul>
+            <div class="flex-grow"></div>
+            <ul>
+                <li>
+                    <div class="dropdown">
+                        <a id="ancorMyHelp"
+                           href="#"
+                           class="dropdown-toggle"
+                           data-toggle="dropdown"
+                           role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="fa fa-info fa-1x"></i>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown dropdown-menu" id="divMenuMyHomeHelp">
+                            <li>
+                                <a id="ancor_FAQ_Home"
+                                   href="@Url.Action("FAQ", "Home")">
+                                    <i class="fa fa-fw fa-question"></i>
+                                    <span>@Common.Language.LanguageResource.LinkFaq</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ancor_About_Home"
+                                   href="@Url.Action("Resource", "Home")">
+                                    <i class="fa fa-fw fa-info"></i>
+                                    <span>@Common.Language.LanguageResource.LinkResources</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ancor_Contact_Home"
+                                   href="@Url.Action("Contact", "Home")">
+                                    <i class="fa fa-fw fa-phone"></i>
+                                    <span>@Common.Language.LanguageResource.LinkContact</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <a id="ancorLanguage"
+                           href="#"
+                           class="dropdown-toggle"
+                           data-toggle="dropdown"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            <img class="flag" src="@Url.Content("~/Content/images/flags/uk.png")" id="imgEnglishFlag" />
+                            <span id="spnEnglishFlag">
+                                @Common.Language.LanguageResource.LinkEnglish
+                            </span>
+                            <img style="display:none;" class="flag" src="@Url.Content("~/Content/images/flags/bangladesh.png")" id="imgBanglaFlag" />
+                            <span style="display:none;" id="spnBanglaFlag">
+                                @Common.Language.LanguageResource.LinkBangla
+                            </span>
+                            <img style="display:none;" class="flag" src="@Url.Content("~/Content/images/flags/nigeria.png")" id="imgNigeriaFlag" />
+                            <span style="display:none;" id="spnNigeriaFlag">
+                                @Common.Language.LanguageResource.LinkNigeria
+                            </span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown dropdown-menu">
+                            <li>
+                                <a id="ancorEnglishLanguage">
+                                    <img class="flag" src="@Url.Content("~/Content/images/flags/uk.png")" />
+                                    <span>
+                                        @Common.Language.LanguageResource.LinkEnglish
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+            <a id="ancorBanglaLanguage">
+                <img class="flag" src="@Url.Content("~/Content/images/flags/bangladesh.png")" />
+                <span>
+                    @Common.Language.LanguageResource.LinkBangla
+                </span>
+            </a>
+        </li>
+                            <li>
+            <a id="ancorNigeriaLanguage">
+                <img class="flag" src="@Url.Content("~/Content/images/flags/nigeria.png")" />
+                <span>
+                    @Common.Language.LanguageResource.LinkNigeria
+                </span>
+            </a>
+        </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div  id="header-main" class="main-header">
+        <div class="header-container">
+            <a class="logo" id="ancor_Index_Home" href="@Url.Action("Index", "Home")"  style="color:ghostwhite;font-size:large;font-style:italic;letter-spacing:2px;font-weight:bolder;">
+                @Common.Language.LanguageResource.LinkPortalURL
+            </a>
+            @Html.Partial("_SimpleSearchDesktop", Model)
+            <a id="ancor_NewPost_Post"
+               type="button"
+               class="header-action"
+               href="@Url.Action("NewPost", "Post")">
+                <i class="fa fa-plus fa-fw"></i>
+                @Common.Language.LanguageResource.LabelPostFreeAd
+            </a>
+        </div>
+    </div>
+    <div id="header-bottom" class="bottom-header">
+        <div class="header-container">
+            <div id="headerCategoryDropdown" class="market-list-dropdown">
+                @Html.Partial("_CategoryDropdown", Model)
+            </div>
+            <ul class="header-menu-list">
+                <li class="main-menu" id="btnMainMenu">
+                    <span>
+                        @Common.Language.LanguageResource.LabelViewByMarkets
+                    </span>
+                    <i class="fa fa-list"></i>
+                </li>
+                @* mock up only *@
+                <li>
+                    <span class="badge-button">
+                        <a href="@Url.Action("Donate", "Donate")">
+                            @Common.Language.LanguageResource.LinkDonate
+                        </a>
+                    </span>
+                    <span class="badge-button">
+                        <a href="@Url.Action("Market", "AllItemMarket", new {  pageNumber = "1" })">
+                            @Common.Language.LanguageResource.LinkLatestAds
+                        </a>
+                    </span>
+                    <span class="badge-button">
+                        <a href="@Url.Action("Notice", "Home")">
+                            @Common.Language.LanguageResource.LinkOurStatus
+                        </a>
+                    </span>
+
+                    @*<span class="badge bg-info">
+            <a id="ancor_About_Home"
+               href="@Url.Action("Resource", "Home")">
+                <span>@Common.Language.LanguageDefault.LayoutFooterResource</span>
+            </a>
+        </span>*@
+                </li>
+                <li>
+                    @*NOTICE: Post one free Ad before 28-Feb-2019 and enjoy 2500 BDT free credit when paid posting will start on 01-Mar-2019!*@
+                </li>
+                @*<li>New Arrival</li>
+                    <li>Year End Sale</li>*@
+            </ul>
+        </div>
+    </div>
+</header>
+@Html.Partial("_AdvancedSearchDesktop", Model)

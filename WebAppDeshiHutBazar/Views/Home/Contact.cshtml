@@ -1,0 +1,92 @@
+﻿@model WebDeshiHutBazar.ContactViewModel
+@{
+    ViewBag.Title = Common.Language.LanguageDefault.ViewBagTitleContactUs;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<div class="container" id="rootContact">
+    <div class="row card-form row text-justify">
+        <div class="col-md-6 col-xs-12 col-sm-6 col-lg-6" style="padding-right:10PX;">
+            <h4 class="sub-title">
+                @Common.Language.LanguageResource.LabelContactUs
+            </h4>
+            <p>
+                @Common.Language.LanguageResource.NotetContactUsIntroGreetingMessageText
+            </p>
+            <p>
+                @Common.Language.LanguageResource.NoteContactUsThankyouVeryMuch
+            </p>
+            <p>
+                <a href="@Url.Action("Index","Home")">
+                    @Common.Language.LanguageResource.LinkPortalURL
+                </a>&nbsp;
+            </p>
+        </div>
+        <div class="col-md-6 col-xs-12 col-sm-6 col-lg-6">
+            <div class="row">
+                <h4 class="sub-title">
+                    @Common.Language.LanguageResource.LabelContactUsContactForm
+                </h4>
+                <form method="post" role="form">
+                    <div class="input-field col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                        <label for="ContactName">
+                            @Common.Language.LanguageResource.LabelContactUsContactName
+                        </label>
+                        <input type="text"
+                               class="fff"
+                               id="contactname"
+                               placeholder="@Common.Language.LanguageResource.PlaceholderContactUsContactName"
+                               >
+                    </div>
+                    <div class="input-field col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                        <label for="ContactEmail">
+                            @Common.Language.LanguageResource.LabelContactUsContactEmail
+                        </label>
+                        <input type="email"
+                               class="fff"
+                               id="contactemail"
+                               placeholder="@Common.Language.LanguageResource.PlaceholderContactUsContactEmail">
+                    </div>
+                    <div class="input-field col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                        <label for="MessageCategory">
+                            @Common.Language.LanguageResource.LabelContactUsContactMessageCategory
+                        </label>
+                        @Html.DropDownListFor(a => a.MessageCategory, Model.AV_MessageTypeList, new { @class = "fff" })
+                    </div>
+                    <div class="input-field col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                        <label for="ContactSubject">
+                            @Common.Language.LanguageResource.LabelContactUsContactSubject
+                        </label>
+                        <input type="email"
+                               class="fff"
+                               id="contactsubject"
+                               placeholder="@Common.Language.LanguageResource.PlaceholderContactUsContactSubject">
+                    </div>
+                    <div class="input-field col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                        <label for="ContactMessage">
+                            @Common.Language.LanguageResource.LabelContactUsContactMessage
+                        </label>
+                        <textarea class="fff" id="contactmessage"></textarea>
+                    </div>
+                    <button id="btnSubmitMessage" type="submit" class="primary-button max">
+                        @Common.Language.LanguageResource.ButtonTextContactSUBMIT
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    </script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.password.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/Scripts/js/Home/naimul.ui.contact.js"></script>
+}
+
+

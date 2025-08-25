@@ -1,0 +1,209 @@
+﻿@model WebDeshiHutBazar.LogReportInformationViewModel
+
+@{
+    ViewBag.Title = "Company, Advertiser Post Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+
+<div class="container">
+    <div class="card-form row">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="col-md-12 input-field">
+                @Html.DropDownListFor(a => a.EnumReportLength, Model.AV_ReportLength, new { @class = "fff" })
+            </div>
+            <a class="primary-button flex" role="button" id="viewReport"
+               href="@Url.Action("Index", "PostLogReport")?reportLength=@Model.EnumReportLength">
+                UPDATE Report
+            </a>
+        }
+    </div>
+    <br />
+    <div class="row card-form">
+        <div class="col-md-12">
+            <h3 class="title">VISITS PER DATE</h3>
+            <div class="info">
+                This chart shows the total number (sum) of visits of your all posts with a break down of dates. 
+                For example, you have total 4 published posts and post 1 was visited 5 times, post 2 was visited 5 times, post 3 was visited 1 times,
+                post 4 was visited 1 times in a particular date 01-10-2016. So, in the horizontal axis, for date 01-10-2016, in vertical axis, it will 
+                show 5 + 5 + 1 + 1 = 12. X-Axis : 01-10-2016 and Y-Axis : 12
+            </div>
+            <canvas id="myChartDate" width="400" height="250"></canvas>
+        </div>
+        <div class="col-md-12">
+            <h3 class="title">VISIT COUNT / TIME SLOT</h3>
+            <div class="info">
+                This chart shows the total number (sum) of visits of your all posts with a break Time Slot in a day for selected date range.
+            </div>
+            <canvas id="myChartTimeSlot" width="400" height="250"></canvas>
+        </div>
+        <div class="col-md-12">
+            <h3 class="title">VISIT COUNT (VISITED POST DETAILS)</h3>
+            <div class="info">
+                This chart shows the total number (sum) of visits of your each posts for selected date range.
+            </div>
+            <canvas id="myChartPostsTotalVisited" width="400" height="250"></canvas>
+        </div>
+        <div class="col-md-12">
+            <h3 class="title">CATEGORY COUNT (VISITED POST DETAILS)</h3>
+            <div class="info">
+                This chart shows the total number (sum) of visits of your published post categories for selected date range.
+            </div>
+            <canvas id="myChartPostCategory" width="400" height="250"></canvas>
+        </div>
+        <div class="col-md-12">
+            <h3 class="title">SUB-CATEGORY COUNT (VISITED POST DETAILS)</h3>
+            <div class="info">
+                This chart shows the total number (sum) of visits of your published post sub-categories for selected date range.
+            </div>
+            <canvas id="myChartPostSubCategory" width="400" height="250"></canvas>
+        </div>        
+    </div>
+    <br />
+    <div class="row card-form">
+        <h3 class="title">VISITED POST LIST</h3>
+        <div class="col-md-12">
+            <table class="new">
+                <thead>
+                    <tr>
+                        <th>
+                            SL No
+                        </th>
+                        <th>
+                            Post Title
+                        </th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var countNew = 1;
+                    }
+
+                    @foreach (var item in Model.ListPostVisited)
+                    {
+                        <tr>
+                            <td>
+                                @countNew
+                            </td>
+                            <td>
+                                @item.PostTitle
+                            </td>                           
+                        </tr>
+                        countNew++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br />  
+</div>
+
+@section scriptsapp {
+<script type="text/javascript">
+    function CreateLoadMyChartDefault(dataList, divCanvas) {
+        var objListTimeSlotTotalVisitedLabel = [];
+        var objListTimeSlotTotalVisitedData = [];
+        var objListBackgroundColor = [];
+        var objLisBorderColor = [];
+        if (dataList != null || dataList != undefined) {
+            $.each(dataList, function (i, item) {
+                objListTimeSlotTotalVisitedLabel.push(item.Text);
+                objListTimeSlotTotalVisitedData.push(item.Value);
+                objListBackgroundColor.push('rgba(54, 162, 235, 0.2)');
+                objLisBorderColor.push('rgba(54, 162, 235, 0.2)');
+            });
+            var ctx = document.getElementById(divCanvas).getContext('2d');
+            var myChartTimeShot = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: objListTimeSlotTotalVisitedLabel,
+                    datasets: [{
+                        label: 'Number Of Total Visits ',
+                        data: objListTimeSlotTotalVisitedData,
+                        backgroundColor: objListBackgroundColor,
+                        borderColor: objLisBorderColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    }
+
+    function CreateLoadMyChart(dataList, listBGColor, listBorderColor, divCanvas) {
+        var objListTimeSlotTotalVisitedLabel = [];
+        var objListTimeSlotTotalVisitedData = [];
+        if (dataList != null || dataList != undefined) {
+            $.each(dataList, function (i, item) {
+                objListTimeSlotTotalVisitedLabel.push(item.Text);
+                objListTimeSlotTotalVisitedData.push(item.Value);
+            });
+            var ctx = document.getElementById(divCanvas).getContext('2d');
+            var myChartTimeShot = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: objListTimeSlotTotalVisitedLabel,
+                    datasets: [{
+                        label: 'Number Of Total Visits ',
+                        data: objListTimeSlotTotalVisitedData,
+                        backgroundColor: listBGColor,
+                        borderColor: listBorderColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    }
+
+    $(function () {
+        CreateLoadMyChart(@Html.Raw(Json.Encode(Model.ListTimeSlotTotalVisited)),
+            [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            'myChartTimeSlot'
+        );
+        CreateLoadMyChartDefault(@Html.Raw(Json.Encode(Model.ListDateRangeTotalVisited)), 'myChartDate');
+        CreateLoadMyChartDefault(@Html.Raw(Json.Encode(Model.ListProductVisitedCategoryTotalCount)), 'myChartPostCategory');
+        CreateLoadMyChartDefault(@Html.Raw(Json.Encode(Model.ListProductVisitedSubCategoryTotalCount)), 'myChartPostSubCategory');
+        CreateLoadMyChartDefault(@Html.Raw(Json.Encode(Model.ListPostVisitCount)), 'myChartPostsTotalVisited');
+
+        $(document).on("change", "#EnumReportLength", function () {
+            var page = $(this).val();
+            var url = '@Url.Action("Index", "PostLogReport")?reportLength=' + page;
+            $("#viewReport").attr("href", url);
+        });
+    });
+</script>    
+}

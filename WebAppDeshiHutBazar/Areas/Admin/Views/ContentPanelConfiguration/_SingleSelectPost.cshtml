@@ -1,0 +1,74 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    var guid = Guid.NewGuid();
+    var heading = guid + "-heading";
+    var collapse = guid + "-colapse";
+    var dataId = Model.PostID;
+    var viewtabpanelid = "btnView-" + guid + "-tabpanel";
+    var btnViewId = "btnView-g" + guid;
+    var edittabpanelid = "btnEdit-" + guid + "-tabpanel";
+    var btnEditId = "btnEdit-g" + guid;
+}
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="@heading">
+        <div class="row">
+            <a role="button" data-manage-post="collapse" data-toggle="collapse" data-parent="#accordion" href="#@collapse" aria-expanded="false" aria-controls="@collapse">
+                <div class="col-md-1 text-left">
+                    @Model.CreatedDate.ToShortDateString()
+                </div>
+                <div class="col-md-1 truncate text-left">
+                    @Model.PostType.ToString()
+                </div>
+                <div class="col-md-2 truncate text-left">
+                    @Model.DisplayCategory
+                </div>
+                <div class="col-md-3 truncate text-left">
+                    @Model.DisplaySubCategory
+                </div>
+
+                <div class="col-md-2 truncate text-left">
+                    @Model.Title
+                </div>
+                <div class="col-md-2 text-left home-currency-font-color truncate">
+                    @Model.FormattedPriceValue
+                </div>
+            </a>
+            <form>
+                <div class="col-md-1 text-right">
+                    <input id="btn-add-@Model.PostID" type="button" data-groupconfigid="@Model.GroupPanelConfigID" data-postid="@Model.PostID" class="btn-select-post btn btn-sm btn-danger" value="ADD POST" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="@collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@heading">
+        <div class="panel-body">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active tab-pane-view-mode" id="@viewtabpanelid">
+                    <div id="dialogView-@guid" class="dialog-view" title="View Item">
+                        @if (Model.PostType == Common.EnumPostType.Post  || Model.PostType == Common.EnumPostType.Product)
+                        {
+                            @Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_ViewPostImage", Model)
+                        }
+                        else if (Model.PostType == Common.EnumPostType.AdSpace)
+                        {
+                            @Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_ViewAdSpace", Model)
+                        }
+                        else if (Model.PostType == Common.EnumPostType.FabiaService)
+                        {
+                            @Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_ViewFabiaService", Model)
+                        }
+                        else if (Model.PostType == Common.EnumPostType.ShortNote)
+                        {
+                            @Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_ViewShortNote", Model)
+                        }
+                        else if (Model.PostType == Common.EnumPostType.ShortVideo)
+                        {
+                            @Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_ViewShortVideo", Model)
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

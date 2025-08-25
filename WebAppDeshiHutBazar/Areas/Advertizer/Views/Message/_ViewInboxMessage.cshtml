@@ -1,0 +1,28 @@
+﻿@model WebDeshiHutBazar.MessageViewModel
+@{
+    var guid = Guid.NewGuid();
+}
+<h4 class="sub-title">@Model.SenderClientName (@Model.SenderEmail)</h4>
+<div class="gap"></div>
+<div class="input-field col-md-12">
+    <label for="messageDetail">
+        @Common.Language.LanguageDefault.MessageDetails
+    </label>
+    <textarea id="messageDetail" class="fff" disabled="disabled"> @Model.Message</textarea>
+</div>
+<p style="word-wrap: break-word; overflow: auto; white-space: pre-wrap;"></p>
+<form id="replyForm" method="post" role="form" class="reply-form">
+    @Html.HiddenFor(a => a.ReceiverUserID)
+    @Html.HiddenFor(a => a.SenderUserID)
+    @Html.HiddenFor(a => a.MessageID)
+    @Html.HiddenFor(a => a.ParentMessageID)
+    <div class="input-field col-md-12">
+        <label for="replymessage">
+            Reply Message
+        </label>
+        <textarea id="replymessage" class="fff"></textarea>
+    </div>
+    <button id="btnSubmit-@guid" type="submit" class="primary-button max btn-submit-view-inbox-msg">
+        @Common.Language.LanguageDefault.REPLY
+    </button>
+</form>

@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{08416F68-30EB-4BD7-AA82-1D8E51A1C166}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{8E745E05-60E3-4FB8-9A64-ED0CD08E0F8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{3AC1B5DC-06C3-4F8C-B967-F11789D2E341}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppDeshiHutBazar", "WebAppDeshiHutBazar\WebAppDeshiHutBazar.csproj", "{95DA935E-EB23-452A-A181-CBD9E48454D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppDeshiHutBazarAfrica", "WebAppDeshiHutBazarAfrica\WebAppDeshiHutBazarAfrica.csproj", "{A54BBC6E-A46D-4E0E-BE19-E4DB5E3A47B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08416F68-30EB-4BD7-AA82-1D8E51A1C166}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08416F68-30EB-4BD7-AA82-1D8E51A1C166}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08416F68-30EB-4BD7-AA82-1D8E51A1C166}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08416F68-30EB-4BD7-AA82-1D8E51A1C166}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E745E05-60E3-4FB8-9A64-ED0CD08E0F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E745E05-60E3-4FB8-9A64-ED0CD08E0F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E745E05-60E3-4FB8-9A64-ED0CD08E0F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E745E05-60E3-4FB8-9A64-ED0CD08E0F8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC1B5DC-06C3-4F8C-B967-F11789D2E341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC1B5DC-06C3-4F8C-B967-F11789D2E341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC1B5DC-06C3-4F8C-B967-F11789D2E341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC1B5DC-06C3-4F8C-B967-F11789D2E341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95DA935E-EB23-452A-A181-CBD9E48454D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95DA935E-EB23-452A-A181-CBD9E48454D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95DA935E-EB23-452A-A181-CBD9E48454D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95DA935E-EB23-452A-A181-CBD9E48454D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A54BBC6E-A46D-4E0E-BE19-E4DB5E3A47B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A54BBC6E-A46D-4E0E-BE19-E4DB5E3A47B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A54BBC6E-A46D-4E0E-BE19-E4DB5E3A47B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A54BBC6E-A46D-4E0E-BE19-E4DB5E3A47B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A6BAE192-8260-4EFD-A2FB-274375B827FB}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/nasimadatatechnology
+		SccProjectUniqueName0 = Common\\Common.csproj
+		SccProjectName0 = Common
+		SccAuxPath0 = https://dev.azure.com/nasimadatatechnology
+		SccLocalPath0 = Common
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = Data\\Data.csproj
+		SccProjectName1 = Data
+		SccAuxPath1 = https://dev.azure.com/nasimadatatechnology
+		SccLocalPath1 = Data
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName2 = Model\\Model.csproj
+		SccProjectName2 = Model
+		SccAuxPath2 = https://dev.azure.com/nasimadatatechnology
+		SccLocalPath2 = Model
+		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+EndGlobal

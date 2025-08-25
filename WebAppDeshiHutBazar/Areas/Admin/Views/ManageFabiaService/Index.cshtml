@@ -1,0 +1,52 @@
+﻿@model WebDeshiHutBazar.FabiaProviderViewModel
+
+@{
+    ViewBag.Title = "Fabia Services";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+
+<div class="container">
+    <h4 class="main-title">Fabia Services</h4>
+    <table class="new">
+        <thead>
+            <tr>
+                <th>
+                    Service Title/Name/Type
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListFabiaServiceCategory.ToList())
+            {
+                <tr>
+                    <td data-label="Title">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td data-label="FABIA SERVICE">
+                        FABIA SERVICE
+                    </td>
+                    <td data-label="Action">
+                        <a title="Manage" class="icon-button flex" href="@Url.Action("ManageSingleService", "ManageFabiaService", new {postid = item.PostID})"><i class="fa fa-eye"></i></a>
+                        <a title="Remove" class="icon-button flex" href="@Url.Action("DeleteSingleService", "ManageFabiaService", new {postid = item.PostID})"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section scriptsapp {
+    <script type="text/javascript">
+        $(function () {
+            PAGE_NAME = 'Group Panel Config';
+        });
+    </script>
+}
+
+
+
+

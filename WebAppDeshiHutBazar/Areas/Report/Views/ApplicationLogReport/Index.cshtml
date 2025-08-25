@@ -1,0 +1,437 @@
+﻿@model WebDeshiHutBazar.LogReportInformationViewModel
+@{
+    ViewBag.Title = "Application Log Information Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = true;
+}
+@{
+    var clsRed = "style='color:red;'";
+    var clsBlue = "style='color:blue;'";
+    var session = "";
+    var newSession = "";
+}
+
+<div class="card-form row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-12 input-field">
+            @Html.DropDownListFor(a => a.EnumReportLength, Model.AV_ReportLength, new { @class = "fff" })
+        </div>
+
+        <a class="primary-button flex" role="button" id="viewReport"
+           href="@Url.Action("Index", "ApplicationLogReport")?reportLength=@Model.EnumReportLength">
+            UPDATE RESULT
+        </a>
+    }
+    <br />
+    <ul class="nav nav-tabs new-nav-tabs"
+        role="tablist">
+        <li role="presentation" class="active">
+            <a href="#" class="desktop-banner desktop-tab-link">VISITOR</a>
+        </li>
+        <li role="presentation">
+            <a href="#" class="desktop-allconfig desktop-tab-link">ADVERTISER</a>
+        </li>
+    </ul>
+</div>
+
+<div id="visitorReports" class="row card-form table-responsive  desktop-panel-config-grid-parent-container desktop-banner-content">
+    <div class="col-md-12">
+        <div role="tab" id="heading1">
+            <a role="button" data-manage-post="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                <h3 class="title">VISITS PER DATE</h3>
+            </a>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+            <canvas id="myChartDate" width="400" height="250"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div role="tab" id="heading2">
+            <a role="button" data-manage-post="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                <h3 class="title">VISIT COUNT / TIME SLOT</h3>
+            </a>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+            <canvas id="myChartTimeSlot" width="400" height="250"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div role="tab" id="heading3">
+            <a role="button" data-manage-post="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                <h3 class="title">VISIT COUNT / PAGE</h3>
+            </a>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+            <canvas id="myChartPage" width="400" height="250"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div role="tab" id="heading4">
+            <a role="button" data-manage-post="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                <h3 class="title">VISIT COUNT / CATEGORY MARKET</h3>
+            </a>
+        </div>
+        <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+            <canvas id="myChartCategoryMarket" width="400" height="250"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div role="tab" id="heading5">
+            <a role="button" data-manage-post="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                <h3 class="title">VISIT COUNT / SUB-CATEGORY MARKET</h3>
+            </a>
+        </div>
+        <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+            <canvas id="myChartSubCategoryMarket" width="400" height="250"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div role="tab" id="heading6">
+            <a role="button" data-manage-post="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                <h3 class="title">CATEGORY COUNT (VISITED POST DETAILS)</h3>
+            </a>
+        </div>
+        <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+            <canvas id="myChartPostCategory" width="400" height="250"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div role="tab" id="heading7">
+            <a role="button" data-manage-post="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                <h3 class="title">SUB-CATEGORY COUNT (VISITED POST DETAILS)</h3>
+            </a>
+        </div>
+        <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
+            <canvas id="myChartPostSubCategory" width="400" height="250"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div role="tab" id="heading8">
+            <a role="button" data-manage-post="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                <h3 class="title">VISIT COUNT (VISITED POST DETAILS)</h3>
+            </a>
+        </div>
+        <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading8">
+            <canvas id="myChartPostsTotalVisited" width="400" height="250"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div role="tab" id="heading9">
+            <a role="button" data-manage-post="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                <h3 class="title">VISITED PAGES WITH SESSION NUMBER</h3>
+            </a>
+        </div>
+        <div id="collapse9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading9">
+            <table class="new">
+                <thead>
+                    <tr>
+                        <th>
+                            SL NO
+                        </th>
+                        <th>
+                            Session
+                        </th>
+                        <th>
+                            Page Name
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Time
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        session = Model.ListLogPosts[0].SessionNumber;
+                        var cou = 1;
+                    }
+
+                    @foreach (var item in Model.ListLogPosts)
+                    {
+                        <tr>
+                            <td @clsBlue>
+                                @cou
+                            </td>
+                            <td @clsBlue>
+                                @item.SessionNumber
+                            </td>
+                            <td>
+                                @item.DisplayLogType
+                            </td>
+                            <td>
+                                @item.CreatedDate.Date
+                            </td>
+                            <td>
+                                @item.CreatedDate.TimeOfDay
+                            </td>
+                        </tr>
+                        cou++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="Company, AdvertiserReport" class="row card-form table-responsive  desktop-panel-config-grid-parent-container desktop-allconfig-content" style="display:none;">
+    <div class="col-md-12">
+        <h3 class="title">POST COUNT / USER</h3>
+        <canvas id="myChartUserTotalPsts" width="400" height="250"></canvas>
+    </div>
+    <div class="col-md-12">
+        <h3 class="title">VISITED POST LIST</h3>
+        <table class="new">
+            <thead>
+                <tr>
+                    <th>
+                        SL No
+                    </th>
+                    <th>
+                        Post Title
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Time
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var countNew = 1;
+                }
+
+                @foreach (var item in Model.ListPostVisited)
+                {
+                    <tr>
+                        <td>
+                            @countNew
+                        </td>
+                        <td>
+                            @item.PostTitle
+                        </td>
+                        <td>
+                            @item.CreatedDate.Date.ToShortDateString()
+                        </td>
+                        <td>
+                            @item.CreatedDate.TimeOfDay
+                        </td>
+                    </tr>
+                    countNew++;
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12">
+        <h3 class="title">USER (POST COUNT) LIST</h3>
+        <table class="new">
+            <thead>
+                <tr>
+                    <th>
+                        SL No
+                    </th>
+                    <th>
+                        User Since
+                    </th>
+                    <th>
+                        User Type
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Client Name
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        Website
+                    </th>
+                    <th>
+                        Total Posts
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var countUser = 1;
+                    var color = "";
+                }
+                @foreach (var item in Model.ListUserReportViewModel)
+                {
+                    if (item.IsAdminUser)
+                    {
+                        color = "red";
+                    }
+                    else if (item.IsPrivateSeller)
+                    {
+                        color = "green";
+                    }
+                    else if (item.IsCompanySeller)
+                    {
+                        color = "blue";
+                    }
+                    <tr>
+                        <td>
+                            @countUser
+                        </td>
+                        <td>
+                            @item.CreatedDate.Date.ToShortDateString()
+                        </td>
+                        <td style="color:@color;">
+                            @item.UserType
+                        </td>
+                        <td style="color:green;">
+                            @item.Email
+                        </td>
+                        <td>
+                            @item.ClientName
+                        </td>
+                        <td style="color:orange;">
+                            @item.Phone
+                        </td>
+                        <td>
+                            @item.Website
+                        </td>
+                        <td style="color:red;">
+                            @item.PostCount &nbsp;Submitted Posts
+                        </td>
+                    </tr>
+                    countUser++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<br />
+<br />
+
+@section scriptsapp {
+    <script type="text/javascript">
+    function CreateLoadMyChartDefault(dataList, divCanvas) {
+        var objListTimeSlotTotalVisitedLabel = [];
+        var objListTimeSlotTotalVisitedData = [];
+        var objListBackgroundColor = [];
+        var objLisBorderColor = [];
+        if (dataList != null || dataList != undefined) {
+            $.each(dataList, function (i, item) {
+                objListTimeSlotTotalVisitedLabel.push(item.Text);
+                objListTimeSlotTotalVisitedData.push(item.Value);
+                objListBackgroundColor.push('rgba(54, 162, 235, 0.2)');
+                objLisBorderColor.push('rgba(54, 162, 235, 0.2)');
+            });
+            var ctx = document.getElementById(divCanvas).getContext('2d');
+            var myChartTimeShot = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: objListTimeSlotTotalVisitedLabel,
+                    datasets: [{
+                        label: 'Number Of Total Visits ',
+                        data: objListTimeSlotTotalVisitedData,
+                        backgroundColor: objListBackgroundColor,
+                        borderColor: objLisBorderColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    }
+
+    function CreateLoadMyChart(dataList, listBGColor, listBorderColor, divCanvas) {
+        var objListTimeSlotTotalVisitedLabel = [];
+        var objListTimeSlotTotalVisitedData = [];
+        if (dataList != null || dataList != undefined) {
+            $.each(dataList, function (i, item) {
+                objListTimeSlotTotalVisitedLabel.push(item.Text);
+                objListTimeSlotTotalVisitedData.push(item.Value);
+            });
+            var ctx = document.getElementById(divCanvas).getContext('2d');
+            var myChartTimeShot = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: objListTimeSlotTotalVisitedLabel,
+                    datasets: [{
+                        label: 'Number Of Total Visits ',
+                        data: objListTimeSlotTotalVisitedData,
+                        backgroundColor: listBGColor,
+                        borderColor: listBorderColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    }
+
+    $(function () {
+        CreateLoadMyChart(@Html.Raw(Json.Encode(Model.ListTimeSlotTotalVisited)),
+            [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            'myChartTimeSlot'
+        );
+        CreateLoadMyChartDefault(@Html.Raw(Json.Encode(Model.ListDateRangeTotalVisited)), 'myChartDate');
+        CreateLoadMyChartDefault(@Html.Raw(Json.Encode(Model.ListPageVisitCount)), 'myChartPage');
+        CreateLoadMyChartDefault(@Html.Raw(Json.Encode(Model.ListSubCategoryVisitCount)), 'myChartSubCategoryMarket');
+        CreateLoadMyChartDefault(@Html.Raw(Json.Encode(Model.ListCategoryVisitCount)), 'myChartCategoryMarket');
+        CreateLoadMyChartDefault(@Html.Raw(Json.Encode(Model.ListProductVisitedCategoryTotalCount)), 'myChartPostCategory');
+        CreateLoadMyChartDefault(@Html.Raw(Json.Encode(Model.ListProductVisitedSubCategoryTotalCount)), 'myChartPostSubCategory');
+        CreateLoadMyChartDefault(@Html.Raw(Json.Encode(Model.ListPostVisitCount)), 'myChartPostsTotalVisited');
+        CreateLoadMyChartDefault(@Html.Raw(Json.Encode(Model.ListUserPostCount)), 'myChartUserTotalPsts');
+
+        $(document).on("change", "#EnumReportLength", function () {
+            var page = $(this).val();
+            var url = '@Url.Action("Index", "ApplicationLogReport")?reportLength=' + page;
+            $("#viewReport").attr("href", url);
+        });
+
+        $(document).on("click", ".desktop-tab-link", function () {
+            $(".desktop-tab-link").parents().removeClass("active");
+            $(this).parent().addClass("active");
+            if ($(this).hasClass("desktop-banner")) {
+                $(".desktop-panel-config-grid-parent-container").hide();
+                $(".desktop-banner-content").show();
+            }
+            else if ($(this).hasClass("desktop-allconfig")) {
+                $(".desktop-panel-config-grid-parent-container").hide();
+                $(".desktop-allconfig-content").show();
+            }
+        });
+    });
+    </script>
+}

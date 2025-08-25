@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = Common.Language.LanguageResource.UnwantedAccessErrorPageTitle;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-offset-3 col-sm-6 col-xs-12 col-lg-offset-3 col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h3 class="error">
+                            @Common.Language.LanguageResource.UnwantedAcessErrorH3ErrorTitle
+                        </h3>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <h4>
+                        <b>
+                            @Common.Language.LanguageResource.UnwantedAcessErrorH4ReasonsCouldBe
+                        </b>
+                    </h4>
+                    <h4>
+                        @Common.Language.LanguageResource.UnwantedAcessErrorH4Reason1
+                    </h4>
+                    <p>
+                        @Common.Language.LanguageResource.UnwantedAcessErrorPReason1Text
+                    </p>
+                    <br />
+                    <h4>
+                        @Common.Language.LanguageResource.UnwantedAcessErrorH4Reason2
+                    </h4>
+                    <p>
+                        @Common.Language.LanguageResource.UnwantedAcessErrorPReason2Text
+                    </p>
+                    <br />
+                    <h4>
+                        @Common.Language.LanguageResource.UnwantedAcessErrorH4Solution
+                    </h4>
+                    <p>
+                        @Common.Language.LanguageResource.UnwantedAcessErrorPPleaseGoTo
+                        <a href="@Url.Action("Contact","Home")">
+                            @Common.Language.LanguageResource.UnwantedAcessErrorAContactUs
+                        </a>
+                        @Common.Language.LanguageResource.UnwantedAcessErrorPToReportFailure
+                    </p>
+                </div>
+                <div class="panel-footer">
+                    <a href="@Url.Action("Index","Home")">
+                        @Common.Language.LanguageResource.LinkPortalURL
+                    </a>&nbsp;
+                    @Common.Language.LanguageResource.UnwantedAcessErrorDivSupportTeam
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

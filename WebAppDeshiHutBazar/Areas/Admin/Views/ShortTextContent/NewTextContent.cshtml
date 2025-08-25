@@ -1,0 +1,32 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    ViewBag.Title = Common.Language.LanguageDefault.ViewBagTitleNewPost;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<script type="text/javascript">
+    var saveNewShortContentURL = '@Url.Action("SaveTextContent", "ShortTextContent")';
+    var imageLoadURL = '@Url.Action("ImageLoad", "ShortTextContent")';
+    var imageUploadURL = '@Url.Action("ImageUpload", "ShortTextContent")';
+    var removeImageShrtContentURL = '@Url.Action("ImageRemove", "ShortTextContent")?id=';
+</script>
+<div id="newPostDesktop" class="container">
+    @Html.Partial("../../Areas/Admin/Views/ShortTextContent/_NewTextContentDesktop", Model)
+</div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    </script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.password.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/ajaxupload.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.short.content.js" type="text/javascript"></script>
+}
+
+
+
+
+
+
+

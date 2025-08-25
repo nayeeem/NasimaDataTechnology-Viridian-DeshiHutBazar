@@ -1,0 +1,104 @@
+﻿@model WebDeshiHutBazar.PostPriceConfigInformationViewModel
+
+@{
+    ViewBag.Title = "Price Configuration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <a href="@Url.Action("Create","ManageConfiguration")" class="primary-button flex"><i class="fa fa-plus"></i>CREATE NEW CONFIG</a>
+        </div>
+    </div>
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-md-12 text-center">
+                @Html.DropDownListFor(a => a.PackageID, Model.AV_Package, new { @class = "fff" })
+                <br />
+                @Html.DropDownListFor(a => a.CountryID, Model.AV_Country, new { @class = "fff" })
+                @Html.HiddenFor(model => model.PackageID)
+                @Html.HiddenFor(model => model.CountryID)
+                <br />
+                <input type="submit" value="UPDATE PRICE LIST" class="primary-button flex" />
+            </div>
+            <br />
+            <br />
+        </div>
+    }
+    <br />
+    <table class="table">
+        <tr></tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayCountryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayPackageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayOfferName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisplaySubCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferDiscount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoFreePost)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.ListPriceConfig)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayCountryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayPackageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfferName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplaySubCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FormattedPriceValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfferDiscount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoFreePost)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit","ManageConfiguration", new { id = item.PostPriceConfigID })" class="btn btn-sm btn-info">EDIT</a>
+                    <a href="@Url.Action("Details","ManageConfiguration", new { id = item.PostPriceConfigID })" class="btn btn-sm btn-info">DETAILS</a>
+                    <a href="@Url.Action("Delete","ManageConfiguration", new { id = item.PostPriceConfigID })" class="btn btn-sm btn-danger">DELETE</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    </script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+}
+
+
+

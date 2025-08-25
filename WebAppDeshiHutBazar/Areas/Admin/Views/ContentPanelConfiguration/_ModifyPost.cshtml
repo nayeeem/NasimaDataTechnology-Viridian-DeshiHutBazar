@@ -1,0 +1,281 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    var formid = Guid.NewGuid();
+    var dataId = Model.PostID;
+}
+
+<div class="row-fluid modify-post-root" id="posteditroot-@formid" title="Displaying modify mode to update post.">
+    <form id="frmPostPart1-@formid" class="form-horizontal form1" style="padding-top: 10px;">
+        @Html.HiddenFor(a => a.PostID)
+        @Html.HiddenFor(a => a.DisplayCategory)
+        @Html.HiddenFor(a => a.IsBrandNew)
+        @Html.HiddenFor(a => a.IsUsed)
+        @Html.HiddenFor(a => a.IsForRent)
+        @Html.HiddenFor(a => a.IsForSell)
+        <div class="form-group">
+            <label for="PosterName" class="col-sm-3 control-label text-info" style="text-align: right;">
+                Account Owner:
+            </label>
+            <div class="col-sm-9 text-info">
+                @Html.DisplayFor(a => a.ClientName, "BorderedReadOnlyDisplay")
+            </div>
+        </div>
+        <div class="form-group  row-fluid-decent-gap">
+            <label for="PosterName" class="col-sm-3 col-md-3 control-label">
+                Advertised BY:
+            </label>
+            <div class="col-sm-9 col-md-9 controls-fit-container">
+                @Html.EditorFor(a => a.PosterName)
+            </div>
+        </div>
+        <div class="form-group  row-fluid-decent-gap">
+            <label for="PosterContactNumber" class="col-sm-3 col-md-3 control-label">
+                Contact Number:
+            </label>
+            <div class="col-sm-9 col-md-9 controls-fit-container">
+                @Html.EditorFor(a => a.PosterContactNumber)
+            </div>
+        </div>
+        <div class="form-group  row-fluid-decent-gap">
+            <label for="Title" class="col-sm-3 col-md-3 control-label">
+                Ad Title:
+            </label>
+            <div class="col-sm-9 col-md-9 controls-fit-container">
+                @Html.EditorFor(a => a.Title)
+            </div>
+        </div>
+        <div class="form-group  row-fluid-decent-gap">
+            <label for="CategoryID" class="col-sm-3 col-md-3 control-label">
+                Ad Category:
+            </label>
+            <div class="col-sm-9 col-md-9 controls-fit-container category-select" id="divCategory-@formid">
+                @Html.DisplayFor(a => a.DisplayCategory, "BorderedReadOnlyDisplay")
+                @Html.HiddenFor(a => a.CategoryID)
+            </div>
+        </div>
+        <div class="form-group  row-fluid-decent-gap">
+            <label for="text" class="col-sm-3 col-md-3 control-label">
+                Ad Sub-Category:
+            </label>
+            <div class="col-sm-9 col-md-9 controls-fit-container subcategory-select" id="divSubCategory-@formid">
+                @Html.DisplayFor(a => a.DisplaySubCategory, "BorderedReadOnlyDisplay")
+                @Html.HiddenFor(a => a.SubCategoryID)
+            </div>
+        </div>
+        <div class="form-group  row-fluid-decent-gap">
+            <label for="StateID" class="col-sm-3 col-md-3 control-label">
+                Location:
+            </label>
+            <div class="col-sm-9 col-md-9 controls-fit-container">
+                @Html.DropDownListFor(a => a.StateID, Model.AV_State)
+                @Html.ValidationMessageFor(m => m.StateID)
+            </div>
+        </div>
+        <div class="form-group  row-fluid-decent-gap">
+            <label for="AreaDescription" class="col-sm-3 col-md-3 control-label">
+                Area:
+            </label>
+            <div class="col-sm-9 col-md-9 controls-fit-container">
+                @Html.EditorFor(a => a.AreaDescription)
+                @Html.ValidationMessageFor(m => m.AreaDescription)
+            </div>
+        </div>
+        <div class="form-group row-fluid-decent-gap div-sell-rent" id="divSellRent-@formid">
+            <label class="col-sm-3 col-md-3 control-label" style="text-align: right;">
+                This Ad is:
+            </label>
+
+            <div class="col-md-9 sell-rent-parent">
+                @if (Model.IsForSell)
+                {
+                    <a id="ancrSell-@Model.PostID" class="btn-sm btn btn-info sell-or-rent sell" data-valueid="@Model.PostID" data-valuetext="For sell" data-isselected="True">
+                        Sell
+                    </a>
+                    <a id="ancrRent-@Model.PostID" class="btn-sm btn btn-default  sell-or-rent rent" data-valueid="@Model.PostID" data-valuetext="For rent" data-isselected="False">
+                        Rent
+                    </a>
+                    <span id="txtSell-@Model.PostID" class="text-info">Posted item is for sell.</span>
+                    <span id="txtRent-@Model.PostID" class="text-info" style="display:none;">Posted item is for rent.</span>
+                }
+                else if (Model.IsForRent)
+                {
+                    <a id="ancrSell-@Model.PostID" class="btn-sm btn btn-default sell-or-rent sell" data-valueid="@Model.PostID" data-valuetext="For sell" data-isselected="True">
+                        Sell
+                    </a>
+                    <a id="ancrRent-@Model.PostID" class="btn-sm btn btn-info  sell-or-rent rent" data-valueid="@Model.PostID" data-valuetext="For rent" data-isselected="False">
+                        Rent
+                    </a>
+                    <span id="txtSell-@Model.PostID" class="text-info" style="display:none;">Posted item is for sell.</span>
+                    <span id="txtRent-@Model.PostID" class="text-info">Posted item is for rent.</span>
+                }
+            </div>
+        </div>
+        <div class="form-group row-fluid-decent-gap">
+            <label for="Conditions" class="col-sm-3 col-md-3 control-label" style="text-align: right;">
+                Condition:
+            </label>
+            <div class="col-md-9 new-used-parent">
+                @if (Model.IsBrandNew)
+                {
+                    <a id="ancrNew-@Model.PostID" class="btn-sm btn btn-info new-used new" data-valueid="@Model.PostID" data-valuetext="New item" data-isselected="True">
+                        Brand New
+                    </a>
+                    <a id="ancrUsed-@Model.PostID" class="btn-sm btn btn-default  new-used used" data-valueid="@Model.PostID" data-valuetext="Used item" data-isselected="False">
+                        Used Item
+                    </a>
+                    <span id="txtNew-@Model.PostID" class="text-info">This is a brand new item.</span>
+                    <span id="txtUsed-@Model.PostID" class="text-info" style="display:none;">This is an used/second hand item.</span>
+                }
+                else if (Model.IsUsed)
+                {
+                    <a id="ancrNew-@Model.PostID" class="btn-sm btn btn-default new-used new" data-valueid="@Model.PostID" data-valuetext="New item" data-isselected="True">
+                        Brand New
+                    </a>
+                    <a id="ancrUsed-@Model.PostID" class="btn-sm btn btn-info  new-used used" data-valueid="@Model.PostID" data-valuetext="Used item" data-isselected="False">
+                        Used Item
+                    </a>
+                    <span id="txtNew-@Model.PostID" class="text-info" style="display:none;">This is a brand new item.</span>
+                    <span id="txtUsed-@Model.PostID" class="text-info">This is an used/second hand item.</span>
+                }
+            </div>
+        </div>
+        <div class="form-group  row-fluid-decent-gap">
+            <label for="Description" class="col-sm-3 col-md-3 control-label">
+                Description:
+            </label>
+            <div class="col-sm-9 col-md-9 controls-fit-container modify-post">
+                @Html.TextAreaFor(a => a.Description)
+            </div>
+        </div>
+        <div class="form-group row-fluid-decent-gap">
+            <label class="col-sm-3 col-md-3 control-label">
+                This Ad is:
+            </label>
+            <div class="col-md-9 urgent-deal-parent">
+                @if (Model.IsUrgent)
+                {
+                    <a id="ancrUrgentDeal-@Model.PostID" class="btn-sm btn btn-info urgent-deal urgent" data-valueid="@Model.PostID" data-valuetext="For urgent sell" data-isselected="False">
+                        Urgent Deal
+                    </a>
+                    <a id="ancrUrgentDeal-@Model.PostID" class="btn-sm btn btn-default urgent-deal noturgent" data-valueid="@Model.PostID" data-valuetext="For urgent sell" data-isselected="False">
+                        Not Urgent Deal
+                    </a>
+                    <span id="txtUrgentDeal-@Model.PostID" class="text-info">This ad is for an urgent sell.</span>
+                    <span id="txtNotUrgentDeal-@Model.PostID" class="text-info" style="display:none;">This ad is not for an urgent sell.</span>
+                }
+                else
+                {
+                    <a id="ancrUrgentDeal-@Model.PostID" class="btn-sm btn btn-default urgent-deal urgent" data-valueid="@Model.PostID" data-valuetext="For urgent sell" data-isselected="False">
+                        Urgent Deal
+                    </a>
+                    <a id="ancrUrgentDeal-@Model.PostID" class="btn-sm btn btn-info urgent-deal noturgent" data-valueid="@Model.PostID" data-valuetext="For urgent sell" data-isselected="False">
+                        Not Urgent Deal
+                    </a>
+                    <span id="txtUrgentDeal-@Model.PostID" class="text-info" style="display:none;">This ad is for an urgent sell.</span>
+                    <span id="txtNotUrgentDeal-@Model.PostID" class="text-info">This ad is not for an urgent sell.</span>
+                }
+            </div>
+        </div>
+        <div class="form-group  row-fluid-decent-gap">
+            <label for="Price" class="col-sm-3 col-md-3 control-label">
+                Price (@Model.DisplayCurrencyShort):
+            </label>
+            <div class="col-sm-9 col-md-9 controls-fit-container">
+                @Html.EditorFor(a=>a.Price)
+                @Html.ValidationMessageFor(m => m.Price)
+            </div>
+        </div>
+        <div class="form-group  row-fluid-decent-gap">
+            <label for="SearchTag" class="col-sm-3 col-md-3 control-label">
+                Search Tags:
+            </label>
+            <div class="col-sm-9 col-md-9 controls-fit-container">
+                @Html.TextAreaFor(a => a.SearchTag)
+
+            </div>
+        </div>
+    </form>
+    <div class="form-group  row-fluid-decent-gap">
+        <label for="Picture" class="col-sm-3 col-md-3 control-label" style="text-align: right;">
+            Picture:
+        </label>
+        <div class="col-sm-9 col-md-9">
+            <div class="row">
+                <div class="col-xs-6 col-md-3 col-sm-3">
+                    <div id="imgDiv1" class="center-block" title="Image for @Model.Title">
+                        <a style="max-width: 151px; height: 151px; max-height: 151px; vertical-align: middle; display: block;" class="thumbnail">
+                            <img src="@Url.Content("~/Images/Post/camera.png")" class="img-responsive" id="imgUp1" alt="image 1" style="max-height: 130px;" />
+                        </a>
+                    </div>
+                    <a class="btn btn-default btn-sm" id="Upload1">BROWSE</a>
+                    @{
+                        if (Model.ListImages != null && Model.ListImages.Count > 0)
+                        {
+                            var file = Model.ListImages[0].FileID;
+                            <a href="@Url.Action("DownloadFile","GroupPanelConfiguration")?fileID=@file&postID=@Model.PostID"
+                               class="btn btn-sm btn-success">DOWNLOAD</a>
+                        }
+                    }
+                </div>
+                <div class="col-xs-6 col-md-3 col-sm-3">
+                    <div id="imgDiv2" class="center-block" title="Image for @Model.Title">
+                        <a style="max-width: 151px; height: 151px; max-height: 151px; vertical-align: middle; display: block;" class="thumbnail">
+                            <img src="@Url.Content("~/Images/Post/camera.png")" class="img-responsive" id="imgUp2" alt="image 2" style="max-height: 130px;" />
+                        </a>
+                    </div>
+                    <a class="btn btn-default btn-sm" id="Upload2">BROWSE</a>
+                    @{
+                        if (Model.ListImages != null && Model.ListImages.Count > 1)
+                        {
+                            var file1 = Model.ListImages[1].FileID;
+                            <a href="@Url.Action("DownloadFile","GroupPanelConfiguration")?fileID=@file1&postID=@Model.PostID"
+                               class="btn btn-sm btn-success">DOWNLOAD</a>
+                        }
+                    }
+                </div>
+
+                <div class="col-xs-6 col-md-3 col-sm-3">
+                    <div id="imgDiv3" class="center-block" title="Image for @Model.Title">
+                        <a style="max-width: 151px; height: 151px; max-height: 151px; vertical-align: middle; display: block;" class="thumbnail">
+                            <img src="@Url.Content("~/Images/Post/camera.png")" class="img-responsive" id="imgUp3" alt="image 3" style="max-height: 130px;" />
+                        </a>
+                    </div>
+                    <a class="btn btn-default btn-sm" id="Upload3">BROWSE</a>
+                    @{
+                        if (Model.ListImages != null && Model.ListImages.Count > 2)
+                        {
+                            var file2 = Model.ListImages[2].FileID;
+                            <a href="@Url.Action("DownloadFile","GroupPanelConfiguration")?fileID=@file2&postID=@Model.PostID"
+                               class="btn btn-sm btn-success">DOWNLOAD</a>
+                        }
+                    }
+                </div>
+                <div class="col-xs-6 col-md-3 col-sm-3">
+                    <div id="imgDiv4" class="center-block" title="Image for @Model.Title">
+                        <a style="max-width: 151px; height: 151px; max-height: 151px; vertical-align: middle; display: block;" class="thumbnail">
+                            <img src="@Url.Content("~/Images/Post/camera.png")" class="img-responsive" id="imgUp4" alt="image 4" style="max-height: 130px;" />
+                        </a>
+                    </div>
+                    <a class="btn btn-default btn-sm" id="Upload4" style="vertical-align: bottom;">BROWSE</a>
+                    @{
+                        if (Model.ListImages != null && Model.ListImages.Count > 3)
+                        {
+                            var file3 = Model.ListImages[3].FileID;
+                            <a href="@Url.Action("DownloadFile","GroupPanelConfiguration")?fileID=@file3&postID=@Model.PostID"
+                               class="btn btn-sm btn-success">DOWNLOAD</a>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <form id="frmPostRowEdit-@dataId">
+        <br />
+        <div class="form-group">
+            <input data-valueid="@Model.PostID" id="btnSubmitPost-@formid" type="button" style="float: right; margin-right: 20px; margin-top: 30px;" class="update-post btn btn-success btn-sm btn-submit-post-modify-mode" value="UPDATE" />
+            <a data-id="@Model.PostID" style="float: right;margin-right: 20px; margin-top: 30px;" class="delete-post btn btn-danger btn-sm" id="btnDelete-@dataId">DELETE</a>
+        </div>
+        <br />
+    </form>
+</div>
+

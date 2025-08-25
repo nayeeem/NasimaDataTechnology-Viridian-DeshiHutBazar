@@ -1,0 +1,82 @@
+﻿@model IEnumerable<WebDeshiHutBazar.BikashBillTransactonViewModel>
+
+<table class="new">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDateTimeString)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgentNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayCurrency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td data-label="@Html.DisplayNameFor(model => model.CreatedDateTimeString)">
+                    @Html.DisplayFor(modelItem => item.CreatedDateTimeString)
+                </td>
+                <td data-label="@Html.DisplayNameFor(model => model.AgentNumber)">
+                    @Html.DisplayFor(modelItem => item.AgentNumber)
+                </td>
+                <td data-label="@Html.DisplayNameFor(model => model.TransactionNumber)">
+                    @Html.DisplayFor(modelItem => item.TransactionNumber)
+                </td>
+                <td data-label="@Html.DisplayNameFor(model => model.PaidAmount)">
+                    @Html.DisplayFor(modelItem => item.PaidAmount)
+                </td>
+                <td data-label="@Html.DisplayNameFor(model => model.DisplayCurrency)">
+                    @Html.DisplayFor(modelItem => item.DisplayCurrency)
+                </td>
+                <td data-label="@Html.DisplayNameFor(model => model.Status)">
+                    @if (item.Status == "Approval Pending")
+                    {
+                        <b class="text-danger">
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </b>
+                    }
+                    else
+                    {
+                        <b class="text-success">
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </b>
+                    }
+                </td>
+                <td data-label="Order Details">
+                    @if (item.UserOrderModel != null)
+                    {
+                        <a id="btnViewPackage-@item.UserOrderID"
+                           data-toggle="modal" class="light-button small flex"
+                           data-target="#modal-@item.UserOrderID">
+                            @Common.Language.LanguageDefault.ORDERDETAILS
+                        </a>
+                    }
+                    else
+                    {
+                        <a id="btnViewPackage-@item.UserOrderID"
+                           class="primary-button small flex">
+                            @Common.Language.LanguageDefault.CREDITRECHARGE
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

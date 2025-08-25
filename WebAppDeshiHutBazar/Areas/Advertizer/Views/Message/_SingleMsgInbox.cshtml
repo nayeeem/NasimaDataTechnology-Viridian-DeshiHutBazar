@@ -1,0 +1,46 @@
+﻿@model WebDeshiHutBazar.MessageViewModel
+@{
+    var heading = Model.MessageID + "heading";
+    var collapse = Model.MessageID + "colapse";
+    var guid = Guid.NewGuid();
+    var btnViewMsg = "btnView-" + guid;
+    var ancor = "ancor-" + guid;
+    var msgid = Model.MessageID;
+    var cssClass = Model.IsNewMessage ? "new" : "";
+}
+
+<div class="panel panel-default collapsible">
+    <div class="panel-heading collapsible-header @cssClass"
+         role="tab"
+         id="@heading">
+        <a id="@ancor"
+           role="button"
+           data-manage-post="collapse"
+           data-toggle="collapse"
+           data-parent="#accordioninbox"
+           href="#@collapse"
+           aria-expanded="false"
+           aria-controls="@collapse">
+            <div class="row @msgid single-msg-inbox content"
+                 data-id="@msgid">
+                <div class="date">
+                    @Model.DateMsgSentString
+                </div>
+                <div class="message">
+                    @Model.Message
+                </div>
+                <div class="title">
+                    @Model.SenderEmail
+                </div>
+            </div>
+        </a>
+    </div>  
+    <div id="@collapse"
+         class="panel-collapse collapse collapsible-body"
+         role="tabpanel"
+         aria-labelledby="@heading">
+        <div id="@btnViewMsg">
+            @Html.Partial("../../Areas/Advertizer/Views/Message/_ViewInboxMessage", Model)
+        </div>
+    </div>
+</div>

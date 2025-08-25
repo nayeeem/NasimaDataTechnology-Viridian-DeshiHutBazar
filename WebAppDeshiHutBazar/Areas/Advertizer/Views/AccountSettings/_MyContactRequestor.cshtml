@@ -1,0 +1,61 @@
+﻿@model WebDeshiHutBazar.AccountViewModel
+<div class="card-form">
+    <h5 class="sub-title">List of Visitors Collected My Phone Number</h5>
+    <div class="responsive-table">
+        <table class="table new">
+            <thead>
+                <tr>
+                    <td>
+                        Date & Time
+                    </td>
+                    <td>
+                        Visitor Email
+                    </td>
+                    <td>
+                        Visitor Phone
+                    </td>
+                    <td>
+                        Title
+                    </td>
+                    <td>
+                        Price
+                    </td>
+                   
+                    <td>
+                        Sub-Category
+                    </td>
+                    <td></td>
+                </tr>
+                </thead>
+            <tbody>
+                @foreach (var item in Model.ListVisitorQueries)
+                {
+                    <tr>
+                        <td>
+                            @item.LogDateTime
+                        </td>
+                        <td>
+                            @item.VisitorEmail
+                        </td>
+                        <td>
+                            @item.VisitorPhoneNumber
+                        </td>
+                        <td>
+                            @item.PostTitle
+                        </td>
+                        <td>
+                            @item.PostItemPrice
+                        </td>
+                     
+                        <td>
+                            @item.SubCategoryName
+                        </td>
+                        <td>
+                            <a target="_blank" class="light-button small flex" href="@Url.Action("ViewItemDetail","AllItemMarket", new { postId=item.PostID})">VIEW POST</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

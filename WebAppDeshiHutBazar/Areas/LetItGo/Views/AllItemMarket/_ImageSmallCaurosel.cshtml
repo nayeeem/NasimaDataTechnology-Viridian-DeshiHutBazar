@@ -1,0 +1,18 @@
+﻿@model WebDeshiHutBazar.FileViewModel
+@if (Model.Image != null)
+{
+    string imageBase64 = Convert.ToBase64String(Model.Image);
+    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+    <img src="@imageSrc"
+         class="img-responsive single-item-carosel-small-image-size"
+         alt="image from seleasy.com"
+         id="imgSmallCarosel" />
+}
+else
+{
+    <img src="~/Images/Home/camera.png"
+         class="img-responsive single-item-carosel-small-image-size"
+         alt="image from seleasy.com"
+         id="imgSmallCarosel" />
+}
+

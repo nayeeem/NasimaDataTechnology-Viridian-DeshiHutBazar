@@ -1,0 +1,125 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+
+<div class="advance-search-container-background" data-adv-search="modal"></div>
+<form class="advance-search-container" data-adv-search="content" method="post" action="@Url.Action("AdvancedSearchImage","Image")">
+    <h4>@Common.Language.LanguageDefault.AdvancedSearch</h4>
+    <div class="row padding-margin-zero">
+        <div class="col-sm-12">
+            <input name="SearchKey" type="search" class="fff" placeholder="@Common.Language.LanguageDefault.SearchTypeToSearch" value="@Model.SearchKey" />
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <select name="CategoryID" class="fff">
+                @foreach (var cat in Model.AV_Category)
+                {
+                    var selected = Model.CategoryID.Equals(cat.Value) ? "selected='selected'" : "";
+                    if (string.IsNullOrEmpty(cat.Value))
+                    {
+                        <option value="" @selected>@Common.Language.LanguageDefault.SearchSelectCategory</option>
+                        continue;
+                    }
+                    <option value="@cat.Value" @selected>@cat.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <select name="SubCategoryID" class="fff">
+                @foreach (var cat in Model.AV_SubCategory)
+                {
+                    var selected = Model.SubCategoryID.Equals(cat.Value) ? "selected" : "";
+
+                    if (string.IsNullOrEmpty(cat.Value))
+                    {
+                        <option value="" @selected >@Common.Language.LanguageDefault.SearchSelectSubCategory</option>
+                        continue;
+                    }
+
+                    <option value="@cat.Value" @selected>@cat.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <select name="StateID" class="fff">
+                @foreach (var cat in Model.AV_State)
+                {
+                    var selected = Model.StateID.Equals(cat.Value) ? "selected" : "";
+
+                    if (string.IsNullOrEmpty(cat.Value))
+                    {
+                        <option value=""  @selected>@Common.Language.LanguageDefault.SearchSelectState</option>
+                        continue;
+                    }
+
+                    <option value="@cat.Value" @selected>@cat.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <input name="AreaDescription" type="text" class="fff" placeholder="@Common.Language.LanguageDefault.SearchSpecificAreaDetails" />
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <input name="PriceLow" type="tel" class="fff" placeholder="@Common.Language.LanguageDefault.SearchPriceStartsFrom" />
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <input name="PriceHigh" type="tel" class="fff" placeholder="@Common.Language.LanguageDefault.SearchPriceEndswith" />
+        </div>
+        <div class="col-sm-12">
+            <div class="chip-container">
+                <label class="chip">
+                    <input name="IsUrgent" type="checkbox" value="true" checked="@Model.IsUrgent" />
+                    <span>
+                        @Common.Language.LanguageDefault.SearchUrgentDeal
+                    </span>
+                </label>
+                <label class="chip">
+                    <input name="IsUsed" type="checkbox" value="true" checked="@Model.IsUsed"/>
+                    <span>
+                        @Common.Language.LanguageDefault.SearchUsedItem
+                    </span>
+                </label>
+                <label class="chip">
+                    <input name="IsBrandNew" type="checkbox" value="true"  checked="@Model.IsBrandNew"/>
+                    <span>
+                        @Common.Language.LanguageDefault.SearchNewItem
+                    </span>
+                </label>
+                <label class="chip">
+                    <input name="IsForSell" type="checkbox" value="true" checked="@Model.IsForSell" />
+                    <span>
+                        @Common.Language.LanguageDefault.SearchForSell
+                    </span>
+                </label>
+                <label class="chip">
+                    <input name="IsForRent" type="checkbox" value="true" checked="@Model.IsForRent" />
+                    <span>
+                        @Common.Language.LanguageDefault.SearchForRent
+                    </span>
+                </label>
+                <label class="chip">
+                    <input name="IsPrivateSeller" type="checkbox" value="true" checked="@Model.IsPrivateSeller" />
+                    <span>
+                        @Common.Language.LanguageDefault.SearchIndividualAds
+                    </span>
+                </label>
+                <label class="chip">
+                    <input name="IsCompanySeller" type="checkbox" value="true" checked="@Model.IsCompanySeller" />
+                    <span>
+                        @Common.Language.LanguageDefault.SearchCompanyAds
+                    </span>
+                </label>
+                <div class="row margin-padding-zero">
+                <div class="col-md-6">
+                    <button class="primary-button" type="submit">
+                        <i class="fa fa-search"></i>
+                        @Common.Language.LanguageDefault.AdvancedSearch
+                    </button>
+                </div>
+                    <div class="col-md-6">
+                        <button class="light-button  col-md-6" type="button" data-adv-search="modal">
+                            @Common.Language.LanguageDefault.Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

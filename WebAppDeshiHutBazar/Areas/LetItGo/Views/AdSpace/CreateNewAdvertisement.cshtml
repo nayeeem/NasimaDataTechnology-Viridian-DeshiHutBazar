@@ -1,0 +1,199 @@
+﻿@model WebDeshiHutBazar.AdsSpaceMasterViewModel
+@{
+    ViewBag.Title = "New Ad. Space";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+
+<div id="posteditrootnewadvertisement"  class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h3 style="text-align: center;">Advertisement Space Details</h3>
+                    </div>
+                    <!-- /panel-title -->
+                </div>
+                <!-- /panel-heading -->
+                <div class="panel-body">
+                    <form id="frmPostPart1" class="form-horizontal">
+                        <div class="form-group row-fluid-decent-gap">
+                            <label for="Title" class="col-sm-3 control-label" style="text-align: right;">
+                                Ad Duration :
+                            </label>
+                            <div class="col-sm-4 controls-fit-container">
+                                @Html.EditorFor(a => a.TotalAdvDays)
+                            </div>
+                            <div class="col-sm-4 controls-fit-container" style="text-align: left;">
+                                Days
+                            </div>
+                        </div>
+                        <!-- /form-group -->
+
+                        <div class="form-group row-fluid-decent-gap">
+                            <label for="Title" class="col-sm-3 control-label" style="text-align: right;">
+                                Ad Space Location :
+                            </label>
+                            <div class="col-sm-9 controls-fit-container">
+                                @Html.DropDownListFor(a => a.AdSpaceType, Model.AV_AdSpaceType)
+                                @Html.HiddenFor(a => a.AdSpaceType)
+                            </div>
+                        </div>
+                        <!-- /form-group -->
+                        <div class="form-group row-fluid-decent-gap">
+                            <label for="CategoryID" class="col-sm-3 control-label" style="text-align: right;">
+                                Page Type :
+                            </label>
+                            <div class="col-sm-9 controls-fit-container">
+                                @Html.DropDownListFor(a => a.AdPageType, Model.AV_AdPageType)
+                                @Html.HiddenFor(a => a.AdPageType)
+                            </div>
+                        </div>
+                        <div class="form-group row-fluid-decent-gap" style="display: none;" id="categoryDivNewAdv">
+                            <label for="CategoryID" class="col-sm-3 control-label" style="text-align: right;">
+                                Select a Category :
+                            </label>
+                            <div class="col-sm-9 controls-fit-container">
+                                @Html.DropDownListFor(a => a.SubCategoryID, Model.AV_SubCategory)
+                                @Html.HiddenFor(a => a.SubCategoryID)
+                            </div>
+                        </div>
+                        <!-- /form-group -->
+                    </form>
+                    <div class="form-group row-fluid-decent-gap">
+                        <label for="CategoryID" class="col-sm-3 control-label" style="text-align: right;">
+                            Upload Ad. File :
+                        </label>
+                        <div class="col-sm-9 controls-fit-container">
+                            <a class="btn btn-default" id="UploadAdvertisement1"><i style="display:none;" class="fa fa-thumbs-up" id="iBrowse"></i>&nbsp;Browse</a>
+                        </div>
+                    </div>
+
+                    <!-- /form-group -->
+                </div>
+                <!-- /panel panel-default -->
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h3 style="text-align: center;">Company Details</h3>
+                    </div>
+                    <!-- /panel-title -->
+                </div>
+                <!-- /panel-heading -->
+                <div class="panel-body">
+                    <form id="frmPostPart2" class="form-horizontal">
+                        <div class="form-group  row-fluid-decent-gap">
+                            <label for="ClientName" class="col-sm-3 control-label" style="text-align: right;">
+                                Company Name :
+                            </label>
+                            <div class="col-sm-9 controls-fit-container">
+                                @Html.EditorFor(a => a.CompanyName)
+                            </div>
+                        </div>
+                        <!-- /form-group -->
+                        <div class="form-group  row-fluid-decent-gap">
+                            <label for="ClientName" class="col-sm-3 control-label" style="text-align: right;">
+                                Contact Person :
+                            </label>
+                            <div class="col-sm-9 controls-fit-container">
+                                @Html.EditorFor(a => a.ClientName)
+                            </div>
+                        </div>
+                        <!-- /form-group -->
+                        <div class="form-group  row-fluid-decent-gap">
+                            <label for="ClientName" class="col-sm-3 control-label" style="text-align: right;">
+                                Website :
+                            </label>
+                            <div class="col-sm-9 controls-fit-container">
+                                @Html.EditorFor(a => a.Website)
+                            </div>
+                        </div>
+                        <!-- /form-group -->
+                        <div class="form-group  row-fluid-decent-gap">
+                            <label for="ClientName" class="col-sm-3 control-label" style="text-align: right;">
+                                Phone :
+                            </label>
+                            <div class="col-sm-9 controls-fit-container" style="font-weight:normal;">
+                                @Html.EditorFor(a => a.Phone, "PhoneEditor")
+                            </div>
+                        </div>
+                        <!-- /form-group -->
+                    </form>
+                </div>
+                <!-- /panel panel-default -->
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h3 id="hSignupNewAdv" style="text-align: center;">Sign up</h3>
+                        <h3 id="hSigninNewAdv" style="text-align: center; display: none;">Sign in</h3>
+                    </div>
+                    <!-- /panel-title -->
+                </div>
+                <!-- /panel-heading -->
+                <div class="panel-body">
+                    <form id="frmPostPart3" class="form-horizontal">
+                        <div class="form-group  row-fluid-decent-gap">
+                            <label for="ClientName" class="col-sm-3 control-label" style="text-align: right;">
+                                Email :
+                            </label>
+                            <div class="col-sm-9 controls-fit-container">
+                                @Html.EditorFor(a => a.Email)
+                            </div>
+                        </div>
+                        <!-- /form-group -->
+                        <div class="form-group  row-fluid-decent-gap">
+                            <label for="ClientName" class="col-sm-3 control-label" style="text-align: right;">
+                                Password :
+                            </label>
+                            <div class="col-sm-9 controls-fit-container">
+                                @Html.PasswordFor(a => a.Password)
+                            </div>
+                        </div>
+                        <!-- /form-group -->
+                        <div class="form-group  row-fluid-decent-gap" id="rePasswordDivNewAdv">
+                            <label for="ClientName" class="col-sm-3 control-label" style="text-align: right;">
+                                Re-Password :
+                            </label>
+                            <div class="col-sm-9 controls-fit-container">
+                                @Html.PasswordFor(a => a.RePassword)
+                            </div>
+                        </div>
+                        <!-- /form-group -->
+                    </form>
+                </div>
+                <!-- /panel panel-default -->
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-3 col-md-offset-4">
+                            <button id="btnSubmitPostNewAdv" class="btn btn-success btn-center" role="button" style="margin-left: 30px;">
+                                Submit Request
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /panel-footer -->
+            </div>
+            <!-- /panel panel-info -->
+        </div>
+    </div>
+    <!-- /col-md-8 col-md-offset-2 -->
+</div>
+<!-- /row -->
+
+
+@section scriptsapp {
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/jquerycreatenewadv")
+}
+
+
+
+
+
+

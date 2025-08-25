@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllItemMarketPageTitle" xml:space="preserve">
+    <value>Latest Ads</value>
+  </data>
+  <data name="ButonTextPostFreeAd" xml:space="preserve">
+    <value>Post Free Ad</value>
+  </data>
+  <data name="ButtonTextAddYourProduct" xml:space="preserve">
+    <value>ADD YOUR PRODUCT</value>
+  </data>
+  <data name="ButtonTextAdvancedSearch" xml:space="preserve">
+    <value>Advanced Search</value>
+  </data>
+  <data name="ButtonTextCartContinueShopping" xml:space="preserve">
+    <value>CONTINUE SHOPPING</value>
+  </data>
+  <data name="ButtonTextCartViewCart" xml:space="preserve">
+    <value>VIEW CART</value>
+  </data>
+  <data name="ButtonTextClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ButtonTextCompanyAd" xml:space="preserve">
+    <value>Company Ads</value>
+  </data>
+  <data name="ButtonTextContactSUBMIT" xml:space="preserve">
+    <value>SUBMIT</value>
+  </data>
+  <data name="ButtonTextFabia" xml:space="preserve">
+    <value>FA</value>
+  </data>
+  <data name="ButtonTextForRent" xml:space="preserve">
+    <value>For Rent</value>
+  </data>
+  <data name="ButtonTextForSale" xml:space="preserve">
+    <value>For Sale</value>
+  </data>
+  <data name="ButtonTextIndividualAd" xml:space="preserve">
+    <value>Individual Ads</value>
+  </data>
+  <data name="ButtonTextInterest" xml:space="preserve">
+    <value>INTERESTS</value>
+  </data>
+  <data name="ButtonTextJoinAsProvider" xml:space="preserve">
+    <value>JOIN AS PROVIDER</value>
+  </data>
+  <data name="ButtonTextMarkets" xml:space="preserve">
+    <value>MARKETS</value>
+  </data>
+  <data name="ButtonTextNewItem" xml:space="preserve">
+    <value>New Item</value>
+  </data>
+  <data name="ButtonTextNewPostAddNewPicture" xml:space="preserve">
+    <value>Add New Picture</value>
+  </data>
+  <data name="ButtonTextRegisterSignUp" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="ButtonTextSignin" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="ButtonTextSpecial" xml:space="preserve">
+    <value>SPECIAL</value>
+  </data>
+  <data name="ButtonTextSubmitAd" xml:space="preserve">
+    <value>SUBMIT AD</value>
+  </data>
+  <data name="ButtonTextUrgentSale" xml:space="preserve">
+    <value>Urgent Deals</value>
+  </data>
+  <data name="ButtonTextUsedItem" xml:space="preserve">
+    <value>Used Item</value>
+  </data>
+  <data name="CategoryMarketPageTitle" xml:space="preserve">
+    <value>Market </value>
+  </data>
+  <data name="ContactUsPageTitle" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="ErrorMessageContactUsContactEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ErrorMessageContactUsContactMessageCategory" xml:space="preserve">
+    <value>Select Message Category</value>
+  </data>
+  <data name="ErrorMessageContactUsContactName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ErrorMessageContactUsContactSubject" xml:space="preserve">
+    <value>Message Subject </value>
+  </data>
+  <data name="ErrorMessageEmailRequired" xml:space="preserve">
+    <value>Email is required. Please enter.</value>
+  </data>
+  <data name="ErrorMessageNewPostCategory" xml:space="preserve">
+    <value>Category is required! Please enter.</value>
+  </data>
+  <data name="ErrorMessageNewPostEmail" xml:space="preserve">
+    <value>Email is required! Please enter.</value>
+  </data>
+  <data name="ErrorMessageNewPostFullName" xml:space="preserve">
+    <value>Full Name is required! Please enter.</value>
+  </data>
+  <data name="ErrorMessageNewPostLocation" xml:space="preserve">
+    <value>Location is required! Please enter.</value>
+  </data>
+  <data name="ErrorMessageNewPostPassword" xml:space="preserve">
+    <value>Password is required! Please enter.</value>
+  </data>
+  <data name="ErrorMessageNewPostPhoneNumber" xml:space="preserve">
+    <value>Phone Number is required! Please enter.</value>
+  </data>
+  <data name="ErrorMessageNewPostPrice" xml:space="preserve">
+    <value>Price is required! Please enter.</value>
+  </data>
+  <data name="ErrorMessageNewPostRePassword" xml:space="preserve">
+    <value>Re-Password is required! Please enter.</value>
+  </data>
+  <data name="ErrorMessageNewPostSubCategory" xml:space="preserve">
+    <value>Sub Category is required! Please enter.</value>
+  </data>
+  <data name="ErrorMessageNewPostTitle" xml:space="preserve">
+    <value>Title is required! Please enter.</value>
+  </data>
+  <data name="ErrorMessagePasswordRequired" xml:space="preserve">
+    <value>Password is required. Please enter.</value>
+  </data>
+  <data name="ErrorMessageRegisterEmailRequired" xml:space="preserve">
+    <value>Email is required. Please enter.</value>
+  </data>
+  <data name="ErrorMessageRegisterPasswordRequired" xml:space="preserve">
+    <value>Password is required. Please enter.</value>
+  </data>
+  <data name="ErrorMessageRegisterPersonRequired" xml:space="preserve">
+    <value>Person/Company name is required. Please enter.</value>
+  </data>
+  <data name="ErrorMessageRegisterPhoneRequired" xml:space="preserve">
+    <value>Phone is required. Please enter.</value>
+  </data>
+  <data name="ErrorMessageRegisterRePasswordRequired" xml:space="preserve">
+    <value>Re-Password is required. Please enter.</value>
+  </data>
+  <data name="FAQPageTitle" xml:space="preserve">
+    <value>FAQ</value>
+  </data>
+  <data name="HomePageTitle" xml:space="preserve">
+    <value>Home | </value>
+  </data>
+  <data name="ItemDetailsPageTitle" xml:space="preserve">
+    <value>Ad Details</value>
+  </data>
+  <data name="LabelAdvancedSearch" xml:space="preserve">
+    <value>Advanced Search</value>
+  </data>
+  <data name="LabelAdvertiseDetails" xml:space="preserve">
+    <value>ADVERTISE DETAILS</value>
+  </data>
+  <data name="LabelAllMarkets" xml:space="preserve">
+    <value>ALL MARKETS</value>
+  </data>
+  <data name="LabelContactUs" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="LabelContactUsContactEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LabelContactUsContactForm" xml:space="preserve">
+    <value>Contact Form</value>
+  </data>
+  <data name="LabelContactUsContactMessage" xml:space="preserve">
+    <value>Message </value>
+  </data>
+  <data name="LabelContactUsContactMessageCategory" xml:space="preserve">
+    <value>Message Category</value>
+  </data>
+  <data name="LabelContactUsContactName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="LabelContactUsContactSubject" xml:space="preserve">
+    <value>Subject </value>
+  </data>
+  <data name="LabelDealsEndToday" xml:space="preserve">
+    <value>DEALS  END TODAY!</value>
+  </data>
+  <data name="LabelDonotHaveAccount" xml:space="preserve">
+    <value>Don’t have account? Please</value>
+  </data>
+  <data name="LabelEnterCredentials" xml:space="preserve">
+    <value>PLEASE ENTER CREDENTIALS:</value>
+  </data>
+  <data name="LabelFabiaService" xml:space="preserve">
+    <value>FABIA SERVICE</value>
+  </data>
+  <data name="LabelFeatured" xml:space="preserve">
+    <value>FEATURED!</value>
+  </data>
+  <data name="LabelForGift" xml:space="preserve">
+    <value>FOR GIFT!</value>
+  </data>
+  <data name="LabelHi" xml:space="preserve">
+    <value>Hi!</value>
+  </data>
+  <data name="LabelMenAndWomen" xml:space="preserve">
+    <value>MEN &amp; WOMEN</value>
+  </data>
+  <data name="LabelNewPostAdvertiserDetails" xml:space="preserve">
+    <value>Advertiser Details</value>
+  </data>
+  <data name="LabelNewPostArea" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="LabelNewPostBrandNew" xml:space="preserve">
+    <value>Brand new</value>
+  </data>
+  <data name="LabelNewPostCategory" xml:space="preserve">
+    <value>Category *</value>
+  </data>
+  <data name="LabelNewPostCompany" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="LabelNewPostCondition" xml:space="preserve">
+    <value>Condition</value>
+  </data>
+  <data name="LabelNewPostDescription" xml:space="preserve">
+    <value>Item Description</value>
+  </data>
+  <data name="LabelNewPostEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LabelNewPostFullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="LabelNewPostIAm" xml:space="preserve">
+    <value>I am:</value>
+  </data>
+  <data name="LabelNewPostIndividual" xml:space="preserve">
+    <value>Individual</value>
+  </data>
+  <data name="LabelNewPostLocation" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="LabelNewPostNotUrgentDeal" xml:space="preserve">
+    <value>Not Urgent Deal</value>
+  </data>
+  <data name="LabelNewPostPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="LabelNewPostPhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="LabelNewPostPrice" xml:space="preserve">
+    <value>Price (NGN)*</value>
+  </data>
+  <data name="LabelNewPostRePassword" xml:space="preserve">
+    <value>Re-Password</value>
+  </data>
+  <data name="LabelNewPostSearchTag" xml:space="preserve">
+    <value>Search Tag</value>
+  </data>
+  <data name="LabelNewPostSignIN" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="LabelNewPostSubCategory" xml:space="preserve">
+    <value>Sub Category *</value>
+  </data>
+  <data name="LabelNewPostTitle" xml:space="preserve">
+    <value>Ad Title *</value>
+  </data>
+  <data name="LabelNewPostUploadPicture" xml:space="preserve">
+    <value>UPLOAD PICTURE</value>
+  </data>
+  <data name="LabelNewPostUrgentDeal" xml:space="preserve">
+    <value>Urgent Deal</value>
+  </data>
+  <data name="LabelNewPostUsedItem" xml:space="preserve">
+    <value>Used Item</value>
+  </data>
+  <data name="LabelPopularCategory" xml:space="preserve">
+    <value>POPULAR CATEGORIES</value>
+  </data>
+  <data name="LabelPopularProduct" xml:space="preserve">
+    <value>POPULAR PRODUCTS</value>
+  </data>
+  <data name="LabelPostFreeAd" xml:space="preserve">
+    <value>Post Fee Ad</value>
+  </data>
+  <data name="LabelPremiumProducts" xml:space="preserve">
+    <value>PREMIUM PRODUCTS</value>
+  </data>
+  <data name="LabelRegisterYourAccount" xml:space="preserve">
+    <value>Register Your Account:</value>
+  </data>
+  <data name="LabelSkillsAndServices" xml:space="preserve">
+    <value>SKILLS &amp; SERVICES</value>
+  </data>
+  <data name="LabelSponsor" xml:space="preserve">
+    <value>SPONSORED</value>
+  </data>
+  <data name="LabelStudents" xml:space="preserve">
+    <value>FOR STUDENTS!</value>
+  </data>
+  <data name="LabelTodayPickups" xml:space="preserve">
+    <value>TODAY’S PICKUPS</value>
+  </data>
+  <data name="LabelViewByMarkets" xml:space="preserve">
+    <value>View By Markets</value>
+  </data>
+  <data name="LabelWeSponsored" xml:space="preserve">
+    <value>WE PROMOTE!</value>
+  </data>
+  <data name="LinkAddShortContent" xml:space="preserve">
+    <value>Add Admin Content</value>
+  </data>
+  <data name="LinkAddToCart" xml:space="preserve">
+    <value>ADD TO CART</value>
+  </data>
+  <data name="LinkAds" xml:space="preserve">
+    <value>Ads</value>
+  </data>
+  <data name="LinkBangla" xml:space="preserve">
+    <value>Bn</value>
+  </data>
+  <data name="LinkBusinessIntelligence" xml:space="preserve">
+    <value>View Reports</value>
+  </data>
+  <data name="LinkCart" xml:space="preserve">
+    <value>Cart</value>
+  </data>
+  <data name="LinkConfigurePackage" xml:space="preserve">
+    <value>Configure Package</value>
+  </data>
+  <data name="LinkConfigurePanels" xml:space="preserve">
+    <value>Configure Content</value>
+  </data>
+  <data name="LinkConfigurePrice" xml:space="preserve">
+    <value>Configure Package Prices</value>
+  </data>
+  <data name="LinkContact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="LinkDeshiHutBazar" xml:space="preserve">
+    <value>Deshi Hut Bazar. Com</value>
+  </data>
+  <data name="LinkDonate" xml:space="preserve">
+    <value>Donate</value>
+  </data>
+  <data name="LinkEditImages" xml:space="preserve">
+    <value>Manage Pictures</value>
+  </data>
+  <data name="LinkEnglish" xml:space="preserve">
+    <value>Eng</value>
+  </data>
+  <data name="LinkFabiaServices" xml:space="preserve">
+    <value>Fabia Services</value>
+  </data>
+  <data name="LinkFaq" xml:space="preserve">
+    <value>FAQ</value>
+  </data>
+  <data name="LinkForgetPassword" xml:space="preserve">
+    <value>Forget password?</value>
+  </data>
+  <data name="LinkLatestAds" xml:space="preserve">
+    <value>Latest Ads</value>
+  </data>
+  <data name="LinkLogout" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="LinkLogReports" xml:space="preserve">
+    <value>View Log Reports</value>
+  </data>
+  <data name="LinkManageAccount" xml:space="preserve">
+    <value>Manage Account</value>
+  </data>
+  <data name="LinkManageAdminContents" xml:space="preserve">
+    <value>Manage Admin Contents</value>
+  </data>
+  <data name="LinkManageBikashBills" xml:space="preserve">
+    <value>Manage Bills</value>
+  </data>
+  <data name="LinkManageCompanyAccount" xml:space="preserve">
+    <value>Manage Company Account</value>
+  </data>
+  <data name="LinkMyFabiaServiceProviders" xml:space="preserve">
+    <value>Fabia Providers</value>
+  </data>
+  <data name="LinkNigeria" xml:space="preserve">
+    <value>Ng</value>
+  </data>
+  <data name="LinkOurStatus" xml:space="preserve">
+    <value>Our Status</value>
+  </data>
+  <data name="LinkPortalURL" xml:space="preserve">
+    <value>nigeria bazaar</value>
+  </data>
+  <data name="LinkPrivacyAndTerms" xml:space="preserve">
+    <value>Terms</value>
+  </data>
+  <data name="LinkPublishedPosts" xml:space="preserve">
+    <value>Published Ads</value>
+  </data>
+  <data name="LinkRegister" xml:space="preserve">
+    <value>up</value>
+  </data>
+  <data name="LinkResources" xml:space="preserve">
+    <value>Resources</value>
+  </data>
+  <data name="LinkUnpaidPosts" xml:space="preserve">
+    <value>Unpaid Ads</value>
+  </data>
+  <data name="LinkViewMore" xml:space="preserve">
+    <value>VIEW MORE</value>
+  </data>
+  <data name="MessageTextCartContinueMessage" xml:space="preserve">
+    <value>Shopping cart updated! Do you want to continue shopping or view cart?</value>
+  </data>
+  <data name="NoteContactUsThankyouVeryMuch" xml:space="preserve">
+    <value>Thank you very much.</value>
+  </data>
+  <data name="NotePostFreeAd" xml:space="preserve">
+    <value>NOTE: It is very simple. For quick submission, please fill up only the * fields.</value>
+  </data>
+  <data name="NotetContactUsIntroGreetingMessageText" xml:space="preserve">
+    <value>Please leave us your message to improve our website better. We will highly appreciate your feedback and we will respond to you at the earliest because your satisfaction is our achievement.</value>
+  </data>
+  <data name="PlaceholderContactUsContactEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="PlaceholderContactUsContactMessageCategory" xml:space="preserve">
+    <value>Select Message Category</value>
+  </data>
+  <data name="PlaceholderContactUsContactName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PlaceholderContactUsContactSubject" xml:space="preserve">
+    <value>Message Subject </value>
+  </data>
+  <data name="PlaceholderEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="PlaceholderNewPostArea" xml:space="preserve">
+    <value>Area Details</value>
+  </data>
+  <data name="PlaceholderNewPostCategory" xml:space="preserve">
+    <value>Select Category </value>
+  </data>
+  <data name="PlaceholderNewPostDescription" xml:space="preserve">
+    <value>Item Description</value>
+  </data>
+  <data name="PlaceholderNewPostEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="PlaceholderNewPostFullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="PlaceholderNewPostLocation" xml:space="preserve">
+    <value>Select State</value>
+  </data>
+  <data name="PlaceholderNewPostPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PlaceholderNewPostPhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="PlaceholderNewPostPrice" xml:space="preserve">
+    <value>Price (NGN)</value>
+  </data>
+  <data name="PlaceholderNewPostRePassword" xml:space="preserve">
+    <value>Re-Password</value>
+  </data>
+  <data name="PlaceholderNewPostSearchTag" xml:space="preserve">
+    <value>Search Tag</value>
+  </data>
+  <data name="PlaceholderNewPostSubCategory" xml:space="preserve">
+    <value>Select Sub Category</value>
+  </data>
+  <data name="PlaceholderNewPostTitle" xml:space="preserve">
+    <value>Ad Title</value>
+  </data>
+  <data name="PlaceholderPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PlaceholderPersonCompany" xml:space="preserve">
+    <value>Person / Company Name</value>
+  </data>
+  <data name="PlaceholderPriceEndsWith" xml:space="preserve">
+    <value>Price (Ends With)</value>
+  </data>
+  <data name="PlaceholderPriceStartsFrom" xml:space="preserve">
+    <value>Price (Starts From)</value>
+  </data>
+  <data name="PlaceholderRegisterEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="PlaceholderRegisterPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PlaceholderRegisterPhone" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="PlaceholderRegisterRePassword" xml:space="preserve">
+    <value>Re-Password</value>
+  </data>
+  <data name="PlaceholderSelectCategory" xml:space="preserve">
+    <value>Select Category</value>
+  </data>
+  <data name="PlaceholderSelectState" xml:space="preserve">
+    <value>Select State</value>
+  </data>
+  <data name="PlaceholderSelectSubCategory" xml:space="preserve">
+    <value>Select Sub-Category</value>
+  </data>
+  <data name="PlaceHolderSimpleSearchTextBox" xml:space="preserve">
+    <value>Type to search …</value>
+  </data>
+  <data name="PlaceholderSpecificAreaDetails" xml:space="preserve">
+    <value>Specific area details …</value>
+  </data>
+  <data name="PrivacyPageTitle" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="SigninPageTitle" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="SignupPageTitle" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="SpecialMarketPageTitle" xml:space="preserve">
+    <value>Special Market</value>
+  </data>
+  <data name="SubCategoryMarketPageTitle" xml:space="preserve">
+    <value>Specific Market</value>
+  </data>
+  <data name="TextIndividualUserDescription" xml:space="preserve">
+    <value>Individual / Private Advertiser Account: Individual Advertiser users post ads to sell products or services. They can only publish ads in this online portal to find buyers. Visitors view ads and call directly to the advertiser to buy products or avail services</value>
+  </data>
+  <data name="TextOnlineSellerUserDescription" xml:space="preserve">
+    <value>Business / Online Seller Account: Business users post their product or service details in this portal and online visitors buy those products using online payment gateway. A business user represents a company which must be registered to operate business in Bangladesh.</value>
+  </data>
+  <data name="UnwantedAccessErrorPageTitle" xml:space="preserve">
+    <value>Access Denied!</value>
+  </data>
+  <data name="UnwantedAcessErrorAContactUs" xml:space="preserve">
+    <value>contact us</value>
+  </data>
+  <data name="UnwantedAcessErrorDivSupportTeam" xml:space="preserve">
+    <value>support team</value>
+  </data>
+  <data name="UnwantedAcessErrorH3ErrorTitle" xml:space="preserve">
+    <value>Bad Try, System cannot serve this page.</value>
+  </data>
+  <data name="UnwantedAcessErrorH4Reason1" xml:space="preserve">
+    <value>Unauthorized User</value>
+  </data>
+  <data name="UnwantedAcessErrorH4Reason2" xml:space="preserve">
+    <value>Session Terminated</value>
+  </data>
+  <data name="UnwantedAcessErrorH4ReasonsCouldBe" xml:space="preserve">
+    <value>Reasons could be:</value>
+  </data>
+  <data name="UnwantedAcessErrorH4Solution" xml:space="preserve">
+    <value>Inform Admin about this failure</value>
+  </data>
+  <data name="UnwantedAcessErrorPPleaseGoTo" xml:space="preserve">
+    <value>Please go to</value>
+  </data>
+  <data name="UnwantedAcessErrorPReason1Text" xml:space="preserve">
+    <value>The user who requested this page has no permission to see this page or may be the user is not a valid user in www.seeasy.com.</value>
+  </data>
+  <data name="UnwantedAcessErrorPReason2Text" xml:space="preserve">
+    <value>The user session might be terminated, causing the user access not valid for this time. Please sign in again to access this page.</value>
+  </data>
+  <data name="UnwantedAcessErrorPToReportFailure" xml:space="preserve">
+    <value>to report about this failure.</value>
+  </data>
+</root>

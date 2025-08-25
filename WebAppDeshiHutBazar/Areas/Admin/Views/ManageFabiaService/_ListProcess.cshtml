@@ -1,0 +1,56 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+
+@if (Model.ListPostProcess != null)
+{
+<table class="new">
+    <thead>
+        <tr>
+            <th>Step Number</th>
+            <th>Step Name</th>
+            <th>Price</th>
+            <th>Reason for Payment</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="example">
+        @foreach (var itemDesktop in Model.ListPostProcess.ToList())
+        {
+            <tr>
+                <td data-label="StepNo">
+                    @Html.HiddenFor(a => itemDesktop.PostID)
+                    @Html.HiddenFor(a => itemDesktop.PostProcessID)
+                    @itemDesktop.StepNo
+                </td>
+                <td data-label="StepName">
+                    @itemDesktop.StepName
+                </td>
+                <td data-label="Price">
+                    @itemDesktop.Price &nbsp; (@Model.Currency)
+                </td>
+                <td data-label="ReasonPayment">
+                    @itemDesktop.ReasonPayment
+                </td>
+                <td data-label="Description">
+                    @itemDesktop.Description
+                </td>              
+                <td data-label="Action">
+                    <a data-toggle="modal"
+                       class="light-button small flex btn-sm btn-edit-process"
+                       data-processid="@itemDesktop.PostProcessID"
+                       data-postid="@itemDesktop.PostID"
+                       data-target="#modal-edit-process-@itemDesktop.PostProcessID">
+                        EDIT
+                    </a>
+                    <a class="secondary-button small flex btn-sm btn-remove-process"
+                       data-processid="@itemDesktop.PostProcessID"
+                       data-postid="@itemDesktop.PostID">
+                        REMOVE
+                    </a>
+                </td>
+            </tr>           
+        }
+    </tbody>
+</table>
+}

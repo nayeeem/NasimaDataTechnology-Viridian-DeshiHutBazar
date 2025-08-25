@@ -1,0 +1,135 @@
+﻿@model WebDeshiHutBazarAccountViewModel
+
+<div class="card-form row">
+    <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+        <h4 class="sub-title">Upload Trade License File</h4>
+        <div class="note">
+            * Please take picture of your Trade License file by a camera and upload here. The file should be in .jpg format.
+        </div>
+    </div>
+    <div class="image-field col-md-2 col-xs-12 col-sm-3 col-lg-2">
+        <button type="button" class="light-button btn-sm" id="UploadTradeLicenseFile">
+            Upload File
+        </button>
+        <div class="image-field" id="imageTradeLicenseDiv">
+            @if (Model.TradeLicenseFile != null)
+            {
+                @Html.Partial("../../Areas/Company/Views/CompanySettings/_Image", Model.TradeLicenseFile)
+            }
+            else
+            {
+                <a class="thumbnail">
+                    <img src="~/Images/Home/camera.png"
+                         class="img-responsive new-post-mobile-image"
+                         alt="Post image is not avaliable"
+                         style="max-height:140px; max-width:100%;width:100%;" />
+                </a>
+            }
+        </div>
+        <button type="button" class="light-button btn-sm btn-remove" id="removeTradeLicenseFile">
+            REMOVE
+        </button>
+    </div>
+</div>
+<br />
+<div class="card-form row">
+    @Html.HiddenFor(a => a.UserID)
+    <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+        <h4 class="sub-title">Company Information</h4>
+    </div>
+
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="ClientName">
+            Company Name
+        </label>
+        @Html.EditorFor(a => a.CompanyName, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="CompanyEmail">
+            Email
+        </label>
+        @Html.EditorFor(a => a.CompanyEmail, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="CompanyPhone">
+            Phone
+        </label>
+        @Html.EditorFor(a => a.CompanyPhone, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="CompanyWebsite">
+            Company Website
+        </label>
+        @Html.EditorFor(a => a.CompanyWebsite, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+</div>
+<br />
+<div class="card-form row">
+    <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+        <h4 class="sub-title">Company Address</h4>
+    </div>
+
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="State">
+            State/Region
+        </label>
+        @Html.DropDownListFor(a => a.CompanyAddress.StateID, Model.CompanyAddress.AV_State, new { @class = "fff" })
+        @Html.ValidationMessageFor(m => m.CompanyAddress.StateID, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="City">
+            City
+        </label>
+        @Html.EditorFor(a => a.CompanyAddress.City, new { htmlAttributes = new { @class = "fff" } })
+        @Html.ValidationMessageFor(m => m.CompanyAddress.City, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="ZipCode">
+            Zip Code
+        </label>
+        @Html.EditorFor(a => a.CompanyAddress.ZipCode, new { htmlAttributes = new { @class = "fff" } })
+        @Html.ValidationMessageFor(m => m.CompanyAddress.ZipCode, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="Area">
+            Area
+        </label>
+        @Html.EditorFor(a => a.CompanyAddress.Area, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="HouseNo">
+            House No
+        </label>
+        @Html.EditorFor(a => a.CompanyAddress.HouseNo, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="RoadNo">
+            Road No
+        </label>
+        @Html.EditorFor(a => a.CompanyAddress.RoadNo, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="Block">
+            Block
+        </label>
+        @Html.EditorFor(a => a.CompanyAddress.Block, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="ApartmentNo">
+            Apartment No
+        </label>
+        @Html.EditorFor(a => a.CompanyAddress.ApartmentNo, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="LandMark">
+            Land Mark
+        </label>
+        @Html.EditorFor(a => a.CompanyAddress.LandMark, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="AddressDetails">
+            Address Details
+        </label>
+        @Html.EditorFor(a => a.CompanyAddress.AddressDetails, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+</div>

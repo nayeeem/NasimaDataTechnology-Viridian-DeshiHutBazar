@@ -1,0 +1,121 @@
+﻿@model WebDeshiHutBazar.ShippingAddressViewModel
+@{
+    ViewBag.Title = "Contact & Shipping Details";
+    Layout = "~/Views/Shared/_Layout.Tablet.cshtml";
+}
+
+<div class="container" style="margin-top:15px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Url.Action("GetShoppingCart","ProductShoppingCart")">Shopping Cart</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Customer And Shipping Information</li>
+        </ol>
+    </nav>
+    @using (Html.BeginForm("ShippingAddress", "ProductShoppingCart"))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row card-form">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+                <h4 class="main-title">Contact Details</h4>
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="CustomerName">
+                    Name
+                </label>
+                @Html.EditorFor(a => a.CustomerName, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(m => m.CustomerName, "", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="CustomerEmail">
+                    Email
+                </label>
+                @Html.EditorFor(a => a.CustomerEmail, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(m => m.CustomerEmail, "", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="CustomerPhone">
+                    Phone
+                </label>
+                @Html.EditorFor(a => a.CustomerPhone, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(m => m.CustomerPhone, "", new { @class = "custom-inline-field-error" })
+            </div>
+        </div>
+        <br />
+        <div class="row card-form">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+                <h4 class="main-title">Shipping Address</h4>
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="State">
+                    State/Region
+                </label>
+                @Html.DropDownListFor(a => a.StateID, Model.AV_State, new { @class = "fff" })
+                @Html.ValidationMessageFor(m => m.StateID, "", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="City">
+                    City
+                </label>
+                @Html.EditorFor(a => a.City, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(m => m.City, "", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="ZipCode">
+                    Zip Code
+                </label>
+                @Html.EditorFor(a => a.ZipCode, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(m => m.ZipCode, "", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="Area">
+                    Area
+                </label>
+                @Html.EditorFor(a => a.Area, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="HouseNo">
+                    House No
+                </label>
+                @Html.EditorFor(a => a.HouseNo, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="RoadNo">
+                    Road No
+                </label>
+                @Html.EditorFor(a => a.RoadNo, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="Block">
+                    Block
+                </label>
+                @Html.EditorFor(a => a.Block, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="ApartmentNo">
+                    Apartment No
+                </label>
+                @Html.EditorFor(a => a.ApartmentNo, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="LandMark">
+                    Land Mark
+                </label>
+                @Html.EditorFor(a => a.LandMark, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+                <label for="AddressDetails">
+                    Address Details
+                </label>
+                @Html.EditorFor(a => a.AddressDetails, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="submit-field col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                <input type="submit" value="SUMMARY & PAY" class="primary-button max" />
+            </div>
+        </div>
+    }
+</div>
+
+

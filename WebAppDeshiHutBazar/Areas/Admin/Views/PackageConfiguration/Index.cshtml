@@ -1,0 +1,89 @@
+﻿@model WebDeshiHutBazar.PostPriceConfigInformationViewModel
+@{
+    ViewBag.Title = "Package Configuration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+
+<div class="container">
+    <h4 class="main-title">Package Configurations</h4>
+    <a href="@Url.Action("Create","PackageConfiguration")" class="primary-button flex"><i class="fa fa-plus"></i> CREATE NEW CONFIG</a>
+    <div class="gap"></div>
+    <table class="new">
+        <thead>
+            <tr>
+                <th>
+                    Package Type
+                </th>
+                <th>
+                    Package Name
+                </th>
+                <th>
+                    Total Free Post
+                </th>
+                <th>
+                    Total Premium Post
+                </th>
+                <th>
+                    Package Price
+                </th>
+                <th>
+                    Subscription Period
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListConfig.ToList())
+            {
+                <tr>
+                    <td data-label="DisplayPackageType">
+                        @Html.DisplayFor(modelItem => item.DisplayPackageType)
+                    </td>
+                    <td data-label="PackageName">
+                        @Html.DisplayFor(modelItem => item.PackageName)
+                    </td>
+                    <td data-label="TotalFreePost">
+                        @Html.DisplayFor(modelItem => item.TotalFreePost)
+                    </td>
+                    <td data-label="TotalPremiumPost">
+                        @Html.DisplayFor(modelItem => item.TotalPremiumPost)
+                    </td>
+                    <td data-label="PackagePrice">
+                        @Html.DisplayFor(modelItem => item.PackagePrice)
+                    </td>
+                    <td data-label="DisplaySubscriptionPeriod">
+                        @Html.DisplayFor(modelItem => item.DisplaySubscriptionPeriod)
+                    </td>
+                    <td data-label="Action">
+                        <a title="View Package"
+                           class="icon-button flex"
+                           href="@Url.Action("Details", "PackageConfiguration", new {id = item.PackageConfigID})">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a title="Edit Package"
+                           class="icon-button flex"
+                           href="@Url.Action("Edit", "PackageConfiguration", new {id = item.PackageConfigID})">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a title="Remove Package"
+                           class="icon-button flex"
+                           href="@Url.Action("Delete", "PackageConfiguration", new {id = item.PackageConfigID})">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scriptsapp {
+    <script type="text/javascript">
+    </script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+}
+
+
+
+

@@ -1,0 +1,17 @@
+﻿@model WebDeshiHutBazar.HomeViewModel
+@{
+    ViewBag.Title = "Our Updates!!";
+    Layout = "~/Views/Shared/_Layout.Tablet.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<div class="container home-container" id="homePageContent">
+    @Html.Partial("../Shared/_PageContent", Model.ContentInfoViewModel)    
+</div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';    
+        var commentUrl = '@Url.Action("AddComments", "Home")';
+    </script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.market.js" type="text/javascript"></script>
+}

@@ -1,0 +1,19 @@
+﻿@model WebDeshiHutBazar.MarketInfoViewModel
+@{
+    ViewBag.Title = Common.Language.LanguageDefault.ViewBagTitleAllItemMarket;
+    Layout = "~/Views/Shared/_Layout.Tablet.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<div class="container home-container">
+    @Html.Partial("../Shared/_PageContent", Model.ContentInfoViewModel)
+</div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    </script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.market.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+}
+
+
+

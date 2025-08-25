@@ -1,0 +1,98 @@
+﻿@model WebDeshiHutBazar.AccountViewModel
+
+<div class="card-form row">
+    <h5 class="sub-title">
+        @Common.Language.LanguageDefault.DefaultSubscription @Common.Language.LanguageDefault.PayPerPost
+    </h5>
+    <div class="col-md-12">
+        @Common.Language.LanguageDefault.CreditBalance
+        <span class="main-amount-2">
+            @Html.DisplayFor(a => a.AccountBalance)
+            @Model.DisplayCurrency
+        </span>
+        <div class="divider"></div>
+        <a href="@Url.Action("Recharge", "Shopping")" class="primary-button flex">
+            @Common.Language.LanguageDefault.RechargeAccount
+        </a>
+        <a href="@Url.Action("ChangePackage", "Shopping")" class="light-button flex">
+            @Common.Language.LanguageDefault.BuyNewSubscriptions
+        </a>
+    </div>
+</div>
+<div class="gap"></div>
+<div class="card-form row">
+    <h5 class="sub-title">@Common.Language.LanguageDefault.SubscribedPackages</h5>
+    @{
+        if (Model.ListPackageDetails != null && Model.ListPackageDetails.Count > 0)
+        {
+            foreach (var item in Model.ListPackageDetails.ToList())
+            {
+                if (item != null)
+                {
+                    @Html.Partial("../../Areas/Advertizer/Views/AccountSettings/_SinglePackageDetails", item)
+
+                }
+            }
+        }
+    }
+    @if (Model.ListPackageDetails.Count > 0)
+    {
+        <table class="new">
+            <thead>
+                <tr>
+                    <th>
+                        @Common.Language.LanguageDefault.PackageName
+                    </th>
+                    <th>
+                        @Common.Language.LanguageDefault.NoofFreePostsMonth
+                    </th>
+                    <th>
+                        @Common.Language.LanguageDefault.TotalPremiumPost
+                    </th>
+                    <th>
+                        @Common.Language.LanguageDefault.UserTotalFreePost
+                    </th>
+                    <th>
+                        @Common.Language.LanguageDefault.UserTotalPremiumPost
+                    </th>
+                    <th>
+                        @Common.Language.LanguageDefault.PackageExpires
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ListPackageDetails)
+                {
+                <tr>
+                    <td data-label="@Common.Language.LanguageDefault.PackageName">
+                        @item.PackageName
+                    </td>
+                    <td data-label="@Common.Language.LanguageDefault.NoofFreePostsMonth">
+                        @item.TotalFreePost
+                    </td>
+                    <td data-label="@Common.Language.LanguageDefault.NoofFreePostsMonth">
+                        @item.TotalPremiumPost
+                    </td>
+                    <td data-label="@Common.Language.LanguageDefault.NoofFreePostsMonth">
+                        @item.UserTotalFreePost
+                    </td>
+                    <td data-label="@Common.Language.LanguageDefault.NoofFreePostsMonth">
+                        @item.UserTotalPremiumPost
+                    </td>
+                    <td data-label="@Common.Language.LanguageDefault.PackageExpires">
+                        @item.DisplayExpiryDate
+                    </td>
+                    <td data-label="Package Details">
+                        <a data-toggle="modal"
+                           class="primary-button small flex"
+                           data-target="#modal-package-@item.UserPackageID.ToString().Trim()">
+                            @Common.Language.LanguageDefault.SubscriptionVIEWDETAILS
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

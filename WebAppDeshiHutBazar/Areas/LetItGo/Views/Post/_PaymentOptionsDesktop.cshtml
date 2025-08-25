@@ -1,0 +1,112 @@
+﻿@model WebDeshiHutBazar.PostPaymentOptionViewModel
+<h3 class="main-title">
+    Ad. Product Category:
+    &nbsp;
+    @Model.DisplaySubCategory
+</h3>
+<h5>
+    Publish Price:
+    @Model.PostPrice
+    BDT&nbsp;
+</h5>
+<h5>
+    Premium Publish Price:
+    @Model.PremiumPostPrice
+    BDT
+</h5>
+<br />
+<h3 class="main-title">
+    Available Payment Options:
+</h3>
+<ol>
+    <li>
+        @if(Model.HasFreeQuota)
+        {
+            <span>  You Have Free Quota: </span>
+            <a class="primary-button small"
+               href="@Model.FreePostURL">
+                PUBLISH (FREE)
+            </a>
+        }
+        else
+        {
+            <span>  You Don't Have Free Quota Available. Sorry!</span>
+        }
+    </li>
+    <li>
+        @if(Model.HasCreditBalance)
+        {
+            <span>
+                Pay Per Post:
+            </span>
+            <a class="primary-button small"
+               href="@Model.PaidPostURL">
+                PUBLISH
+            </a>
+            if(Model.HasPremiumCreditBalance)
+            {
+                <a class="primary-button small"
+                   href="@Model.PremiumPaidPostURL">
+                    PUBLISH (PREMIUM)
+                </a>
+            }
+        }
+        else
+        {
+            <span>Pay Per Post: Sorry! You don't have enough credit balance.  </span>
+        }
+    </li>
+    <li>
+        @if (Model.ListActiveUserPackages.Count > 0)
+        {
+            <span>  Pay From Subscriptions: </span>
+            <br />
+            <table class="new">
+                <thead>
+                    <tr>
+                        <th>Package</th>
+                        <th>Free Quota</th>
+                        <th>Premium Quota</th>
+                        <th>Free Used</th>
+                        <th>Premium Used</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListActiveUserPackages)
+                    {
+                        <tr>
+                            <td>@item.PackageName </td>
+                            <td>@item.TotalFreePost</td>
+                            <td>@item.TotalPremiumPost</td>
+                            <td>@item.UserTotalFreePost</td>
+                            <td>@item.UserTotalPremiumPost</td>
+                            <td>
+                                @if (item.TotalFreePost > item.UserTotalFreePost)
+                                {
+                                    <a href="@item.SubscriptionPostURL"
+                                       class="primary-button small">PUBLISH</a>
+                                }
+                            </td>
+                            <td>
+                                @if (item.TotalPremiumPost > item.UserTotalPremiumPost)
+                                {
+                                    <a href="@item.SubscriptionPostURL"
+                                       class="primary-button small">PUBLISH (PREMIUM)</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <span>
+                Pay From Subscriptions: Sorry! You don't have any available subscriptions/packages to Pay from.
+            </span>
+        }
+    </li>
+</ol>
+

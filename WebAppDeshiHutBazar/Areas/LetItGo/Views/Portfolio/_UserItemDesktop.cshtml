@@ -1,0 +1,43 @@
+﻿@model WebDeshiHutBazar.UserViewModel
+
+@{ 
+    var isCompany = false;
+    if (Model.IsCompanySeller)
+    {
+        isCompany = true;
+    }
+    else if(Model.IsPrivateSeller){
+        isCompany = false;
+    }
+}
+
+<div class="all-market-card">
+    <a class="image">
+        @if (isCompany)
+        {
+            <img src="~/Images/company.jpg" style="width:150px;height:150px;" />
+        }
+        else
+        {
+            <img src="~/Images/individual.png" style="width:150px;height:150px;" />
+        }
+    </a>
+
+    <div class="market-content">
+        <p class="UserName">@Model.ClientName</p>
+
+        <p class="Email">@Model.Email</p>
+
+        <p class="Phone">@Model.Phone</p>
+    </div>
+    
+</div>
+<a data-id="@Model.UserID"
+   href="@Model.UserPortfolioListUrl"
+   target="_blank">
+
+    <span>
+        <i class="fa-product-hunt"></i>
+        View Products
+    </span>
+</a>

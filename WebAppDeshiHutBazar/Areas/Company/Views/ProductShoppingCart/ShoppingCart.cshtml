@@ -1,0 +1,160 @@
+﻿@model WebDeshiHutBazar.ProductCartInformationViewModel
+@{
+    ViewBag.Title = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<div class="container " style="margin-top:15px;">
+    <div class="row card-form">
+        <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+            <h4 class="main-title">SHOPPING CART</h4>
+        </div>
+        <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+            <table class="new" id="cartContainer">
+                <thead>
+                    <tr>
+                        <td>
+                            Sl No
+                        </td>
+                        <td>
+                            Product
+                        </td>
+                        <td>
+                            Quantity
+                        </td>
+                        <td>
+                            Price
+                        </td>
+                        <td>
+                            Discounted Price
+                        </td>
+                        <td>
+                            Total Price (Taka)
+                        </td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ShoppingCart != null)
+                    {
+                        foreach (var item in Model.ShoppingCart)
+                        {
+                            @Html.Partial("../../Areas/Company/Views/ProductShoppingCart/_SingleItemCart", item)
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="gap"></div>
+        <div id="hTotal"
+             class="col-md-12 total-amount col-xs-12">
+            <h4>
+                TOTAL BILL: @Model.TotalBill  &nbsp; @Model.Currency
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div id="cartContainer"
+             class="col-md-offset-3 col-md-6 col-xs-12 col-sm-offset-3 col-sm-6 col-lg-offset-3 col-lg-6">
+            <a id="btnCheckout"
+               class="primary-button"
+               href="@Url.Action("ReturnShippingAddress", "ProductShoppingCart")">
+                @Common.Language.LanguageDefault.CHECKOUT
+            </a>
+        </div>
+    </div>
+</div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = "";
+    </script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.password.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/Account/naimul.ui.manageaccount.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            function getCartTotalPrice() {
+                $.ajax({
+                    url: '@Url.Action("GetCartTotalPrice", "ProductShoppingCart")',
+                    type: 'GET',
+                    cache: false
+                }).done(function (sum) {
+                    $("#hTotal").html("<div id='hTotal' class='text-center'><h4>Total Bill:&nbsp;" + sum + " " + @Model.Currency + "</h4></div>");
+                });
+            }
+
+            function minusCartItem(slNo) {
+                $.ajax({
+                    url: '@Url.Action("MinusCartItem", "ProductShoppingCart")' + '?serialNo=' + slNo,
+                    type: 'GET',
+                    cache: false
+                }).done(function (sum) {
+                    $("#hTotal").html("<div id='hTotal' class='text-center'><h4>Total Bill:&nbsp;" + sum + " " + @Model.Currency + "</h4></div>");
+                });
+            }
+
+            function plusCartItem(slNo) {
+                $.ajax({
+                    url: '@Url.Action("PlusCartItem", "ProductShoppingCart")' + '?serialNo=' + slNo,
+                    type: 'GET',
+                    cache: false
+                }).done(function (sum) {
+                    $("#hTotal").html("<div id='hTotal' class='text-center'><h4>Total Bill:&nbsp;" + sum + " " + @Model.Currency + "</h4></div>");
+                });
+            }
+
+            $(document).on("click", ".plus-product-count", function () {
+                var that = $(this);
+                var parent = $(that).closest(".single-cart-row");
+                var slNo = $(parent).find(".btn-cart-remove").data("valueid");
+                var currentCount = parseInt($(parent).find(".product-quantity").text()) + 1;
+                var unitPrice = $(parent).find(".product-discounted-price").text();
+                var totalPrice = currentCount * unitPrice;
+                $(parent).find(".product-total-price").text(totalPrice);
+                $(parent).find(".product-quantity").empty().text(currentCount);
+                plusCartItem(slNo);
+            });
+
+            $(document).on("click", ".minus-product-count", function () {
+                var that = $(this);
+                var parent = $(that).closest(".single-cart-row");
+                if (parseInt($(parent).find(".product-quantity").text()) > 1) {
+                    var slNo = $(parent).find(".btn-cart-remove").data("valueid");
+                    var currentCount = $(parent).find(".product-quantity").text() - 1;
+                    var unitPrice = $(parent).find(".product-discounted-price").text();
+                    var totalPrice = currentCount * unitPrice;
+                    $(parent).find(".product-total-price").text(totalPrice);
+                    $(parent).find(".product-quantity").empty().text(currentCount);
+                    minusCartItem(slNo);
+                }
+            });
+
+            function removeCartRow(slNo) {
+                $.ajax({
+                    url: '@Url.Action("RemoveCartItem", "ProductShoppingCart")' + '?serialNo=' + slNo,
+                    type: 'GET',
+                    cache: false
+                }).done(function (sum) {
+                    $("#hTotal").html("<div id='hTotal' class='text-center'><h4>Total Bill:&nbsp;" + sum + " " + @Model.Currency + "</h4></div>");
+                });
+            }
+
+            $(document).on("click", ".btn-cart-remove", function () {
+                removeCartRow($(this).data("valueid"));
+                var temp = $(this).closest(".single-cart-row")[0];
+                $(temp).hide();
+                var listTR = $(this).closest("table").find(".single-cart-row");
+                var count = 1;
+                $.each(listTR, function (item) {
+                    $(item).find(".sl-no").text(count);
+                    count++;
+                });
+            });
+        });
+    </script>
+}
+
+

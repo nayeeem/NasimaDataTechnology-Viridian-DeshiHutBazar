@@ -1,0 +1,85 @@
+﻿@model WebDeshiHutBazar.GroupPanelConfigurationViewModel
+@{
+    var imageCategoryClass = "";
+    var columnClass = "";
+    var showPrice = true;
+    var showClass = "";
+    if (Model.EnumImageCategory == Common.EnumImageCategory.HorizontalRectengle)
+    {
+        imageCategoryClass = "desk-sub-banner-hr-";
+    }
+    else if (Model.EnumImageCategory == Common.EnumImageCategory.VerticalRectengle)
+    {
+        imageCategoryClass = "desk-sub-banner-vr-";
+    }
+    else if (Model.EnumImageCategory == Common.EnumImageCategory.Suqare)
+    {
+        imageCategoryClass = "desk-sub-banner-sq-";
+    }
+
+    if (Model.Column == Common.EnumColumn.One)
+    {
+        imageCategoryClass += "12";
+        columnClass = "col-md-12";
+    }
+    else if (Model.Column == Common.EnumColumn.Two)
+    {
+        imageCategoryClass += "6";
+        columnClass = "col-md-6";
+    }
+    else if (Model.Column == Common.EnumColumn.Three)
+    {
+        imageCategoryClass += "4";
+        columnClass = "col-md-4";
+    }
+    else if (Model.Column == Common.EnumColumn.Four)
+    {
+        imageCategoryClass += "3";
+        columnClass = "col-md-3";
+    }
+
+    if (Model.EnumPanelContentType == Common.EnumPanelContentType.AdSpace)
+    {
+        showPrice = false;
+        showClass = "poster";
+    }
+    else if (Model.EnumPanelContentType == Common.EnumPanelContentType.Category)
+    {
+        showPrice = true;
+    }
+}
+
+
+
+@if (Model.ListGroupPost != null && Model.ListGroupPost.Count > 0)
+{
+    <div class="row home-row">
+        @foreach (var item in Model.ListGroupPost)
+        {
+            <div class="@columnClass home-single-item">
+                <a href="@item.PostItemDetailViewUrl" target="_blank" class="thumbnail @imageCategoryClass">
+                    @if (item.Image != null)
+                    {
+                        @Html.Partial("../Shared/_ImageDesktop", item.Image);
+                    }
+                    else
+                    {
+                        @Html.Partial("../Shared/_ImageDesktop", new byte[1]);
+                    }
+                </a>
+
+                <div class="caption text-center">
+                    <div class="truncate @showClass">
+                        @item.Title
+                    </div>
+                    @if (showPrice)
+                    {
+                        <div>
+                            <p class="home-currency-font-color"> @item.FormattedPriceValue</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}

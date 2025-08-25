@@ -1,0 +1,82 @@
+﻿@model WebDeshiHutBazar.UserOrderViewModel
+
+
+<div class="modal fade new-modal" id="modal-@Model.UserOrderID.ToString().Trim()" tabindex="-1" role="dialog" aria-labelledby="@Model.UserOrderID-Title" aria-hidden="true">
+    <div class="new-modal-content">
+        <h4 class="main-title">
+            ORDER NUMBER:&nbsp; @Model.UserOrderID
+        </h4>
+
+        <div class="container-fluid">
+            <div class="col-md-12"> <b>Order Date: </b> &nbsp; @Model.OrderDate.ToShortDateString() </div>
+            <div class="col-md-12">
+                <b>Total Bill: </b> &nbsp;
+                @if (Model.TotalBill.HasValue)
+                {
+            <span>@Model.TotalBill.Value &nbsp; @Model.Currency</span>
+                }
+                else
+                {
+            <span>0 &nbsp; @Model.Currency</span>
+                }
+            </div>
+            <a href="~/Areas/Admin/Views/BikashBillTransactons/_SingleOrderDetails.cshtml"></a>
+            <div class="gap col-xs-12"></div>
+            <div class="gap col-xs-12"></div>
+
+            <table class="new">
+                <thead>
+                    <tr>
+                        <td>Package</td>
+                        <td>Quota</td>
+                        <td>Pay Cycle</td>
+                        <td>Amount Payable</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListOrderDetails)
+                    {
+                    <tr>
+                        <td data-label="Package">@item.PackageName</td>
+                        <td data-label="Quota">
+                            @if (item.SubscriptionPeriod == Common.EnumPackageSubscriptionPeriod.Month)
+                            {
+                            @item.MonthlyTotalFreePost
+                            }
+                            else
+                            {
+                            @item.YearlyTotalFreePost
+                            }
+                        </td>
+                        <td data-label="Pay Cycle">
+                            @if (item.SubscriptionPeriod == Common.EnumPackageSubscriptionPeriod.Month)
+                                {
+                            <span>One Month</span>
+                                }
+                                else
+                                {
+                            <span>One Year</span>
+                                }
+                        </td>
+                        <td data-label="Amount Payable">
+                            @if (item.SubscriptionPeriod == Common.EnumPackageSubscriptionPeriod.Month)
+                                {
+                            <span>@item.ItemBillAomunt &nbsp; @Model.Currency</span>
+                                }
+                                else
+                                {
+                        <span>@item.ItemBillAomunt &nbsp; @Model.Currency</span>
+                                }
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="new-modal-footer">
+        <button type="button" class="flat-button flex pull-right" data-dismiss="modal">
+            Close
+        </button>
+    </div>
+</div>

@@ -1,0 +1,179 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+<form id="frmPostPart1" class="card-form row">
+    <h4 class="main-title">@Common.Language.LanguageDefault.NewPostH3PostFreeAd</h4>
+    <p class="note">
+        <b>@Common.Language.LanguageDefault.NewPostH4NOTE</b>
+        @Common.Language.LanguageDefault.NewPostSpanQuickSubmissionText1
+        @Common.Language.LanguageDefault.NewPostSpanQuickSubmissionText2
+        @Common.Language.LanguageDefault.NewPostSpanQuickSubmissionText3
+    </p>
+    <br />
+    <h4 class="sub-title">@Common.Language.LanguageDefault.AdvertisementDetails</h4>
+    <div class="input-field col-md-12 col-xs-12">
+        <label for="Title">
+            @Common.Language.LanguageDefault.NewPostLabelTitle*
+        </label>
+        @Html.EditorFor(a => a.Title, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4  col-xs-12">
+        <label for="CategoryID">
+            @Common.Language.LanguageDefault.NewPostLabelCategory*
+        </label>
+        @Html.DropDownListFor(a => a.CategoryID, Model.AV_Category, new { @class = "fff" })
+        @Html.ValidationMessageFor(m => m.CategoryID, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-4  col-xs-12">
+        <label for="SubCategoryID">
+            @Common.Language.LanguageDefault.NewPostLabelSubCategory*
+        </label>
+        @Html.DropDownListFor(a => a.SubCategoryID, Model.AV_SubCategory, new { @class = "fff" })
+        @Html.ValidationMessageFor(m => m.SubCategoryID, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-4  col-xs-12">
+        <label for="Price">
+            @Common.Language.LanguageDefault.NewPostLabelPrice (@Model.DisplayCurrencyShort)*
+        </label>
+        @Html.EditorFor(a => a.Price, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4  col-xs-12">
+        <label for="StateID">
+            @Common.Language.LanguageDefault.NewPostLabelLocation
+        </label>
+        @Html.DropDownListFor(a => a.StateID, Model.AV_State, new { @class = "fff" })
+        @Html.ValidationMessageFor(m => m.StateID, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-8  col-xs-12">
+        <label for="AreaDescription">
+            @Common.Language.LanguageDefault.NewPostLabelArea
+        </label>
+        @Html.EditorFor(a => a.AreaDescription, new { htmlAttributes = new { @class = "fff" } })
+        @Html.ValidationMessageFor(m => m.AreaDescription, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-6  col-xs-12">
+        <label for="Description">
+            @Common.Language.LanguageDefault.NewPostLabelItemDescription
+        </label>
+        @Html.TextAreaFor(a => a.Description, new { @class = "fff" })
+    </div>
+    <div class="input-field col-md-6  col-xs-12">
+        <label for="SearchTag">
+            @Common.Language.LanguageDefault.NewPostLabelSearchTag
+        </label>
+        @Html.TextAreaFor(a => a.SearchTag, new { @class = "fff" })
+    </div>
+    <div class="radio-field col-md-6  col-xs-12">
+        <label class="title">@Common.Language.LanguageDefault.NewPostLabelCondition</label>
+        <label>
+            @Html.RadioButtonFor(a => a.IsBrandNew, true, new { @id = "IsBrandNew1" })
+            @Common.Language.LanguageDefault.NewPostABrandNew
+        </label>
+        <label>
+            @Html.RadioButtonFor(a => a.IsBrandNew, false, new { @id = "IsBrandNew2" })
+            @Common.Language.LanguageDefault.NewPostAUsedItem
+        </label>
+    </div>
+    <div class="radio-field col-md-6  col-xs-12" id="divSellRent" style="display: none;">
+        <label class="title">@Common.Language.LanguageDefault.NewPostLabelThisAdIs</label>
+        <label>
+            @Html.RadioButtonFor(a => a.IsForSell, true, new { @id = "IsForSell1" })
+            @Common.Language.LanguageDefault.NewPostASell
+        </label>
+        <label>
+            @Html.RadioButtonFor(a => a.IsForSell, false, new { @id = "IsForSell2" })
+            @Common.Language.LanguageDefault.NewPostARent
+        </label>
+    </div>
+</form>
+<div class="gap"></div>
+<div class="card-form row">
+    <h4 class="sub-title">@Common.Language.LanguageDefault.NewPostH3UploadPictures</h4>
+    <div class="image-field col-md-4 col-xs-12">
+        <button type="button" class="light-button btn-sm" id="UploadNP1">
+            ADD NEW PICTURE
+        </button>
+    </div>
+    <div class="image-field col-md-12 col-xs-12 col-sm-1-12 col-lg-12" id="imagePanelContainer">
+    </div>
+</div>
+<div class="gap"></div>
+<form id="frmPostPart2" class="card-form row">
+    <h4 class="sub-title">@Common.Language.LanguageDefault.NewPostH3AdvertiserDetails</h4>
+    <div class="input-field col-md-6  col-xs-12">
+        <label for="ClientName">
+            @Common.Language.LanguageDefault.NewPostLabelFullName*
+        </label>
+        @Html.EditorFor(a => a.ClientName, new { htmlAttributes = new { @class = "fff" } })
+        @Html.ValidationMessageFor(m => m.ClientName, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-6  col-xs-12">
+        <label for="Phone">
+            @Common.Language.LanguageDefault.NewPostLabelMyPhoneNo*
+        </label>
+        @Html.EditorFor(a => a.Phone, new { htmlAttributes = new { @class = "fff" } })
+        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="radio-field col-md-6  col-xs-12">
+        <label class="title">
+            @Common.Language.LanguageDefault.NewPostLabelIAm
+        </label>
+        <label>
+            @Html.RadioButtonFor(a => a.IsPrivateSeller, true, new { @id = "IsPrivateSeller1" })
+            @Common.Language.LanguageDefault.NewPostAPrivate
+        </label>
+        <label>
+            @Html.RadioButtonFor(a => a.IsPrivateSeller, false, new { @id = "IsPrivateSeller2" })
+            @Common.Language.LanguageDefault.NewPostACompany
+        </label>
+    </div>
+    <div class="radio-field col-md-6  col-xs-12">
+        <label class="title">
+            @Common.Language.LanguageDefault.NewPostLabelThisAdFor
+        </label>
+        <label>
+            @Html.RadioButtonFor(a => a.IsUrgent, true, new { @id = "IsUrgent1" })
+            @Common.Language.LanguageDefault.NewPostAUrgentDeal
+        </label>
+        <label>
+            @Html.RadioButtonFor(a => a.IsUrgent, false, new { @id = "IsUrgent2" })
+            @Common.Language.LanguageDefault.NotUrgentDeal
+        </label>
+    </div>
+</form>
+<div class="gap"></div>
+<form id="frmPostPart3" class="card-form row">
+    <h4 id="hSignup" class="sub-title">@Common.Language.LanguageDefault.NewPostH3SignUp</h4>
+    <h4 id="hSignin" class="sub-title" style="display: none">@Common.Language.LanguageDefault.NewPostH3SignIn</h4>
+    <div class="gap"></div>
+    <div class="input-field col-md-12  col-xs-12">
+        <label for="Email">
+            @Common.Language.LanguageDefault.NewPostLabelEmail*
+        </label>
+        <input id="Email" type="email" class="fff" placeholder="@Common.Language.LanguageDefault.NewPostPlaceholderEnterEmailForSignIn" />
+    </div>
+    <div class="input-field col-md-6  col-xs-12">
+        <label for="Password">
+            @Common.Language.LanguageDefault.NewPostLabelPassword*
+        </label>
+        @Html.PasswordFor(a => a.Password, new { @class = "fff" })
+    </div>
+    <div class="input-field col-md-6  col-xs-12" id="rePasswordDiv">
+        <label for="Password">
+            @Common.Language.LanguageDefault.NewPostLabelRePassword*
+        </label>
+        @Html.PasswordFor(a => a.RePassword, new { @class = "fff" })
+    </div>
+    <br />
+    <br />
+    <div class="input-field col-md-12  col-xs-12" id="divTerms">
+        <label for="Terms">
+            <input id="chkTerms" name="Terms" type="checkbox">
+            I agree all the terms, conditions and the privacy policies mentioned in <a href="@Url.Action("Terms","Home")" target="_blank">terms</a> page.
+            <br />
+        </label>
+    </div>
+</form>
+<br />
+<div class="gap"></div>
+<button id="btnSubmitPost" class="primary-button max" role="button">
+    @Common.Language.LanguageDefault.NewPostButtonSUBMITAD
+</button>

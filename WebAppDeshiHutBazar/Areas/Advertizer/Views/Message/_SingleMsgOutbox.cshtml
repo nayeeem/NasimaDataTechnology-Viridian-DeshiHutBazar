@@ -1,0 +1,48 @@
+﻿@model WebDeshiHutBazar.MessageViewModel
+
+@{
+    var heading = @Model.MessageID + "heading";
+    var collapse = @Model.MessageID + "colapse";
+    var guid = Guid.NewGuid();
+    var btnViewMsg = "btnView-" + guid;
+    var ancor = "ancor-" + guid;
+    var msgid = @Model.MessageID;
+}
+
+<div class="panel panel-default collapsible">
+    <div class="panel-heading collapsible-header" role="tab" id="@heading">
+        <a id="@ancor" role="button" 
+           data-manage-post="collapse"
+           data-toggle="collapse"
+           data-parent="#accordionoutbox"
+           href="#@collapse"
+           aria-expanded="false" 
+           aria-controls="@collapse">
+            <div class="row @msgid single-msg-outbox content">
+                <div class="col-md-3 truncate">
+                    <span class="truncate">
+                        @Model.ReceiverEmail
+                    </span>
+                </div>
+                <div class="col-md-6 truncate">
+                    <span class="truncate">
+                        @Model.Message
+                    </span>
+                </div>
+                <div class="col-md-3 truncate">
+                    <span class="truncate">
+                        @Model.DateMsgSentString
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div id="@collapse"
+         class="panel-collapse collapse collapsible-body" 
+         role="tabpanel" 
+         aria-labelledby="@heading">
+        <div class="panel-body" id="@btnViewMsg">
+            @Html.Partial("../../Areas/Advertizer/Views/Message/_ViewOutboxMessage", Model)
+        </div>
+    </div>
+</div>

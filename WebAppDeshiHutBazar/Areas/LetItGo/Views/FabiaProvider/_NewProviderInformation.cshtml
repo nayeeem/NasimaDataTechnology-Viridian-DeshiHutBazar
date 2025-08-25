@@ -1,0 +1,62 @@
+﻿@model WebDeshiHutBazar.FabiaProviderViewModel
+@{
+    var formid = Model.ProviderID;
+    var dataId = Model.ProviderID;
+    byte[] img1 = null;
+    if (Model.ProfileImage != null)
+    {
+        img1 = Model.ProfileImage;
+    }
+}
+@Html.HiddenFor(a => a.ProviderID)
+<h4 class="sub-title">Provider Information</h4>
+<div class="row">
+    <div class="image-field col-md-4 col-xs-12">
+        <label>@Common.Language.LanguageDefault.Picture</label>
+        <div class="image-content">
+            <div id="imgDivProfile" title="Image for Profile">
+                @if (img1 != null)
+                {
+                    @Html.Partial("../../Areas/LetItGo/Views/FabiaProvider/_Image", img1);
+                }
+                else
+                {
+                    <a class="thumbnail">
+                        <img src="@Url.Content("~/Images/Post/camera.png")"
+                             class="img-responsive"
+                             id="imgProfile"
+                             alt="image 1" />
+                    </a>
+                }
+            </div>
+            <button type="button" class="light-button" id="UploadProfile">
+                @Common.Language.LanguageDefault.ModifyPostBROWSE
+            </button>
+            <span id="infoErrorProfile" style="display:none;color:red;font-size:smaller;">
+                File size must be <=7MB!
+            </span>
+        </div>
+    </div>
+    <form id="frmPostPart1">
+        <div class="input-field col-md-4 col-xs-12">
+            <label for="PersonName">
+                Provider Name*
+            </label>
+            @Html.EditorFor(a => a.ProviderName, new { htmlAttributes = new { @class = "fff" } })
+            @Html.ValidationMessageFor(m => m.ProviderName, "", new { @class = "custom-inline-field-error" })
+        </div>
+        <div class="input-field col-md-4 col-xs-12">
+            <label for="PrimaryPhone">
+                Primary Phone*
+            </label>
+            @Html.EditorFor(a => a.ProviderPhone, new { htmlAttributes = new { @class = "fff" } })
+            @Html.ValidationMessageFor(m => m.ProviderPhone, "", new { @class = "custom-inline-field-error" })
+        </div>             
+        <div class="input-field col-md-4 col-xs-12">
+            <label for="Website">
+                Website (if any)
+            </label>
+            @Html.EditorFor(a => a.Website, new { htmlAttributes = new { @class = "fff" } })
+        </div>
+    </form>
+</div>

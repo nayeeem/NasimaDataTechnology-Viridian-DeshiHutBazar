@@ -1,0 +1,42 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    ViewBag.Title = "Add New Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<script type="text/javascript">
+    var getSubCategoryURL = '@Url.Action("GetSubCategories", "NewProduct")';
+    var uploadCarouselURL = '@Url.Action("UploadCarousel", "NewProduct")';
+    var uploadThumbnailURL = '@Url.Action("UploadThumbnail", "NewProduct")';
+    var uploadSquareURL = '@Url.Action("UploadSquare", "NewProduct")';
+    var uploadRectangleURL = '@Url.Action("UploadRectangle", "NewProduct")';
+    var loadCarouselURL = '@Url.Action("LoadCarousel", "NewProduct")';
+    var loadThumbnailURL = '@Url.Action("LoadThumbnail", "NewProduct")';
+    var loadSquareURL = '@Url.Action("LoadSquare", "NewProduct")';
+    var loadRectangleURL = '@Url.Action("LoadRectangle", "NewProduct")';
+    var removeProductImageURL = '@Url.Action("ImageRemove", "NewProduct")?id=';
+</script>
+<div id="posteditrootnewpostNP" class="container">
+    @Html.Partial("../../Areas/Company/Views/NewProduct/_NewProductContent", Model)
+    @Html.Partial("../Shared/_PageContent", Model.ContentInfoViewModel)
+</div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';        
+    </script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.password.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/ajaxupload.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/Company/naimul.company.newpost.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.market.js" type="text/javascript"></script>
+}
+
+
+
+
+
+
+

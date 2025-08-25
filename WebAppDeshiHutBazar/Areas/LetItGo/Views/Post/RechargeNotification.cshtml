@@ -1,0 +1,97 @@
+﻿@model WebDeshiHutBazar.BikashBillTransactonViewModel
+@{
+    ViewBag.Title = Common.Language.LanguageDefault.ViewBagTitleRechargeNotification;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<div id="layoutBodyContainer" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>
+                            <b>
+                                @Common.Language.LanguageDefault.PUBLISHFAILEDPLEASEPAY1
+                            </b>
+                        </h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <h4 class="text-danger">
+                                <b>
+                                    @Common.Language.LanguageDefault.PayableAmount
+                                    (@Model.DisplaySubCategory):
+                                    &nbsp;
+                                    @Model.PayableAmount
+                                    &nbsp;
+                                    @Common.Language.LanguageDefault.BDT
+                                </b>
+                            </h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4 class="text-warning">
+                                <b>
+                                    @Common.Language.LanguageDefault.MonthlyCreditFinished11
+                                </b>
+                            </h4>
+                        </li>
+                        <li class="list-group-item text-warning">
+                            <b>
+                                @Common.Language.LanguageDefault.FreeQuota22
+                                &nbsp;
+                            </b>
+                            @Common.Language.LanguageDefault.Everymonthyoucanpost2freeads
+                        </li>
+                        <li class="list-group-item text-warning">
+                            <b>
+                                @Common.Language.LanguageDefault.AccountCreditBalance112
+                                &nbsp;
+                            </b>
+                            @Common.Language.LanguageDefault.Youhaveusedupallpostquota
+                        </li>
+                        <li class="list-group-item text-warning">
+                            <b>
+                                @Common.Language.LanguageDefault.PackageSubscription
+                                &nbsp;
+                            </b>
+                            @Common.Language.LanguageDefault.Youhaveusedupallpostquota
+                        </li>
+
+                        <li class="list-group-item">
+                            <h4 class="text-info">
+                                <b>
+                                    @Common.Language.LanguageDefault.AvailablePaymentOptions
+                                </b>
+                            </h4>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("Recharge", "Shopping")">
+                                <i class="fa fa-cog fa-fw"></i>&nbsp;
+                                @Common.Language.LanguageDefault.RechargeAccount
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("ChangePackage", "Shopping")">
+                                <i class="fa fa-cog fa-fw"></i>&nbsp;
+                                @Common.Language.LanguageDefault.BuyNewSubscriptions
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    </script>    
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+}
+
+
+
+

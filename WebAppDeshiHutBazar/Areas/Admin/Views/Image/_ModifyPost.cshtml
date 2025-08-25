@@ -1,0 +1,197 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    var formid = Guid.NewGuid();
+    var dataId = Model.PostID;
+}
+
+<div class="row-fluid modify-post-root"
+     id="posteditroot-@formid"
+     title="Displaying modify mode to update post.">
+    <form id="frmPostPart1-@formid"
+          class="form-horizontal form1">
+        @Html.HiddenFor(a => a.PostID)
+        @Html.HiddenFor(a => a.DisplayCategory)
+        @Html.HiddenFor(a => a.IsBrandNew)
+        @Html.HiddenFor(a => a.IsUsed)
+        @Html.HiddenFor(a => a.IsForRent)
+        @Html.HiddenFor(a => a.IsForSell)
+
+        <div class="image-field col-md-12">
+            <label>@Common.Language.LanguageDefault.Picture</label>
+            <div class="image-content">
+                <div id="imgDiv1" title="Image for @Model.Title">
+                    <a class="thumbnail">
+                        <img src="@Url.Content("~/Images/Post/camera.png")"
+                             class="img-responsive"
+                             id="imgUp1"
+                             alt="image 1" />
+                    </a>
+                </div>
+                <button type="button" class="light-button" id="Upload1">
+                    @Common.Language.LanguageDefault.ModifyPostBROWSE
+                </button>
+            </div>
+            <div class="image-content">
+                <div id="imgDiv2" title="Image for @Model.Title">
+                    <a class="thumbnail">
+                        <img src="@Url.Content("~/Images/Post/camera.png")"
+                             class="img-responsive"
+                             id="imgUp2"
+                             alt="image 2" />
+                    </a>
+                </div>
+                <button type="button" class="light-button" id="Upload2">
+                    @Common.Language.LanguageDefault.ModifyPostBROWSE
+                </button>
+            </div>
+            <div class="image-content">
+                <div id="imgDiv3"
+                     title="Image for @Model.Title">
+                    <a class="thumbnail">
+                        <img src="@Url.Content("~/Images/Post/camera.png")"
+                             class="img-responsive"
+                             id="imgUp3"
+                             alt="image 3" />
+                    </a>
+                </div>
+                <button type="button" class="light-button" id="Upload3">
+                    @Common.Language.LanguageDefault.ModifyPostBROWSE
+                </button>
+            </div>
+            <div class="image-content">
+                <div id="imgDiv4"
+                     title="Image for @Model.Title">
+                    <a class="thumbnail">
+                        <img src="@Url.Content("~/Images/Post/camera.png")"
+                             class="img-responsive"
+                             id="imgUp4"
+                             alt="image 4" />
+                    </a>
+                </div>
+                <button type="button" class="light-button" id="Upload4">
+                    @Common.Language.LanguageDefault.ModifyPostBROWSE
+                </button>
+            </div>
+        </div>
+        <div class="input-field  col-md-6">
+            <label for="Title">
+                @Common.Language.LanguageDefault.NewPostLabelTitle
+            </label>
+            @Html.EditorFor(a => a.Title, new { htmlAttributes = new { @class = "fff" } })
+            @Html.ValidationMessageFor(m => m.Title)
+        </div>
+
+        <div class="input-field  col-md-6">
+            <label for="Price">
+                @Common.Language.LanguageDefault.NewPostLabelPrice
+                (@Model.DisplayCurrencyShort):
+            </label>
+            @Html.EditorFor(a => a.Price, new { htmlAttributes = new { @class = "fff" } })
+            @Html.ValidationMessageFor(m => m.Price)
+        </div>
+        <div class="input-field  col-md-6">
+            <label for="Description">
+                @Common.Language.LanguageDefault.NewPostLabelItemDescription
+            </label>
+            @Html.TextAreaFor(a => a.Description, new { @class = "fff" })
+            @Html.ValidationMessageFor(m => m.Description)
+        </div>
+        <div class="input-field  col-md-6">
+            <label for="SearchTag">
+                @Common.Language.LanguageDefault.NewPostLabelSearchTag
+            </label>
+            @Html.TextAreaFor(a => a.SearchTag, new { @class = "fff" })
+            @Html.ValidationMessageFor(m => m.SearchTag)
+        </div>
+        <div class="input-field  col-md-6 col-lg-3">
+            <label for="DisplayCategory">
+                @Common.Language.LanguageDefault.NewPostLabelCategory
+            </label>
+            <input id="DisplayCategory" class="fff" value="@Model.DisplayCategory" disabled="disabled" />
+            @Html.HiddenFor(a => a.CategoryID)
+        </div>
+        <div class="input-field  col-md-6  col-lg-3">
+            <label for="DisplaySubCategory">
+                @Common.Language.LanguageDefault.NewPostLabelSubCategory
+            </label>
+            <input id="DisplaySubCategory" class="fff" value="@Model.DisplaySubCategory" disabled="disabled" />
+            @Html.HiddenFor(a => a.SubCategoryID)
+        </div>
+        <div class="input-field  col-md-6  col-lg-3">
+            <label for="DisplayState">
+                @Common.Language.LanguageDefault.Location
+            </label>
+            @Html.DropDownListFor(a => a.StateID, Model.AV_State, new { @class = "fff" })
+            @Html.ValidationMessageFor(m => m.StateID)
+        </div>
+        <div class="input-field  col-md-6  col-lg-3">
+            <label for="AreaDescription">
+                @Common.Language.LanguageDefault.NewPostLabelArea
+            </label>
+            @Html.EditorFor(a => a.AreaDescription, new { htmlAttributes = new { @class = "fff" } })
+            @Html.ValidationMessageFor(m => m.AreaDescription)
+        </div>
+        <div class="radio-field col-md-6 col-lg-4">
+            <label class="title">@Common.Language.LanguageDefault.NewPostLabelThisAdIs</label>
+            <label>
+                @Html.RadioButtonFor(a => a.IsForSell, true)
+                @Common.Language.LanguageDefault.NewPostASell
+            </label>
+            <label>
+                @Html.RadioButtonFor(a => a.IsForSell, false)
+                @Common.Language.LanguageDefault.NewPostARent
+            </label>
+        </div>
+        <div class="radio-field col-md-6  col-lg-4">
+            <label class="title">@Common.Language.LanguageDefault.NewPostLabelCondition</label>
+            <label>
+                @Html.RadioButtonFor(a => a.IsBrandNew, true)
+                @Common.Language.LanguageDefault.NewPostABrandNew
+            </label>
+            <label>
+                @Html.RadioButtonFor(a => a.IsBrandNew, false)
+                @Common.Language.LanguageDefault.NewPostAUsedItem
+            </label>
+        </div>
+        <div class="radio-field col-md-6 col-lg-4">
+            <label class="title">@Common.Language.LanguageDefault.NewPostLabelThisAdIs</label>
+            <label>
+                @Html.RadioButtonFor(a => a.IsUrgent, true)
+                @Common.Language.LanguageDefault.NewPostAUrgentDeal
+            </label>
+            <label>
+                @Html.RadioButtonFor(a => a.IsUrgent, false)
+                @Common.Language.LanguageDefault.NotUrgentDeal
+            </label>
+        </div>
+
+        <div class="input-field col-md-6 col-lg-4">
+            <label for="ClientName">
+                @Common.Language.LanguageDefault.AccountOwner
+            </label>
+            @Html.EditorFor(a => a.ClientName, new { htmlAttributes = new { @class = "fff", disabled = "disabled" } })
+        </div>
+        <div class="input-field  col-md-6 col-lg-4">
+            <label for="PosterName">
+                @Common.Language.LanguageDefault.AdvertisedBY
+            </label>
+            @Html.EditorFor(a => a.PosterName, new { htmlAttributes = new { @class = "fff" } })
+        </div>
+        <div class="input-field  col-md-6 col-lg-4">
+            <label for="PosterContactNumber">
+                @Common.Language.LanguageDefault.ContactNumber
+            </label>
+            @Html.EditorFor(a => a.PosterContactNumber, new { htmlAttributes = new { @class = "fff" } })
+        </div>
+    </form>
+    <form id="frmPostRowEdit-@dataId">
+        <div class="col-md-6">
+            <input data-valueid="@Model.PostID"
+                   id="btnSubmitPost-@formid"
+                   type="button"
+                   class="update-post btn-submit-post-modify-mode primary-button"
+                   value="@Common.Language.LanguageDefault.ButtonUPDATE" />
+        </div>       
+    </form>
+</div>
+

@@ -1,0 +1,113 @@
+﻿@model WebDeshiHutBazarAccountViewModel
+<div class="card-form row">
+    <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+        <h4 class="sub-title">Upload National ID File</h4>
+        <div class="note">
+            * Please take picture of your National ID Card by a camera and upload here. The file should be in .jpg format.
+        </div>
+    </div>
+    <div class="image-field col-md-2 col-xs-12 col-sm-3 col-lg-2">
+        <button type="button" class="light-button btn-sm" id="UploadOwnerNIDFile">
+            Upload File
+        </button>
+        <div class="image-field" id="imageOwnerNIDDiv">
+            @if (Model.OwnerNIDFile != null)
+            {
+                @Html.Partial("../../Areas/Company/Views/CompanySettings/_Image", Model.OwnerNIDFile)
+            }
+            else
+            {
+                <a class="thumbnail">
+                    <img src="~/Images/Home/camera.png"
+                         class="img-responsive new-post-mobile-image"
+                         alt="Post image is not avaliable"
+                         style="max-height:140px; max-width:100%;width:100%;" />
+                </a>
+            }
+        </div>
+        <button type="button" class="light-button btn-sm btn-remove" id="removeOwnerNIDFile">
+            REMOVE
+        </button>
+    </div>
+    <div class="col-md-10 col-xs-12 col-sm-9 col-lg-10 text-justify" style="padding:55px;color:cadetblue;">
+        Company Users own a shop who sells products inside Bangladesh.
+        The shop represents a real physical shop which is registered and
+        has a valid Trade License to operate business in Bangladesh.
+        <br />   <br />
+        User must upload his/her company Trade License, Shop Owner’s National ID,
+        Bank information or Bkash Account number to start uploading products.
+        Once user submits required information, portal will provide access
+        to upload products to sell online.
+        <br />   <br />
+        <label>
+            @if (Model.Agreement)
+            {
+                <span class="success">
+                    Agreement Completed!
+                    We are in sync and agreed to collaborate with deshihutbazar and sell our products online.
+                    Any changes in terms and sales policies Bangladesh BAZAAR will inform us before
+                    activation and on operation for all online product sellers.
+                </span>
+            }
+            else
+            {
+                @Html.CheckBoxFor(a => a.Agreement)
+                @Html.HiddenFor(a => a.Agreement)
+                <span>
+                    Account user must agree to the terms of portal’s online sales policies and conditions.
+                    Please check Terms page to see the terms and sales commission policies to start selling
+                    products online with Bangladesh BAZAAR.
+                </span>
+            }
+        </label>
+    </div>
+</div>
+<br />
+<div class="row card-form">
+    @Html.HiddenFor(a => a.UserID)
+    <div class="input-field col-md-12 col-xs-12 col-sm-12 col-lg-12">
+        <h4 class="sub-title">Account Information</h4>
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="Email">
+            Account Email (For signin)
+        </label>
+        @Html.EditorFor(a => a.Email, new { htmlAttributes = new { @class = "fff", disabled = "disabled" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="ClientName">
+            Account Holder Name (portal account owner)
+        </label>
+        @Html.EditorFor(a => a.ClientName, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="Phone">
+            Primary Contact (portal account owner)
+        </label>
+        @Html.EditorFor(a => a.Phone, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+</div>
+<br />
+<div class="card-form row">
+    <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+        <h4 class="sub-title">Company Owner Information</h4>
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="OwnerName">
+            Owner Name
+        </label>
+        @Html.EditorFor(a => a.OwnerName, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="OwnerEmail">
+            Email
+        </label>
+        @Html.EditorFor(a => a.OwnerEmail, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="OwnerPhoneNumber">
+            Phone
+        </label>
+        @Html.EditorFor(a => a.OwnerPhoneNumber, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+</div>

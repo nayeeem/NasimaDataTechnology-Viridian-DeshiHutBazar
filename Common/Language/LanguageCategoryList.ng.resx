@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AudioAndSoundSystems" xml:space="preserve">
+    <value>Audio &amp; Sound Systems</value>
+  </data>
+  <data name="BabyDiapers" xml:space="preserve">
+    <value>Diapers</value>
+  </data>
+  <data name="BabyGears" xml:space="preserve">
+    <value>Baby Gears &amp; Nursery</value>
+  </data>
+  <data name="BabyMaternity" xml:space="preserve">
+    <value>Baby Clothing &amp; Maternity</value>
+  </data>
+  <data name="BathBedAndDecor" xml:space="preserve">
+    <value>Bath, Bed &amp; Decor</value>
+  </data>
+  <data name="Beauty" xml:space="preserve">
+    <value>Beauty</value>
+  </data>
+  <data name="BeautySupplements" xml:space="preserve">
+    <value>Beauty Supplements</value>
+  </data>
+  <data name="BeautyTools" xml:space="preserve">
+    <value>Beauty Tools</value>
+  </data>
+  <data name="Beverages" xml:space="preserve">
+    <value>Beverages</value>
+  </data>
+  <data name="CameraAndAccessories" xml:space="preserve">
+    <value>Camera &amp; Accessories</value>
+  </data>
+  <data name="CarEssentials" xml:space="preserve">
+    <value>Car Essentials</value>
+  </data>
+  <data name="CarOilFluids" xml:space="preserve">
+    <value>Car Oils &amp; Fluids</value>
+  </data>
+  <data name="CarServicesInstallations" xml:space="preserve">
+    <value>Services &amp; Installations</value>
+  </data>
+  <data name="CoolingAndHeating" xml:space="preserve">
+    <value>Cooling &amp; Heating</value>
+  </data>
+  <data name="DiyAndCleaning" xml:space="preserve">
+    <value>Die And Cleaning</value>
+  </data>
+  <data name="Electronics" xml:space="preserve">
+    <value>Electronics</value>
+  </data>
+  <data name="ExportImport" xml:space="preserve">
+    <value>Export &amp; Import</value>
+  </data>
+  <data name="ExportProducts" xml:space="preserve">
+    <value>Export Products</value>
+  </data>
+  <data name="FitnessAndLifeStyles" xml:space="preserve">
+    <value>Fitness &amp; Lifestyles</value>
+  </data>
+  <data name="FitnessEquipments" xml:space="preserve">
+    <value>Fitness &amp; Sports Equipments</value>
+  </data>
+  <data name="Furniture" xml:space="preserve">
+    <value>Furniture</value>
+  </data>
+  <data name="GlobalFittness" xml:space="preserve">
+    <value>Global Fitness</value>
+  </data>
+  <data name="Groceries" xml:space="preserve">
+    <value>Groceries &amp; Pets</value>
+  </data>
+  <data name="GroceryEssentials" xml:space="preserve">
+    <value>Grocery Essentials</value>
+  </data>
+  <data name="HairBathBody" xml:space="preserve">
+    <value>Hair, Bath &amp; Body</value>
+  </data>
+  <data name="Health" xml:space="preserve">
+    <value>Health</value>
+  </data>
+  <data name="HireMe" xml:space="preserve">
+    <value>Hire</value>
+  </data>
+  <data name="HomeAndLivings" xml:space="preserve">
+    <value>Office and Living</value>
+  </data>
+  <data name="ImportProducts" xml:space="preserve">
+    <value>Import Products</value>
+  </data>
+  <data name="KitchenAndDining" xml:space="preserve">
+    <value>Kitchen &amp; Dining</value>
+  </data>
+  <data name="KitchenAppliances" xml:space="preserve">
+    <value>Kitchen Appliances</value>
+  </data>
+  <data name="LaptopAndComputer" xml:space="preserve">
+    <value>Laptop &amp; Computer</value>
+  </data>
+  <data name="LargeAppliances" xml:space="preserve">
+    <value>Large Appliances</value>
+  </data>
+  <data name="Laundry" xml:space="preserve">
+    <value>Laundry</value>
+  </data>
+  <data name="Makeup" xml:space="preserve">
+    <value>Makeup</value>
+  </data>
+  <data name="MedicalSupplies" xml:space="preserve">
+    <value>Medical Supplies</value>
+  </data>
+  <data name="MenDresses" xml:space="preserve">
+    <value>Dresses</value>
+  </data>
+  <data name="MenFashion" xml:space="preserve">
+    <value>Men Fashion</value>
+  </data>
+  <data name="MenFashionAccessories" xml:space="preserve">
+    <value>Accessories</value>
+  </data>
+  <data name="MenShoes" xml:space="preserve">
+    <value>Shoes</value>
+  </data>
+  <data name="MenShoes1" xml:space="preserve">
+    <value>Shoes</value>
+  </data>
+  <data name="MensSportswear" xml:space="preserve">
+    <value>Men Sportswear</value>
+  </data>
+  <data name="MenWaletBags" xml:space="preserve">
+    <value>Wallet &amp; Bags</value>
+  </data>
+  <data name="MenWatches" xml:space="preserve">
+    <value>Watches</value>
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>Mobile Phones</value>
+  </data>
+  <data name="Motor" xml:space="preserve">
+    <value>Motor</value>
+  </data>
+  <data name="MotorCycleEssentials" xml:space="preserve">
+    <value>Motor Cycle Essentials</value>
+  </data>
+  <data name="MusicBooksGames" xml:space="preserve">
+    <value>Music, Books &amp; Games</value>
+  </data>
+  <data name="Nuts" xml:space="preserve">
+    <value>Nuts</value>
+  </data>
+  <data name="OfficeFurniture" xml:space="preserve">
+    <value>Office Furniture</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="OtherProductItems" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="OtherServiceItems" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="PersonalCare" xml:space="preserve">
+    <value>Personal Care</value>
+  </data>
+  <data name="Pets" xml:space="preserve">
+    <value>Pets</value>
+  </data>
+  <data name="Pharmacy" xml:space="preserve">
+    <value>Pharmacy</value>
+  </data>
+  <data name="PhoneAccessorie" xml:space="preserve">
+    <value>Phone Accessories</value>
+  </data>
+  <data name="SkinCare" xml:space="preserve">
+    <value>Skin Care</value>
+  </data>
+  <data name="SnacksCookies" xml:space="preserve">
+    <value>Snacks &amp; Cookies</value>
+  </data>
+  <data name="Specticals" xml:space="preserve">
+    <value>Spectacles</value>
+  </data>
+  <data name="Specticals1" xml:space="preserve">
+    <value>Spectacles</value>
+  </data>
+  <data name="TabletAndGadget" xml:space="preserve">
+    <value>Tablet &amp; Gadgets</value>
+  </data>
+  <data name="ToysGames" xml:space="preserve">
+    <value>Toys &amp; Games</value>
+  </data>
+  <data name="ToysKidsAndBabies" xml:space="preserve">
+    <value>Toys, Kids &amp; Babies</value>
+  </data>
+  <data name="TrainingHireTravels" xml:space="preserve">
+    <value>Training, Hire &amp; Travels</value>
+  </data>
+  <data name="TrainingPackages" xml:space="preserve">
+    <value>Training Packages</value>
+  </data>
+  <data name="TravelPackages" xml:space="preserve">
+    <value>Travel Packages</value>
+  </data>
+  <data name="TVAndHomeAudio" xml:space="preserve">
+    <value>TV &amp; Home Audio</value>
+  </data>
+  <data name="TVHomeAppliances" xml:space="preserve">
+    <value>TV &amp; Home Appliances</value>
+  </data>
+  <data name="VacuumAndFloorCare" xml:space="preserve">
+    <value>Vacuum &amp; Floor Care</value>
+  </data>
+  <data name="Wellbeings" xml:space="preserve">
+    <value>Wellbeing</value>
+  </data>
+  <data name="WomanFashion" xml:space="preserve">
+    <value>Fashion</value>
+  </data>
+  <data name="WomenBags" xml:space="preserve">
+    <value>Bags</value>
+  </data>
+  <data name="WomenDresses" xml:space="preserve">
+    <value>Dresses</value>
+  </data>
+  <data name="WomenFashionAccessories" xml:space="preserve">
+    <value>Fashion Accessories</value>
+  </data>
+  <data name="WomenFashionWomenBoishakDress" xml:space="preserve">
+    <value>Boishak Dress</value>
+  </data>
+  <data name="WomenGolds" xml:space="preserve">
+    <value>Jewelries</value>
+  </data>
+  <data name="WomensSportswear" xml:space="preserve">
+    <value>Sportswear</value>
+  </data>
+  <data name="WomenWatches" xml:space="preserve">
+    <value>Watches</value>
+  </data>
+</root>

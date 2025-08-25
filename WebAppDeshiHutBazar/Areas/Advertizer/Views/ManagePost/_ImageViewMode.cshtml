@@ -1,0 +1,33 @@
+﻿@model WebDeshiHutBazar.FileViewModel
+
+@if (Model.Image != null)
+{
+    string imageBase64 = Convert.ToBase64String(Model.Image);
+    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+    <a style="max-width: 151px;
+                height: 151px;
+                max-height: 151px;
+                vertical-align: middle;
+                display: block;"
+       class="thumbnail">
+        <img src="@imageSrc"
+             class="img-responsive"
+             alt="Post image is not avaliable"
+             style="max-height: 130px;" />
+    </a>
+}
+else
+{
+    <a style="max-width: 151px;
+                height: 151px;
+                max-height: 151px;
+                vertical-align: middle;
+                display: block;"
+       class="thumbnail">
+        <img src="../../../../Images/Home/camera.png"
+             class="img-responsive"
+             alt="Post image is not avaliable"
+             style="max-height: 130px;" />
+    </a>
+}
+

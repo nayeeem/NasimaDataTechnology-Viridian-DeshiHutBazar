@@ -1,0 +1,27 @@
+﻿@model WebDeshiHutBazar.FabiaProviderViewModel
+
+<h4 class="sub-title">Service Information</h4>
+<a data-toggle="modal"
+   class="primary-button flex max"
+   data-target="#modal-add-service">
+    CREATE SERVICE
+</a>
+<br />
+
+<div id="listNewServices">
+    @Html.Partial("../../Areas/LetItGo/Views/FabiaProvider/_NewListService", Model)
+</div>
+<br />
+
+@foreach (var singleServiceItem in Model.ListProviderServices)
+{
+    <div id="editSServiceDialogs">
+        @Html.Partial("../../Areas/LetItGo/Views/FabiaProvider/_DialogEditService", singleServiceItem)
+    </div>
+}
+
+@Html.Partial("../../Areas/LetItGo/Views/FabiaProvider/_DialogAddService", Model.FabiaProviderServiceViewModel)
+
+
+
+

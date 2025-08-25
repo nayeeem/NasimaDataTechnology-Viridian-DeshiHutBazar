@@ -1,0 +1,26 @@
+﻿@model WebDeshiHutBazar.PostPaymentOptionViewModel
+@{
+    ViewBag.Title = Common.Language.LanguageDefault.ViewBagTitleNewPost;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<div id="layoutBodyContainer" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Partial("../../Areas/LetItGo/Views/Post/_PaymentOptionsDesktop", Model)
+        </div>
+    </div>
+</div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';        
+    </script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+}
+
+
+
+
+
+
+

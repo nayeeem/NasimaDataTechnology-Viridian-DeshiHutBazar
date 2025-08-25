@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8E745E05-60E3-4FB8-9A64-ED0CD08E0F8E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Data</RootNamespace>
+    <AssemblyName>Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Command\ShoppingCommand.cs" />
+    <Compile Include="GroupPostRepository.cs" />
+    <Compile Include="IFileRepository.cs" />
+    <Compile Include="Interface\ICompanyRepository.cs" />
+    <Compile Include="Interface\IPostQueryRepository.cs" />
+    <Compile Include="Interface\IGroupPostRepository.cs" />
+    <Compile Include="Interface\ILogPostVisitRepository.cs" />
+    <Compile Include="Interface\ILogUserSessionRepository.cs" />
+    <Compile Include="Interface\ILogBrowserInfoRepository.cs" />
+    <Compile Include="Interface\IFabiaProviderRepository.cs" />
+    <Compile Include="Interface\IShoppingCommand.cs" />
+    <Compile Include="Interface\IUserPackageRepository.cs" />
+    <Compile Include="LogPostVisitRepository.cs" />
+    <Compile Include="LogUserSessionRepository.cs" />
+    <Compile Include="LogBrowserInfoRepository.cs" />
+    <Compile Include="CompanyRepository.cs" />
+    <Compile Include="PostAddressRepository.cs" />
+    <Compile Include="AValueRepository.cs" />
+    <Compile Include="FabiaProviderRepository.cs" />
+    <Compile Include="FileRepository.cs" />
+    <Compile Include="Query\PostQueryRepository.cs" />
+    <Compile Include="UserAccountBillRepository.cs" />
+    <Compile Include="GroupPanelConfigRepository.cs" />
+    <Compile Include="Interface\IGroupPanelConfigRepository.cs" />
+    <Compile Include="Interface\ILogErrorRepository.cs" />
+    <Compile Include="Interface\IBikashBillRepository.cs" />
+    <Compile Include="Interface\IAccountBillRepository.cs" />
+    <Compile Include="Interface\IAddressRepository.cs" />
+    <Compile Include="Interface\IAValueRepository.cs" />
+    <Compile Include="Interface\IPostCommentRepository.cs" />
+    <Compile Include="Interface\IMessageRepository.cs" />
+    <Compile Include="Interface\ILogPostRepository.cs" />
+    <Compile Include="Interface\IPostRepository.cs" />
+    <Compile Include="Interface\IUserAccountRepository.cs" />
+    <Compile Include="Interface\IUserCreditOrderRepository.cs" />
+    <Compile Include="Interface\IUserOrderRepository.cs" />
+    <Compile Include="Interface\IUserRepository.cs" />
+    <Compile Include="Interface\IPackageConfigRepository.cs" />
+    <Compile Include="Interface\IPriceConfigRepository.cs" />
+    <Compile Include="LogErrorRepository.cs" />
+    <Compile Include="UserMessageRepository.cs" />
+    <Compile Include="LogPostRepository.cs" />
+    <Compile Include="PriceConfigRepository.cs" />
+    <Compile Include="PostRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserAccountRepository.cs" />
+    <Compile Include="PackageConfigRepository.cs" />
+    <Compile Include="BikashBillTransactionRepository.cs" />
+    <Compile Include="UserCreditOrderRepository.cs" />
+    <Compile Include="UserOrderRepository.cs" />
+    <Compile Include="UserPackageRepository.cs" />
+    <Compile Include="UserRepository.cs" />
+    <Compile Include="WebBusinessEntityContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{08416f68-30eb-4bd7-aa82-1d8e51a1c166}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{3ac1b5dc-06c3-4f8c-b967-f11789d2e341}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

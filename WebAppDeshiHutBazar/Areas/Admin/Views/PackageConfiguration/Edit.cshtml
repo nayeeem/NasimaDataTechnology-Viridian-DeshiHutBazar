@@ -1,0 +1,80 @@
+﻿@model WebDeshiHutBazar.PostPackageConfigurationViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+
+<div class="recharge-container container">
+    <h4 class="main-title">Edit Package</h4>
+    <div class="recharge-content row">
+        <h5 class="sub-title">Package:</h5>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.PackageConfigID)
+            <div class="input-field col-md-6">
+                @Html.LabelFor(model => model.PackageName)
+                @Html.EditorFor(model => model.PackageName, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(model => model.PackageName, "The field Package Name is required.", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-6">
+                @Html.LabelFor(model => model.PackagePrice)
+                @Html.EditorFor(model => model.PackagePrice, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(model => model.PackagePrice, "The field Monthly Subscription Price is required.", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-12">
+                @Html.LabelFor(model => model.Description)
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-6">
+                @Html.LabelFor(model => model.TotalFreePost)
+                @Html.EditorFor(model => model.TotalFreePost, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(model => model.TotalFreePost, "The field Total Free Post is required.", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-6">
+                @Html.LabelFor(model => model.TotalPremiumPost)
+                @Html.EditorFor(model => model.TotalPremiumPost, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(model => model.TotalFreePost, "The field Total Premium Post is required.", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-6">
+                @Html.LabelFor(model => model.Discount)
+                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "fff" } })
+            </div>
+            <div class="input-field col-md-6">
+                @Html.LabelFor(model => model.DisplaySubscriptionPeriod)
+                @Html.DropDownListFor(a => a.SubscriptionPeriod, Model.AV_SubscriptionPeriod, new { @class = "fff" })
+                @Html.ValidationMessageFor(model => model.SubscriptionPeriod, "The field Subscription Period is required.", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-6">
+                @Html.LabelFor(model => model.DisplayPackageType)
+                @Html.DropDownListFor(a => a.PackageType, Model.AV_PackageType, new { @class = "fff" })
+                @Html.ValidationMessageFor(model => model.PackageType, "The field Package Type is required.", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-6">
+                @Html.LabelFor(model => model.DisplayPackageStatus)
+                @Html.DropDownListFor(a => a.PackageStatus, Model.AV_PackageStatus, new { @class = "fff" })
+                @Html.ValidationMessageFor(model => model.PackageStatus, "The field Package Status is required.", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="submit-field col-md-6">
+                <input type="submit" value="SAVE" class="primary-button" />
+            </div>
+            <div class="submit-field col-md-6">
+                <a href="@Url.Action("Index","PackageConfiguration")" class="light-button">BACK TO LIST</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    </script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+}
+
+
+

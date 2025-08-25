@@ -1,0 +1,44 @@
+﻿@model WebDeshiHutBazarAccountViewModel
+
+<div class="card-form row">
+    <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+        <h4 class="sub-title">Bank Information</h4>
+    </div>
+
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="AccountHolderName">
+            Account Holder Name
+        </label>
+        @Html.EditorFor(a => a.AccountHolderName, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="ClientName">
+            Bank Name
+        </label>
+        @Html.EditorFor(a => a.BankName, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="BranchName">
+            Branch Name
+        </label>
+        @Html.EditorFor(a => a.BranchName, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="AccountNumber">
+            Account Number
+        </label>
+        @Html.EditorFor(a => a.AccountNumber, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="AccountNumber">
+            A/C Holder Contact Number
+        </label>
+        @Html.EditorFor(a => a.ACHolderContactNumber, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+    <div class="input-field col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <label for="BkashAccountNumber">
+            Bkash Account Number
+        </label>
+        @Html.EditorFor(a => a.BkashAccountNumber, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+</div>

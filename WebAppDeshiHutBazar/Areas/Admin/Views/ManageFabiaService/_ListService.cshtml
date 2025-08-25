@@ -1,0 +1,57 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+
+@if (Model.ListPostProcess != null)
+{
+    <table class="new">
+        <thead>
+            <tr>
+                <th>Service Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Reason for Payment</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="example sorted_head">
+            @foreach (var itemDesktop in Model.ListPostService.ToList())
+            {
+                <tr>
+                    <td data-label="Title">
+                        @Html.HiddenFor(a => itemDesktop.PostID)
+                        @Html.HiddenFor(a => itemDesktop.PostServiceID)
+                        @itemDesktop.Title
+                    </td>
+                    <td data-label="Description">
+                        @itemDesktop.Description
+                    </td>
+                    <td data-label="ServicePrice">
+                        @itemDesktop.ServicePrice &nbsp;(@Model.Currency)
+                    </td>
+                    <td data-label="Discount">
+                        @itemDesktop.Discount &nbsp; (%)
+                    </td>
+                    <td data-label="ReasonPayment">
+                        @itemDesktop.ReasonPayment
+                    </td>
+                    <td data-label="Action">
+                        <a data-toggle="modal"
+                           class="light-button small flex btn-sm btn-edit-service"
+                           data-serviceid="@itemDesktop.PostServiceID"
+                           data-postid="@itemDesktop.PostID"
+                           data-target="#modal-edit-service-@itemDesktop.PostServiceID">
+                            EDIT
+                        </a>
+                        <a 
+                           class="secondary-button small flex btn-sm btn-remove-service"
+                           data-serviceid="@itemDesktop.PostServiceID"
+                           data-postid="@itemDesktop.PostID">
+                            REMOVE
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

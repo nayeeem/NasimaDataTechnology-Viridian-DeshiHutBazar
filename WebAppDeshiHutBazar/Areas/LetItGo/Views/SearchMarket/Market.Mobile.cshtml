@@ -1,0 +1,73 @@
+﻿@model WebDeshiHutBazar.MarketInfoViewModel
+@{
+    ViewBag.Title = Common.Language.LanguageDefault.ViewBagTitleAllItemMarket;
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<div class="request-container-background" id="requestVisitorEmailBackground"></div>
+<div class="request-container" id="requestVisitorEmailFormContent">
+    <div id="requestVisitorEmailForm">
+        <h4>
+            Please share us your Email and Phone number,
+            so that appropriate advertiser can propose you a
+            good deal since you are interested in this type of products.
+        </h4>
+        <div class="gap"></div>
+        <div class="row padding-margin-zero">
+            <div class="input-field col-sm-6">
+                <label for="contactmessage">
+                    @Common.Language.LanguageDefault.EmailField
+                </label>
+                <input type="email"
+                       class="fff"
+                       id="visitorEmail"
+                       placeholder="@Common.Language.LanguageDefault.EnterYourEmailAddress">
+            </div>
+            <div class="input-field col-sm-6">
+                <label for="contactnumber">
+                    @Common.Language.LanguageDefault.PhoneField
+                </label>
+                <input type="text"
+                       class="fff"
+                       id="visitorPhone"
+                       placeholder="@Common.Language.LanguageDefault.EnterYourPhoneNumber">
+            </div>
+        </div>
+        <div class="row padding-margin-zero">
+            <div class="col-md-6">
+                <button id="visitorEmailClose" class="light-button" type="button" data-request="modal">
+                    @Common.Language.LanguageDefault.Close
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button id="btnSubmitVisitorEmail" class="primary-button" type="button">
+                    @Common.Language.LanguageDefault.VisitorEmailSubmit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="layoutBodyContainer" class="container">
+    @if (Model.PageName.Contains("Search"))
+    {
+        <h3 class="main-title">@Common.Language.LanguageDefault.MarketSearchResultAds</h3>
+        <div class="all-market-container">
+            @foreach (var row in Model.ListPostsAll)
+            {
+                @Html.Partial("../../Areas/LetItGo/Views/AllItemMarket/_MarketItemDesktop", row)
+            }
+        </div>
+        @Html.EditorFor(a => a.PageingModelAll, "Paging")
+    }
+</div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    </script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.market.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.log.visitor.email.js" type="text/javascript"></script>    
+}
+
+
+

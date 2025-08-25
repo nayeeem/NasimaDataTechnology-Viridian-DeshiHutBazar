@@ -1,0 +1,213 @@
+﻿@model WebDeshiHutBazar.FabiaProviderViewModel
+@{
+    ViewBag.Title = "Fabia Service";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var guid = Guid.NewGuid();
+    var dataId = Model.ProviderID;
+    ViewBag.ExcludeHeader = false;
+}
+<script type="text/javascript">
+    var providerId = '@Model.ProviderID';
+    var imgLoadProfileUrl = '@Url.Action("ImageLoadProfile", "FabiaProvider")';
+    var imgUploadProfileUrl = '@Url.Action("ImageUploadProfile", "FabiaProvider")';
+    var reloadUrl = '@Url.Action("ManageSingleProvider", "FabiaProvider")?providerid=' + providerId;
+    var updateProviderUrl = '@Url.Action("UpdateProvider", "FabiaProvider")';
+</script>
+<div id="top" class="container card-form update-profile-content">
+    <h4 class="main-title">Manage Provider</h4>
+    <div class="row ">
+        <div class="image-field col-md-4 col-xs-12">
+            <div class="image-content">
+                <div id="imgDivProfile" title="Image for Provider Profile">
+                    @if (Model.ProfileImage != null)
+                    {
+                        @Html.Partial("../../Areas/Admin/Views/ManageFabiaService/_Image", Model.ProfileImage);
+                    }
+                    else
+                    {
+                        <a class="thumbnail">
+                            <img src="@Url.Content("~/Images/Post/camera.png")"
+                                 class="img-responsive"
+                                 id="imgProfile"
+                                 alt="Provider Image Not Available!" />
+                        </a>
+                    }
+                </div>
+                <button type="button" class="light-button" id="UploadProfile">
+                    @Common.Language.LanguageDefault.ModifyPostBROWSE
+                </button>
+                <span id="infoErrorProfile" style="display:none;color:red;font-size:smaller;">
+                    File size must be <=7MB!
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="content1 row">
+        @Html.Partial("../../Areas/LetItGo/Views/FabiaProvider/_ModifyServiceCategory", Model)
+    </div>
+
+    <div class="content2 row">
+        @Html.Partial("../../Areas/LetItGo/Views/FabiaProvider/_ModifyProviderInformation", Model)
+    </div>
+    <div class="col-md-12">
+        <input data-valueid="@Model.ProviderID"
+               id="btnUpdateProvider"
+               type="button"
+               class="update-provider btn-submit-provider-modify-mode primary-button max"
+               value="@Common.Language.LanguageDefault.ButtonUPDATE" />
+    </div>
+</div>
+@section scriptsapp {
+    <script src="~/Scripts/ajaxupload.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function IsFormRequiredFieldsValid(parentObjectSelector) {
+            var isValid = true;
+            if (!validateMaxLengthTextData($(parentObjectSelector).find("#ProviderName"), 80, "Provider Name")) {
+                isValid = false;
+            }
+            if (!validateRequiredTextData($(parentObjectSelector).find("#ProviderName"), "Provider Name")) {
+                isValid = false;
+            }
+            if (!validateRequiredTextData($(parentObjectSelector).find("#ProviderPhone"), "Provider Phone")) {
+                isValid = false;
+            }
+            if (!validateRequiredTextData($(parentObjectSelector).find("#ServiceDescription"), "Service Description")) {
+                isValid = false;
+            }
+            return isValid;
+        }
+
+        function IsTermsChecked() {
+            if ($('#chkTerms').is(':checked'))
+                return true;
+            else
+                return false;
+        }
+
+        function LoadImageContentProfile() {
+            $.ajax({
+                type: "GET",
+                url: imgLoadProfileUrl,
+                cache: false,
+                async: true,
+                success: function (result) {
+                    $("#imgDivProfile").html(result);
+                    notify = $.notify({
+                        type: 'success',
+                        message: '<strong><i class="fa fa-thumbs-up"></i>&nbsp;' + SUCCESS + '</strong> ' + IMAGE_LOAD_SUCCESSFUL,
+                        allow_dismiss: true,
+                        placement: {
+                            from: "top",
+                            align: "right"
+                        },
+                        delay: { show: 80, hide: 50 },
+                        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                            '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                            '<span data-notify="icon"></span>' +
+                            '<span data-notify="title">{1}</span>' +
+                            '<span data-notify="message">{2}</span>' +
+                            '</div>'
+                    });
+                },
+                error: function (e) {
+                }
+            });
+        }
+
+        function LoadFileControls() {
+            $("#UploadProfile").ajaxUpload({
+                url: imgUploadProfileUrl,
+                name: "file",
+                data: true,
+                onSubmit: function () {
+                },
+                onComplete: function (result) {
+                    if (result != 'false') {
+                        LoadImageContentProfile();
+                        $("#infoErrorUploadProfile").hide();
+                    }
+                    else {
+                        $("#infoErrorUploadProfile").show();
+                        notify = $.notify('<strong>&nbsp;' + 'File upload failed!' + '</strong>', {
+                            type: 'danger'
+                        });
+                    }
+                }
+            });
+        }
+
+            $(function () {
+                LoadFileControls();
+
+                function ShowNotification(message) {
+                    var notify = $.notify({
+                        type: 'danger',
+                        message: '<strong>Error: </strong> ' + message,
+                        allow_dismiss: true,
+                        placement: {
+                            from: "top",
+                            align: "right"
+                        },
+                        delay: { show: 80, hide: 50 },
+                        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                            '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                            '<span data-notify="icon"></span>' +
+                            '<span data-notify="title">{1}</span>' +
+                            '<span data-notify="message">{2}</span>' +
+                            '</div>'
+                    });
+                }
+
+                $(document).on("click", "#btnUpdateProvider", function () {
+                    var parentObjectSelector = $(this).closest(".update-profile-content");
+                    var fabiaServiceID = $(parentObjectSelector).find("#FabiaServiceID").val();
+                    var providerID = $(parentObjectSelector).find("#ProviderID").val();
+                    var personName = $(parentObjectSelector).find("#ProviderName").val();
+                    var primaryPhone = $(parentObjectSelector).find("#ProviderPhone").val();
+                    var serviceCharge = $(parentObjectSelector).find("#ServiceCharge").val();
+                    var website = $(parentObjectSelector).find("#Website").val();
+                    var serviceDescription = $(parentObjectSelector).find("#ServiceDescription").val();
+                    var email = $(parentObjectSelector).find("#Email").val();                  
+                    var serviceTitle = $(parentObjectSelector).find("#ServiceTitle").val();
+                    var stateID = $(parentObjectSelector).find("#StateID").val();
+
+                    var requestData = {
+                        "ProviderID": providerID,
+                        "FabiaServiceID": fabiaServiceID,
+                        "ProviderName": $.trim(personName),
+                        "ProviderPhone": $.trim(primaryPhone),
+                        "Website": $.trim(website),
+                        "ServiceDescription": serviceDescription,
+                        "ServiceCharge": serviceCharge,
+                        "Email": email,                       
+                        "ServiceTitle": serviceTitle,
+                        "StateID": stateID
+                    };
+                    if (!IsFormRequiredFieldsValid(parentObjectSelector)) {
+                        ShowNotification("Validation Failed: Please go back and fill all required fields!");
+                    }
+                    else {
+                        $.ajax({
+                            url: '@Url.Action("UpdateProvider", "FabiaProvider")',
+                            type: 'POST',
+                            data: JSON.stringify(requestData),
+                            dataType: 'json',
+                            contentType: 'application/json; charset=utf-8',
+                            error: function (xhr) {
+                            },
+                            success: function (result) {
+                                window.location = '@Url.Action("Index", "FabiaProvider")';
+                            },
+                            processData: false
+                        });
+                    }
+                });
+            });
+    </script>
+}
+
+
+

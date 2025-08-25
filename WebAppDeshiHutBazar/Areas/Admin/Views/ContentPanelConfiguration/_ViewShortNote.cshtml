@@ -1,0 +1,38 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    var formid = Guid.NewGuid();
+}
+<div class="row" id="postviewroot-@formid">
+    <div class="col-md-4 col-xs-12 col-lg-4">
+        <label>Post Type</label>
+        @Html.DisplayFor(a => a.PostType)
+    </div>
+    <div class="col-md-8 col-xs-12 col-lg-8">
+        <label>Title</label>
+        @Html.DisplayFor(a => a.Title)
+    </div>
+    <div class="col-md-4 col-xs-12 col-lg-4">
+        <label>Client Name</label>
+        @Html.DisplayFor(a => a.PosterName)
+    </div>
+    <div class="col-md-8 col-xs-12 col-lg-12">
+        <label>Web Url</label>
+        @Html.DisplayFor(a => a.WebsiteUrl)
+    </div>
+    <div class="col-md-12 col-xs-12 col-lg-12">
+        <label>Description</label>
+        @Html.DisplayFor(a => a.Description)
+    </div>
+    <div class="image-field col-md-12 col-xs-12 col-lg-12">
+        @if (Model.ListImages != null && Model.ListImages.Count > 0)
+        {
+            foreach (var image in Model.ListImages.Where(s => s != null))
+            {
+                <div class="primary-chk-parent">
+                    @Html.Partial("../../Areas/Advertizer/Views/ManagePost/_ImageViewMode", image)
+                    <input name="primaryimage" data-fileid="@image.FileID" type="checkbox" value="PrimaryImage1" class="primary-checkbox" />
+                </div>
+            }
+        }
+    </div>
+</div>

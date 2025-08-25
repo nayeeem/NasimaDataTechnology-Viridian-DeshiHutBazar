@@ -1,0 +1,80 @@
+﻿@model WebDeshiHutBazar.ShoppingCartSummaryInformationViewModel
+@{
+    ViewBag.Title = "Bkash Payment";
+    Layout = "~/Views/Shared/_Layout.Tablet.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<div class="container" style="margin-top:15px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Url.Action("GetShoppingCart","ProductShoppingCart")">Shopping Cart</a></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("ReturnShippingAddress","ProductShoppingCart")">Customer And Shipping Information</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Summary And Pay</li>
+        </ol>
+    </nav>
+</div>
+@using (Html.BeginForm("Summary", "ProductShoppingCart"))
+{
+    <div class="container card-form" style="margin-top:15px;">
+        <h4 class="main-title">Contact And Shipping Information</h4>
+        @Html.Partial("../../Areas/Company/Views/ProductShoppingCart/_ShippingAddress", Model.ShipAddress)
+    </div>
+    <div class="container card-form" style="margin-top:15px;">
+        <h4 class="main-title">Billing Information</h4>
+        @Html.Partial("../../Areas/Company/Views/ProductShoppingCart/_ShoppingCart", Model.ProductCartInformationViewModel)
+    </div>
+    <div class="container card-form" style="margin-top:15px;">
+        <h4 class="main-title">Payment Option</h4>
+        <p class="note">
+            You can either Pay by Bkash or Pay Cash at Delivery.
+        </p>
+        <div class="divider"></div>
+        <div class="row">
+
+            @Html.AntiForgeryToken()
+            <div class="input-field col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                <label>
+                    @Html.HiddenFor(a => a.PayOnDelivery)
+                    @Html.CheckBoxFor(a => a.PayOnDelivery, new { @id = "PayOnDelivery" })
+                    <img src="~/Images/Home/cashondelivery.png" style="width:50px;height:50px;" />
+                    Cash On Delivery
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="submit-field col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-lg-offset-3 col-lg-6 col-xs-12">
+            <input type="submit"
+                   value="PAY NOW"
+                   class="primary-button max"
+                   id="btnPayment" />
+        </div>
+    </div>
+}
+
+
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = "";
+        $(function () {
+            $(document).on("change", "#PayOnDelivery", function () {
+                if ($(this).prop("checked") == true) {
+                    $("#PayOnDelivery").val(true);
+                    $("#btnPayment").attr("value", "PLACE ORDER & FINISH");
+                }
+                else {
+                    $("#PayOnDelivery").val(false);
+                    $("#btnPayment").attr("value", "PAY NOW");
+                }
+            });
+        });
+    </script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+}
+
+
+
+

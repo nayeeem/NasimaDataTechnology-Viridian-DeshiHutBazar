@@ -1,0 +1,70 @@
+﻿@using WebDeshiHutBazar
+@model WebDeshiHutBazar.PostViewModel
+@{
+    var images = Model.ListImages != null ? Model.ListImages : new List<FileViewModel>();
+    var hasImages = images.Any();
+}
+<div id="carousel-example-generic"
+     class="carousel slide market-carousel"
+     data-ride="carousel">
+    @if (!hasImages)
+    {
+        <div class="main-image-container">
+            <div class="main-image">
+                <img src="~/Images/Post/camera.png"
+                     class="img-responsive"
+                     alt="Responsive image"
+                     id="imgUploadCamera" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="carousel-inner main-image-container"
+             role="listbox">
+            @for (var i = 0; i < images.Count; i++)
+            {
+                var listImage = images[i] != null ? images[i] : new FileViewModel();
+                var image = listImage.Image;
+                var cssClass = i == 0 ? "active" : "";
+                <div class="item main-image @cssClass">
+                    @if (image != null)
+                    {
+                        @Html.Partial("../../Areas/LetItGo/Views/FabiaService/_ImageDesktop", image)
+                    }
+                    else
+                    {
+                        <img src="~/Images/Post/camera.png"
+                             class="img-responsive"
+                             alt="Responsive image"
+                             id="imgUploadCamera" />
+                    }
+                </div>
+            }
+        </div>
+        <div class="small-image-container carousel-indicators" id="singleItemPageCaroselFooterImages">
+            @for (var i = 0; i < images.Count; i++)
+            {
+                var listImage = images[i] != null ? images[i] : new FileViewModel();
+                var image = listImage.Image;
+                var cssClass = i == 0 ? "active" : "";
+                <div data-target="#carousel-example-generic"
+                     data-slide-to="@i"
+                     class="@cssClass small-image   ">
+                    @if (image != null)
+                    {
+
+                        @Html.Partial("../../Areas/LetItGo/Views/FabiaService/_ImageSmallCaurosel", listImage)
+                    }
+                    else
+                    {
+                        <img src="~/Images/Post/camera.png"
+                             class="img-responsive single-item-carosel-small-image-size"
+                             alt="image from seleasy.com"
+                             id="imgSmallCarosel" />
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>

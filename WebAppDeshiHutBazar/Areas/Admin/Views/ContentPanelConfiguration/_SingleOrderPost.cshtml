@@ -1,0 +1,108 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    var guid = Guid.NewGuid();
+    var heading = guid + "heading";
+    var collapse = guid + "colapse";
+    var dataId = Model.PostID;
+    var viewtabpanelid = "btnView-" + guid + "tabpanel";
+    var btnViewId = "btnView-" + guid;
+    var edittabpanelid = "btnEdit-" + guid + "tabpanel";
+    var btnEditId = "btnEdit-" + guid;
+}
+
+@if (Model.PostType == Common.EnumPostType.Post || Model.PostType == Common.EnumPostType.Product)
+{
+    @if (Model != null)
+    {
+        <a class="thumbnail image-field">
+            @if (Model.Image != null)
+            {
+                @Html.Partial("../Shared/DesktopPostType/_Image", Model.Image)
+            }
+            else
+            {
+                @Html.Partial("../Shared/DesktopPostType/_Image", new byte[1])
+            }
+        </a>
+        <div class="caption text-center">
+            <div class="truncate">
+                @Model.Title
+            </div>
+            <div>
+                <p class="home-currency-font-color"> @Model.FormattedPriceValue</p>
+            </div>
+        </div>
+    }
+}
+else if (Model.PostType == Common.EnumPostType.FabiaService)
+{
+    @if (Model != null)
+    {
+        <label>@Model.PostType.ToString()</label>
+        <a class="thumbnail image-field">
+            @if (Model.Image != null)
+            {
+                @Html.Partial("../Shared/DesktopPostType/_Image", Model.Image)
+            }
+            else
+            {
+                @Html.Partial("../Shared/DesktopPostType/_Image", new byte[1])
+            }
+        </a>
+        <div class="caption text-center">
+            <div class="truncate">
+                @Model.Title
+            </div>
+        </div>
+    }
+}
+else if (Model.PostType == Common.EnumPostType.AdSpace)
+{
+    <label>@Model.PostType.ToString()</label>
+    @if (Model != null)
+    {
+        <a class="thumbnail image-field">
+            @if (Model.Image != null)
+            {
+                @Html.Partial("../Shared/DesktopPostType/_Image", Model.Image)
+            }
+            else
+            {
+                @Html.Partial("../Shared/DesktopPostType/_Image", new byte[1])
+            }
+        </a>
+        <div class="caption text-center">
+            <div class="truncate poster">
+                @Model.Title
+            </div>
+        </div>
+    }
+}
+else if (Model.PostType == Common.EnumPostType.ShortNote)
+{
+    <label>@Model.PostType.ToString()</label>
+    <div class="image-field">
+        <div class="caption text-center sub-title truncate" style="padding:10px;border-bottom:10px red solid;border-top:3px blue solid;">
+            @Model.Title
+        </div>
+        <p class="text-justify" style="padding:9px;line-height:18pt;">
+            @Model.Description
+        </p>
+    </div>
+}
+else if (Model.PostType == Common.EnumPostType.ShortVideo)
+{
+    <label>@Model.PostType.ToString()</label>
+    @if (Model != null)
+    {
+        if (!string.IsNullOrEmpty(Model.WebsiteUrl))
+        {
+            <iframe class="desktop-sq-3"
+                    style="width:70%;text-align:center;"
+                    src="https://www.youtube.com/embed/@Model.WebsiteUrl.Trim()"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        }
+    }
+}

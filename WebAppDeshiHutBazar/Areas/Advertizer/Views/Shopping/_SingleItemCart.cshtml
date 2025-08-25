@@ -1,0 +1,59 @@
+﻿@model WebDeshiHutBazar.ShoppingCartViewModel
+
+<tr class="single-cart-row">
+    <td class="package-name" data-label="@Common.Language.LanguageDefault.PACKAGENAME1">
+        @Model.PackageName
+    </td>
+    <td class="payment-cycle" data-packageid="@Model.PackageConfigID" data-label=" @Common.Language.LanguageDefault.PAYCYCLE1">
+        @if (Model.SubscriptionPeriod == Common.EnumPackageSubscriptionPeriod.Month)
+        {
+            <a class="small flex secondary-button pay-cycle" data-packageid="@Model.SlNo" data-valueid="1" data-valuetext="Monthly (Recurring payment)">
+                @Common.Language.LanguageDefault.Month
+            </a>
+            <a class="small flex secondary-light-button pay-cycle" data-packageid="@Model.SlNo" data-valueid="2" data-valuetext="Yearly (One time payment)">
+                @Common.Language.LanguageDefault.Year
+                &nbsp;
+            </a>
+        }
+        else
+        {
+            <a class="small flex secondary-light-button pay-cycle" data-packageid="@Model.SlNo" data-valueid="1" data-valuetext="Monthly (Recurring payment)">
+                @Common.Language.LanguageDefault.Month
+            </a>
+            <a class="small flex secondary-button pay-cycle" data-packageid="@Model.SlNo" data-valueid="2" data-valuetext="Yearly (One time payment)">
+                @Common.Language.LanguageDefault.Year
+                &nbsp;
+            </a>
+        }
+
+    </td>
+    <td class="package-fee" data-label="@Common.Language.LanguageDefault.Description1">
+        @if (Model.SubscriptionPeriod == Common.EnumPackageSubscriptionPeriod.Month)
+        {
+        <span class="monthly-fee">
+            @Common.Language.LanguageDefault.MonthlyRecurringpay1
+            @Model.MonthlyFee &nbsp; @Model.Currency
+        </span>
+        <span class="yearly-fee" style="display:none;">
+            @Common.Language.LanguageDefault.YearlyOnetimepay1
+            @Model.YearlyFee &nbsp; @Model.Currency
+        </span>
+        }
+        else
+        {
+    <span class="monthly-fee" style="display:none;">
+        @Common.Language.LanguageDefault.MonthlyRecurringpay1
+        @Model.MonthlyFee &nbsp; @Model.Currency
+    </span>
+    <span class="yearly-fee">
+        @Common.Language.LanguageDefault.YearlyOnetimepay1
+        @Model.YearlyFee &nbsp; @Model.Currency
+    </span>
+        }
+    </td>
+    <td  data-label="Action">
+        <button data-valueid="@Model.SlNo" class="light-button small flex btn-cart-remove">
+            @Common.Language.LanguageDefault.REMOVE
+        </button>
+    </td>
+</tr>

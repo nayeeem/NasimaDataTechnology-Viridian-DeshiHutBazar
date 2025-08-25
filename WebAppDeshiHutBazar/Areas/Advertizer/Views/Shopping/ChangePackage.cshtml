@@ -1,0 +1,183 @@
+﻿@model WebDeshiHutBazar.PackageSelectInformationViewModel
+@{
+    ViewBag.Title = "Manage Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <h4 class="main-title">
+                @Common.Language.LanguageDefault.BuySubscriptionPackages
+        </h4>
+    </div>
+    <div class="col-md-12 col-xs-12">
+        @Html.DropDownListFor(a => a.PackageID, Model.AV_Package, new { @class = "fff" })
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <a id="btnViewPackage" data-toggle="modal" class="light-button">
+            @Common.Language.LanguageDefault.VIEW
+        </a>
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <a id="btnAddPackage" class="primary-button">
+            @Common.Language.LanguageDefault.ADDTOCART1
+        </a>
+    </div>
+    <div class="gap"></div>
+    <div class="col-md-12 col-xs-12">
+        <table class="new" id="cartContainer">
+            <thead>
+                <tr>
+                    <td>
+                        @Common.Language.LanguageDefault.PACKAGENAME1
+                    </td>
+                    <td>
+                        @Common.Language.LanguageDefault.PAYCYCLE1
+                    </td>
+                    <td>
+                        @Common.Language.LanguageDefault.Description1
+                    </td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ShoppingCart != null)
+                {
+                    foreach (var item in Model.ShoppingCart)
+                    {
+                        @Html.Partial("../../Areas/Advertizer/Views/Shopping/_SingleItemCart", item)
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="gap"></div>
+    <p class="note">
+        <b>NOTE:</b>
+        Any quota (free post/premium posts) that is rewarded with a Package (month/year) Purchase is valid for 1 year.
+        If means allowed number of free posts and premium posts are valid to post ads for one year from the day of purchase.
+        For any issues, please call at: 0167 7645 958.
+    </p>
+    <div class="gap"></div>
+    <div id="hTotal"
+         class="col-md-12 total-amount col-xs-12">
+        <h4>
+            TOTAL BILL: 0 &nbsp; @Model.Currency
+        </h4>
+    </div>
+    <div id="cartContainer"
+         class="col-md-offset-3 col-md-6 col-xs-12">
+        <a id="btnCheckout"
+           class="primary-button"
+           href="@Url.Action("Checkout", "Shopping")">
+            @Common.Language.LanguageDefault.CHECKOUT
+        </a>
+    </div>
+    <div class="col-md-12 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body text-center">
+                @{
+                    foreach (var item in Model.ListPackages)
+                    {
+                        @Html.Partial("../../Areas/Advertizer/Views/Shopping/_SinglePackageDetails", item)
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    </script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.password.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/Account/naimul.ui.manageaccount.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            function getCartTotalPrice() {
+                $.ajax({
+                    url: '@Url.Action("GetCartTotalPrice", "Shopping")',
+                    type: 'GET',
+                    cache: false
+                }).done(function (sum) {
+                    $("#hTotal").html("<div id='hTotal' class='text-center'><h4>Total Bill:&nbsp;" + sum + @Model.Currency + "</h4></div>");
+                });
+            }
+
+            function addCartRow(packageId) {
+                $.ajax({
+                    url: '@Url.Action("GetCartItem", "Shopping")' + '?packageId=' + packageId,
+                    type: 'GET',
+                    cache: false
+                }).done(function (result) {
+                    $("#cartContainer").append(result);
+                    getCartTotalPrice();
+                });
+            }
+
+            function removeCartRow(slNo) {
+                $.ajax({
+                    url: '@Url.Action("RemoveCartItem", "Shopping")' + '?serialNo=' + slNo,
+                    type: 'GET',
+                    cache: false
+                }).done(function (result) {
+                    getCartTotalPrice();
+                });
+            }
+
+            function updateCartRow(slNo, selectId) {
+                $.ajax({
+                    url: '@Url.Action("UpdatePayCycle", "Shopping")' + '?serialNo=' + slNo + '&payCycle=' + selectId,
+                    type: 'GET',
+                    cache: false
+                }).done(function (result) {
+                    getCartTotalPrice();
+                });
+            }
+
+            $(document).on("click", "#btnAddPackage", function () {
+                var packageId = $(this).attr("data-id");
+                addCartRow(packageId);
+            });
+
+            $(document).on("click", ".btn-cart-remove", function () {
+                removeCartRow($(this).data("valueid"));
+                var temp = $(this).closest(".single-cart-row")[0];
+                $(temp).hide();
+            });
+
+            $(document).on("click", "a.pay-cycle", function () {
+                $(this).closest(".payment-cycle").find(".pay-cycle").removeClass("secondary-button").addClass("secondary-light-button");
+                $(this).removeClass("secondary-light-button").addClass("secondary-button");
+                var $item = $(this);
+                var selectedID = $(this).data("valueid");
+                var selectedText = $(this).data("valuetext");
+                var packageID = $(this).data("packageid");
+                updateCartRow(packageID, selectedID);
+                if (selectedID + "" == "1") {
+                    var divItem = $(this).closest(".single-cart-row")[0];
+                    $(divItem).find(".monthly-fee").show();
+                    $(divItem).find(".yearly-fee").hide();
+                } else if (selectedID + "" == "2") {
+                    var divItem = $(this).closest(".single-cart-row")[0];
+                    $(divItem).find(".monthly-fee").hide();
+                    $(divItem).find(".yearly-fee").show();
+                }
+            });
+
+            $("#PackageID").change(function () {
+                this.id = $(this).val();
+                $("#btnViewPackage").attr('data-target', '#modal-' + this.id);
+                $("#btnAddPackage").attr('data-id', this.id);
+            });
+        });
+    </script>
+}
+
+

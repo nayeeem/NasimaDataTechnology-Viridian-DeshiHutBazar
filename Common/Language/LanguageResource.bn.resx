@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllItemMarketPageTitle" xml:space="preserve">
+    <value>সকল পণ্য পাতার শিরোনাম</value>
+  </data>
+  <data name="ButonTextPostFreeAd" xml:space="preserve">
+    <value>বিনামূল্যে বিজ্ঞাপন পোস্ট বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextAddYourProduct" xml:space="preserve">
+    <value>পণ্য আপলোড বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextAdvancedSearch" xml:space="preserve">
+    <value>অ্যাডভ্যন্সড অনুসন্ধান বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextClose" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ButtonTextCompanyAd" xml:space="preserve">
+    <value>বিজ্ঞাপন প্রতিষ্ঠান বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextFabia" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ButtonTextForRent" xml:space="preserve">
+    <value>ভাড়া বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextForSale" xml:space="preserve">
+    <value>বিক্রয় বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextIndividualAd" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ButtonTextInterest" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ButtonTextJoinAsProvider" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ButtonTextMarkets" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ButtonTextNewItem" xml:space="preserve">
+    <value>নতুন পণ্য বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextNewPostAddNewPicture" xml:space="preserve">
+    <value>নতুন পণ্যের ছবি সংযুক্তি বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextRegisterSignUp" xml:space="preserve">
+    <value>নিবন্ধন করুন বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextSignin" xml:space="preserve">
+    <value>সাইন ইন করুন বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextSpecial" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ButtonTextSubmitAd" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ButtonTextUrgentSale" xml:space="preserve">
+    <value>জরুরী বিক্রয় বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextUsedItem" xml:space="preserve">
+    <value>ব্যবহৃত পণ্য বাটনের টেক্সট</value>
+  </data>
+  <data name="CategoryMarketPageTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ContactUsPageTitle" xml:space="preserve">
+    <value>যোগাযোগ করুন পাতার শিরোনাম</value>
+  </data>
+  <data name="ErrorMessageEmailRequired" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageNewPostCategory" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageNewPostEmail" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageNewPostFullName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageNewPostLocation" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageNewPostPassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageNewPostPhoneNumber" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageNewPostPrice" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageNewPostRePassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageNewPostSubCategory" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageNewPostTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessagePasswordRequired" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageRegisterEmailRequired" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageRegisterPasswordRequired" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageRegisterPersonRequired" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageRegisterPhoneRequired" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorMessageRegisterRePasswordRequired" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FAQPageTitle" xml:space="preserve">
+    <value>নিয়মিত জিজ্ঞাসিত প্রশ্ন পাতার শিরোনাম</value>
+  </data>
+  <data name="HomePageTitle" xml:space="preserve">
+    <value>হোমপেজ শিরোনাম</value>
+  </data>
+  <data name="ItemDetailsPageTitle" xml:space="preserve">
+    <value>পন্য ব্রিত্তান্ত পেজ শিরোনাম</value>
+  </data>
+  <data name="LabelAdvancedSearch" xml:space="preserve">
+    <value>লেবেল অ্যাডভ্যন্সড অনুসন্ধান</value>
+  </data>
+  <data name="LabelAdvertiseDetails" xml:space="preserve">
+    <value>লেবেল বিজ্ঞাপন ব্রিত্তান্ত</value>
+  </data>
+  <data name="LabelAllMarkets" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelDealsEndToday" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelDonotHaveAccount" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelEnterCredentials" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelFabiaService" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelFeatured" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelForGift" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelHi" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelMenAndWomen" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostAdvertiserDetails" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostArea" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostBrandNew" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostCategory" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostCompany" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostCondition" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostEmail" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostFullName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostIAm" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostIndividual" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostLocation" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostNotUrgentDeal" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostPassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostPhoneNumber" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostPrice" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostRePassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostSearchTag" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostSignIN" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostSubCategory" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostUploadPicture" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostUrgentDeal" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelNewPostUsedItem" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelPopularCategory" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelPopularProduct" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelPostFreeAd" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelPremiumProducts" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelRegisterYourAccount" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelSkillsAndServices" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelSponsor" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelStudents" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelTodayPickups" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelViewByMarkets" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LabelWeSponsored" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkAddToCart" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkBangla" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkContact" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkDeshiHutBazar" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkDonate" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkEnglish" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkFaq" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkForgetPassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkLatestAds" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkOurStatus" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkPortalURL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkPrivacyAndTerms" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkRegister" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkResources" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkViewMore" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NotePostFreeAd" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderEmail" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostArea" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostCategory" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostEmail" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostFullName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostLocation" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostPassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostPhoneNumber" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostPrice" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostRePassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostSearchTag" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostSubCategory" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderNewPostTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderPassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderPersonCompany" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderPriceEndsWith" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderPriceStartsFrom" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderRegisterEmail" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderRegisterPassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderRegisterPhone" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderRegisterRePassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderSelectCategory" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderSelectState" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderSelectSubCategory" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceHolderSimpleSearchTextBox" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderSpecificAreaDetails" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PrivacyPageTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SigninPageTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SignupPageTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SpecialMarketPageTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SubCategoryMarketPageTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TextIndividualUserDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TextOnlineSellerUserDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkAddShortContent" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkBusinessIntelligence" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkConfigurePackage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkConfigurePanels" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkConfigurePrice" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkEditImages" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkFabiaServices" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkLogout" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkLogReports" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkManageAccount" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkManageAdminContents" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkManageBikashBills" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkManageCompanyAccount" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkMyFabiaServiceProviders" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkPublishedPosts" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkUnpaidPosts" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkAds" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkCart" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ButtonTextCartContinueShopping" xml:space="preserve">
+    <value>কেনাকাটা করতে থাকুন বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextCartViewCart" xml:space="preserve">
+    <value>কার্ট দেখা বাটনের টেক্সট</value>
+  </data>
+  <data name="ButtonTextContactSUBMIT" xml:space="preserve">
+    <value>SUBMIT</value>
+  </data>
+  <data name="ErrorMessageContactUsContactEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ErrorMessageContactUsContactMessageCategory" xml:space="preserve">
+    <value>Select Message Category</value>
+  </data>
+  <data name="ErrorMessageContactUsContactName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ErrorMessageContactUsContactSubject" xml:space="preserve">
+    <value>Message Subject </value>
+  </data>
+  <data name="LabelContactUs" xml:space="preserve">
+    <value>লেবেল যোগাযোগ করুন</value>
+  </data>
+  <data name="LabelContactUsContactEmail" xml:space="preserve">
+    <value>লেবেল যোগাযোগ করুন ই-মেইল</value>
+  </data>
+  <data name="LabelContactUsContactForm" xml:space="preserve">
+    <value>লেবেল যোগাযোগ করুন ফর্ম</value>
+  </data>
+  <data name="LabelContactUsContactMessage" xml:space="preserve">
+    <value>Message </value>
+  </data>
+  <data name="LabelContactUsContactMessageCategory" xml:space="preserve">
+    <value>Message Category</value>
+  </data>
+  <data name="LabelContactUsContactName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="LabelContactUsContactSubject" xml:space="preserve">
+    <value>Subject </value>
+  </data>
+  <data name="MessageTextCartContinueMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoteContactUsThankyouVeryMuch" xml:space="preserve">
+    <value>Thank you very much.</value>
+  </data>
+  <data name="NotetContactUsIntroGreetingMessageText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PlaceholderContactUsContactEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="PlaceholderContactUsContactMessageCategory" xml:space="preserve">
+    <value>Select Message Category</value>
+  </data>
+  <data name="PlaceholderContactUsContactName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PlaceholderContactUsContactSubject" xml:space="preserve">
+    <value>Message Subject </value>
+  </data>
+  <data name="UnwantedAccessErrorPageTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnwantedAcessErrorAContactUs" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnwantedAcessErrorDivSupportTeam" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnwantedAcessErrorH3ErrorTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnwantedAcessErrorH4Reason1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnwantedAcessErrorH4Reason2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnwantedAcessErrorH4ReasonsCouldBe" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnwantedAcessErrorH4Solution" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnwantedAcessErrorPPleaseGoTo" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnwantedAcessErrorPReason1Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnwantedAcessErrorPReason2Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnwantedAcessErrorPToReportFailure" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LinkNigeria" xml:space="preserve">
+    <value>Ng</value>
+  </data>
+</root>

@@ -1,0 +1,99 @@
+﻿@model WebDeshiHutBazar.ManagePostViewModel
+@{
+    ViewBag.Title = Common.Language.LanguageDefault.ViewBagTitleMyPublishedPosts;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var guid = Guid.NewGuid();
+    ViewBag.ExcludeHeader = false;
+}
+<script type="text/javascript">
+    var imageloaadmodifymodeurl = '@Url.Action("ImageLoadModifyMode", "ManageAdminPost")';
+    var uploadimageurl = '@Url.Action("ImageUploadModify", "ManageAdminPost")';
+    var editpostbyidurl = '@Url.Action("EditPostByPostId", "ManageAdminPost")';
+    var viewpostbyidurl = '@Url.Action("ViewPostByPostId", "ManageAdminPost")';
+    var updateposturl = '@Url.Action("UpdatePost", "ManageAdminPost")';
+    var deletepostbyidurl = '@Url.Action("DeletePostByPostId", "ManageAdminPost")';
+    var getsubcategoriesurl = '@Url.Action("GetSubCategories", "ManageAdminPost")';
+    var manageposturl = '@Url.Action("ManagePost", "ManageAdminPost")';
+    var getcategorytexturl = '@Url.Action("GetCategoryText", "ManageAdminPost")';
+</script>
+<div id="top" class="container">
+    <h4 class="main-title">@Common.Language.LanguageDefault.MyPublishedAds</h4>
+    @foreach (var item in Model.ListPostViewModel)
+    {
+        @Html.Partial("../../Areas/Admin/Views/ManageAdminPost/_SinglePostPanel", item)
+    }
+    @Html.EditorFor(a => a.PageingModelAll, "Paging")
+</div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+        $(function () {
+            $(document).on("click", "a.sell-or-rent", function () {
+                $(this).closest(".sell-rent-parent").find(".sell-or-rent").removeClass("btn-info").addClass("btn-default");
+                $(this).removeClass("btn-default").addClass("btn-info");
+
+                $(this).closest(".sell-rent-parent").find(".sell-or-rent").data("isselected", "False");
+                var postID = $(this).data("valueid");
+
+                if ($(this).hasClass("sell")) {
+                    $("#txtRent-" + postID).hide();
+                    $("#txtSell-" + postID).show();
+                    $(this).data("isselected", "True");
+                }
+                else if ($(this).hasClass("rent")) {
+                    $("#txtSell-" + postID).hide();
+                    $("#txtRent-" + postID).show();
+                    $(this).data("isselected", "True");
+                }
+            });
+
+            $(document).on("click", "a.urgent-deal", function () {
+                var postID = $(this).data("valueid");
+                $(this).closest(".urgent-deal-parent").find(".urgent-deal").removeClass("btn-info").addClass("btn-default");
+                $(this).removeClass("btn-default").addClass("btn-info");
+
+                $(this).closest(".urgent-deal-parent").find(".urgent-deal").data("isselected", "False");
+                var postID = $(this).data("valueid");
+
+                if ($(this).hasClass("urgent")) {
+                    $("#txtNotUrgentDeal-" + postID).hide();
+                    $("#txtUrgentDeal-" + postID).show();
+                    $(this).data("isselected", "True");
+                }
+                else if ($(this).hasClass("noturgent")) {
+                    $("#txtUrgentDeal-" + postID).hide();
+                    $("#txtNotUrgentDeal-" + postID).show();
+                    $(this).data("isselected", "True");
+                }
+            });
+
+            $(document).on("click", "a.new-used", function () {
+                var postID = $(this).data("valueid");
+                $(this).closest(".new-used-parent").find(".new-used").removeClass("btn-info").addClass("btn-default");
+                $(this).removeClass("btn-default").addClass("btn-info");
+
+                $(this).closest(".new-used-parent").find(".new-used").data("isselected", "False");
+
+                if ($(this).hasClass("new")) {
+                    $("#txtUsed-" + postID).hide();
+                    $("#txtNew-" + postID).show();
+                    $(this).data("isselected", "True");
+                }
+                else if ($(this).hasClass("used")) {
+                    $("#txtNew-" + postID).hide();
+                    $("#txtUsed-" + postID).show();
+                    $(this).data("isselected", "True");
+                }
+            });
+        });
+    </script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/ajaxupload.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.manage.admin.post.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+}
+
+
+

@@ -1,0 +1,68 @@
+﻿@model WebDeshiHutBazar.BikashBillTransactonViewModel
+
+@{
+    ViewBag.Title = Common.Language.LanguageDefault.ViewBagTitleDonate;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+
+<div class="container">
+    <div class="row card-form">
+        <h4 class="main-title">
+            @Common.Language.LanguageDefault.ViewBagTitleDonate
+        </h4>
+        <p class="info text-info">
+            <b style="color:blue;">NOTE:</b>
+            We developed the portal by ourself and deployed to help community to
+            publish free ads!
+            We have continuous expense in software maintenance,
+            data storage, advertisement, graphic and text content creation and
+            office maintenance.
+            We need permanent 2-3 staffs to perform above activities.
+            Since our objective is to keep ad publishing free, we need
+            your help. Please donate!
+        </p>
+        <p class="info text-info">
+            For any issues, please call me at <span style="color:green;">0176 580 5853</span>!!!
+        </p>
+        <br />
+        <h3 class="sub-title">
+            <b>
+                Our Bkash number is: <span style="color:orange;">0174 2600 276</span><br /><br />
+            </b>.
+        </h3>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="input-field col-md-4 col-xs-12 col-lg-4 clo-sm-4">
+                <label>Transaction Number</label>
+                @Html.EditorFor(model => model.TransactionNumber, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(model => model.TransactionNumber, "Please fill up the Transaction Number!", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-4 col-xs-12 col-lg-4 clo-sm-4">
+                <label>Donated Amount</label>
+                @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(model => model.PaidAmount, "Please fill up the Donation Amount!", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="submit-field col-md-4 col-xs-12 col-lg-4 clo-sm-4">
+                <input type="submit"
+                       value="@Common.Language.LanguageDefault.DONATE"
+                       class="primary-button col-md-6" />
+            </div>
+        }
+    </div>
+</div>
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    </script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+}
+
+
+
+

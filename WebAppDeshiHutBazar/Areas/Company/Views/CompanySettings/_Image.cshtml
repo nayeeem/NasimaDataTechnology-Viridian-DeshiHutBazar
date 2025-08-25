@@ -1,0 +1,29 @@
+﻿@model byte[]
+        <a class="thumbnail">
+            @if (Model != null && Model.Length > 1)
+            {
+                string imageBase64 = Convert.ToBase64String(Model);
+                string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                <img src="@imageSrc"
+                     class="img-responsive new-post-mobile-image"
+                     alt="Post image is not avaliable"
+                     style="max-height:140px; max-width:100%;width:100%;" />
+                     <script>
+                         $(function () {
+                             $(".btn-remove").show();
+                         });
+                     </script>
+            }
+            else
+            {
+                <img src="~/Images/Home/camera.png"
+                     class="img-responsive new-post-mobile-image"
+                     alt="Post image is not avaliable"
+                     style="max-height:140px; max-width:100%;width:100%;" />                 
+            }
+        </a>
+
+
+
+
+

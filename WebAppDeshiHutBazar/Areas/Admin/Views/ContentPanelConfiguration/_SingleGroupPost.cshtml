@@ -1,0 +1,76 @@
+﻿@model WebDeshiHutBazar.TemplateDisplayViewModel
+@{
+    var guid = Guid.NewGuid();
+    var heading = guid + "heading";
+    var collapse = guid + "colapse";
+    var dataId = Model.PostID;
+    var viewtabpanelid = "btnView-" + guid + "tabpanel";
+    var btnViewId = "btnView-" + guid;
+    var edittabpanelid = "btnEdit-" + guid + "tabpanel";
+    var btnEditId = "btnEdit-" + guid;
+}
+<div class="panel panel-default">
+    <div class="panel-heading " role="tab" id="@heading">
+        <a role="button" data-manage-post="collapse" data-toggle="collapse" data-parent="#accordion" href="#@collapse" aria-expanded="false" aria-controls="@collapse">
+            <div class="row">
+                <div class="col-md-2 col-xs-6 text-left truncate">
+                    @Model.PublishDate.ToShortDateString()
+                </div>
+                <div class="col-md-2 col-xs-6 text-left truncate">
+                    @Model.PostType.ToString()
+                </div>               
+                <div class="col-md-4 col-xs-6 truncate text-left">
+                    @Model.Title
+                </div>
+                <div class="col-md-2 col-xs-6 text-left truncate">
+                    @Model.FormattedPriceValue
+                </div>
+                <div class="col-md-2 col-xs-6 text-right">
+                    <input id="btn-remove-@Model.PostID"
+                           type="button"
+                           data-postid="@Model.GroupPostID"
+                           class="btn-remove-post btn btn-sm btn-danger" value="REMOVE" />
+                </div>
+            </div>
+        </a>
+    </div>
+    <div id="@collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@heading">
+        <div class="panel-body">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active tab-pane-view-mode" id="@viewtabpanelid">
+                    <div id="dialogView-@guid" class="dialog-view" title="View Item">
+                        @{ 
+                            var postType = "";
+                            Model.ImageCategoryClass = Model.ImageCategoryClass;
+                            Model.ColumnClass = Model.ColumnClass;
+                            if (Model.PostType == Common.EnumPostType.Post || Model.PostType == Common.EnumPostType.Product)
+                            {
+                                postType = "_Post";
+                            }
+                            else if (Model.PostType == Common.EnumPostType.AdSpace)
+                            {
+                                postType = "_ADSpace";
+                            }
+                            else if (Model.PostType == Common.EnumPostType.FabiaService)
+                            {
+                                postType = "_FabiaService";
+                            }
+                            else if (Model.PostType == Common.EnumPostType.ShortNote)
+                            {
+                                postType = "_ShortNote";
+                            }
+                            else if (Model.PostType == Common.EnumPostType.ShortVideo)
+                            {
+                                postType = "_ShortVideo";
+                            }
+                        <div class="@Model.ColumnClass home-single-item">
+                            @Html.Partial("../Shared/DesktopPostType/" + postType, Model)
+                        </div>
+                            }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

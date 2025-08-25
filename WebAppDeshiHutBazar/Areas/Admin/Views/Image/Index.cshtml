@@ -1,0 +1,74 @@
+﻿@model WebDeshiHutBazar.MarketInfoViewModel
+@{
+    ViewBag.Title = Common.Language.LanguageDefault.ViewBagTitleAllItemMarket;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = true;
+}
+<script type="text/javascript">
+    var imageloaadmodifymodeurlImage = '@Url.Action("ImageLoadModifyMode", "Image")';
+    var uploadimageurlImage = '@Url.Action("ImageUploadModify", "Image")';
+    var editpostbyidurlImage = '@Url.Action("EditPostByPostId", "Image")';
+    var viewpostbyidurlImage = '@Url.Action("ViewPostByPostId", "Image")';
+    var updateposturlImage = '@Url.Action("UpdatePostImages", "Image")';
+</script>
+@Html.Partial("_MenuDesktop", Model.MenuObjectModel)
+<div id="marketPageDesktop" class="container">
+    <br />
+    <form>
+        <a class="flex btn flex-grow" id="btnProcess">Process</a>
+    </form>   
+    <br />
+    @Html.Partial("../../Areas/Admin/Views/Image/_AdvancedSearchImage", Model.PostViewModel)
+    @Html.Partial("../../Areas/Admin/Views/Image/_SimpleSearchImage", Model.PostViewModel)
+    <div class="row border-zero padding-margin-zero home-margin-one" id="top">
+        <div class="col-md-12 border-zero">
+            <div class="panel padding-margin-zero border-zero">
+                <div class="panel-body padding-margin-zero border-zero">
+                    @{
+                        var i = 1;
+                        foreach (var row in Model.ListPostsAll)
+                        {
+                            <div class="row padding-margin-zero border-zero">
+                                @Html.Partial("../../Areas/Admin/Views/Image/_SinglePostPanel", row)
+                            </div>
+                            i++;
+                        }
+                    }
+                    @Html.EditorFor(a => a.PageingModelAll, "Paging")
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+
+@section scriptsapp {
+<script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    $(function () {
+        function runImageProcess() {
+            $.ajax({
+                url: '@Url.Action("ProcessImages","Image")',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                async: true,
+                cache: false,
+                error: function (xhr) {
+                },
+                success: function (result) {
+                },
+                processData: false
+            });
+        }
+        $(document).on("click", "#btnProcess", function () {
+            runImageProcess();
+        });
+    });
+</script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+    <script src="~/Scripts/ajaxupload.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.letitgo.image.js" type="text/javascript"></script>
+}
+
+
+

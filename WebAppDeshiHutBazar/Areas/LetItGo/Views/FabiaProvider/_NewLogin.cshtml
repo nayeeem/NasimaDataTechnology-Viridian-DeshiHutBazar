@@ -1,0 +1,29 @@
+﻿@model WebDeshiHutBazar.FabiaProviderViewModel
+<h4 id="hSignup" class="sub-title">@Common.Language.LanguageDefault.NewPostH3SignUp</h4>
+<form id="frmPostPartLogin" class="row">
+    <h4 id="hSignin" class="sub-title" style="display: none">@Common.Language.LanguageDefault.NewPostH3SignIn</h4>
+    <div class="input-field col-md-12 col-xs-12">
+        <label for="Email">
+            @Common.Language.LanguageDefault.NewPostLabelEmail*
+        </label>
+        <input id="Email" type="email" class="fff" placeholder="@Common.Language.LanguageDefault.NewPostPlaceholderEnterEmailForSignIn" />
+    </div>
+    <div class="input-field col-md-6 col-xs-6">
+        <label for="Password">
+            Password*
+        </label>
+        @Html.PasswordFor(a => a.Password, new { @class = "fff" })
+    </div>
+    <div class="input-field col-md-6 col-xs-6" id="rePasswordDiv">
+        <label for="Password">
+            Re-Password*
+        </label>
+        @Html.PasswordFor(a => a.RePassword, new { @class = "fff" })
+    </div>
+    <div class="input-field col-md-12 col-xs-12" id="divTerms">
+        <label for="Terms">
+            <input id="chkTerms" name="Terms" type="checkbox">
+            I agree all the terms, conditions and the privacy policies mentioned in <a href="@Url.Action("Terms","Home")" target="_blank">terms</a> page.
+        </label>
+    </div>
+</form>

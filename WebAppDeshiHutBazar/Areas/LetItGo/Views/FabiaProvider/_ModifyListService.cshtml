@@ -1,0 +1,51 @@
+﻿@model WebDeshiHutBazar.FabiaProviderViewModel
+
+@if (Model.ListProviderServices != null && Model.ListProviderServices.Count >0)
+{
+    <table class="new">
+        <thead>
+            <tr>
+                <th>Service Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var itemDesktop in Model.ListProviderServices.ToList())
+            {
+                <tr>
+                    <td data-label="Title">
+                        @Html.HiddenFor(a => itemDesktop.ServiceID)
+                        @Html.HiddenFor(a => itemDesktop.FabiaProviderID)
+                        @itemDesktop.ServiceTitle
+                    </td>
+                    <td data-label="Description">
+                        @itemDesktop.Description
+                    </td>
+                    <td data-label="ServicePrice">
+                        @itemDesktop.ServiceCharge &nbsp;(@Model.Currency)
+                    </td>
+                                   
+                    <td data-label="Action">
+                        <a data-toggle="modal"
+                           class="light-button small flex btn-sm btn-edit-service"
+                           data-serviceid="@itemDesktop.ServiceID"
+                           data-providerid="@itemDesktop.FabiaProviderID"
+                           data-target="#modal-edit-service-@itemDesktop.ServiceID">
+                            EDIT
+                        </a>
+                        <a 
+                           class="secondary-button small flex btn-sm btn-remove-service"
+                           data-serviceid="@itemDesktop.ServiceID"
+                           data-providerid="@itemDesktop.FabiaProviderID">
+                            REMOVE
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

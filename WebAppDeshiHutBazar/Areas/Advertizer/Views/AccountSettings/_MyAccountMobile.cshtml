@@ -1,0 +1,94 @@
+﻿@model WebDeshiHutBazar.AccountViewModel
+
+<form id="frmMamageAccount">
+    @Html.HiddenFor(a => a.UserID)
+    <div class="row row-fluid-decent-gap">
+        <div class="col-md-12">
+            <div>
+                <label for="Email" class="control-label">
+                    @Common.Language.LanguageDefault.AccountSettingsEmail
+                </label>
+            </div>
+            <div class="controls-fit-container padding-left-10">
+                @Html.DisplayFor(a => a.Email)
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row row-fluid-decent-gap">
+        <div class="col-md-12">
+            <div>
+                <label for="ClientName" class="control-label">
+                    @Common.Language.LanguageDefault.AccountSettingsClientName
+                </label>
+            </div>
+            <div class="controls-fit-container">
+                @Html.EditorFor(a => a.ClientName)
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row row-fluid-decent-gap">
+        <div class="col-md-12">
+            <div>
+                <label for="Phone" class="control-label">
+                    @Common.Language.LanguageDefault.AccountSettingsPhone
+                </label>
+            </div>
+            <div class="controls-fit-container">
+                @Html.EditorFor(a => a.Phone)
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row row-fluid-decent-gap">
+        <div class="col-md-12 company-individual-parent text-center">
+            @Html.HiddenFor(a => a.IsCompanySeller)
+            @Html.HiddenFor(a => a.IsPrivateSeller)
+            @if (Model.IsCompanySeller)
+            {
+                <a id="ancrCompany-@Model.UserID" class="btn btn-info company-individual company" data-valueid="@Model.UserID" data-valuetext="Company" data-isselected="True">
+                    @Common.Language.LanguageDefault.AccountSettingsCompany
+                </a>
+
+                <a id="ancrIndividual-@Model.UserID" class="btn btn-default  company-individual individual" data-valueid="@Model.UserID" data-valuetext="Individudal" data-isselected="False">
+                    @Common.Language.LanguageDefault.AccountSettingsIndividual
+                </a>
+                <div id="txtCompany-@Model.UserID" class="text-info">
+                    @Common.Language.LanguageDefault.AccountSettingsIamacompany
+                </div>
+                <div id="txtIndividual-@Model.UserID" class="text-info" style="display:none;">
+                    @Common.Language.LanguageDefault.AccountSettingsIamanindividual
+                </div>
+            }
+            else if (Model.IsPrivateSeller)
+            {
+                <a id="ancrCompany-@Model.UserID" class="btn btn-default company-individual company" data-valueid="@Model.UserID" data-valuetext="Company" data-isselected="True">
+                    @Common.Language.LanguageDefault.AccountSettingsCompany
+                </a>
+
+                <a id="ancrIndividual-@Model.UserID" class="btn btn-info  company-individual individual" data-valueid="@Model.UserID" data-valuetext="Individudal" data-isselected="False">
+                    @Common.Language.LanguageDefault.AccountSettingsIndividual
+                </a>
+                <span id="txtCompany-@Model.UserID" class="text-info" style="display:none;">
+                    @Common.Language.LanguageDefault.AccountSettingsIamacompany
+                </span>
+                <span id="txtIndividual-@Model.UserID" class="text-info">
+                    @Common.Language.LanguageDefault.AccountSettingsIamanindividual
+                </span>
+            }
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row row-fluid-decent-gap">
+        <div class="col-md-12 text-center">
+            <input id="btnSubmitAccount"
+                   type="button"
+                   class="update-post btn btn-success btn-lg"
+                   value="@Common.Language.LanguageDefault.AccountSettingsUPDATEACCOUNT" />
+        </div>
+    </div>
+</form>
+
+

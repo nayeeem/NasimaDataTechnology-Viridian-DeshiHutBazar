@@ -1,0 +1,31 @@
+﻿@model WebDeshiHutBazar.FabiaProviderServiceViewModel
+
+<div class="modal modal-sm fade new-modal" id="modal-add-service" tabindex="-1" role="dialog" aria-labelledby="add-service" aria-hidden="true">
+    <form id="frmAddNewServicePanel" class="new-modal-content">
+        @Html.HiddenFor(a => a.FabiaProviderID)
+        @Html.HiddenFor(a => a.ServiceID)
+        <h4 class="main-title">
+            Add Your Service Information
+        </h4>       
+        <div class="input-field col-md-12 col-xs-12">
+            <label>Service Title</label>
+            @Html.EditorFor(a => a.ServiceTitle, new { htmlAttributes = new { @class = "fff" } })
+        </div>
+        <div class="input-field col-md-12 col-xs-12">
+            <label>
+                Description
+            </label>
+            @Html.TextAreaFor(a => a.Description, new { @class = "fff" })
+        </div>
+        <div class="input-field col-md-3 col-xs-12">
+            <label>
+                Price
+            </label>
+            @Html.EditorFor(a => a.ServiceCharge, new { htmlAttributes = new { @class = "fff" } })
+        </div>        
+    </form>
+    <div class="new-modal-footer">
+        <button type="button" class="flat-button flex pull-right" data-dismiss="modal">CLOSE</button>
+        <a id="btnAddNewService" class="flat-button flex pull-right">ADD SERVICE</a>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+﻿@model WebDeshiHutBazar.GroupPanelInformationViewModel
+
+@if (Model.EnumDevice.HasValue && Model.EnumDevice.Value == Common.EnumDeviceType.Desktop)
+{
+    @Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_Desktop", Model)
+}
+else if (Model.EnumDevice.HasValue && Model.EnumDevice.Value == Common.EnumDeviceType.Mobile)
+{
+    @Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_Mobile", Model)
+}

@@ -1,0 +1,35 @@
+﻿@model WebDeshiHutBazar.FileViewModel
+
+<div class="image-content">
+    <div title="Image for @Model.FileName">
+        <a class="thumbnail">
+            @if (Model != null && Model.Image != null && Model.Image.Length > 1)
+            {
+                string imageBase64 = Convert.ToBase64String(Model.Image);
+                string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                <img src="@imageSrc"
+                     class="img-responsive new-post-mobile-image"
+                     alt="Post image is not avaliable"
+                     style="max-height:140px; max-width:100%;width:100%;" />
+            }
+            else
+            {
+                <img src="~/Images/Home/camera.png"
+                     class="img-responsive new-post-mobile-image"
+                     alt="Post image is not avaliable"
+                     style="max-height:140px; max-width:100%;width:100%;" />
+                <span id="infoErrorUpload1" style="display:none;color:red;font-size:smaller;">
+                    File size must be <=7MB!
+                </span>
+            }
+        </a>
+    </div>
+    <button type="button" class="light-button btn-remove-image" data-id="@Model.FileID" >
+        REMOVE
+    </button>    
+</div>
+
+
+
+
+

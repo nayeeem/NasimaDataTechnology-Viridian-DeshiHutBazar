@@ -1,0 +1,66 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+
+<div id="posteditrootnewpost">
+    <h4 class="main-title">SHORT CONTENT (NEWS/NOTICE/JOKE/QUOTE) INFORMATION:</h4>
+    <form id="frmPostPart1" class="card-form row">
+        <div class="input-field col-md-12">
+            <label for="PosterName">
+                Content For:
+            </label>
+            @Html.DropDownListFor(a => a.PostTypeID, Model.AV_PostType, new { @class = "fff" })
+        </div>
+
+        <div class="input-field col-md-12">
+            <label for="PosterName">
+                AUTHOR NAME:
+            </label>
+            @Html.EditorFor(a => a.PosterName, new { htmlAttributes = new { @class = "fff" } })
+        </div>
+        <div class="input-field col-md-12">
+            <label for="Title">
+                TITLE:
+            </label>
+            @Html.EditorFor(a => a.Title, new { htmlAttributes = new { @class = "fff" } })
+        </div>
+        <div class="input-field col-md-12">
+            <label for="WebsiteUrl">
+                WEBSITE URL:
+            </label>
+            @Html.EditorFor(a => a.WebsiteUrl, new { htmlAttributes = new { @class = "fff" } })
+        </div>
+        <div class="input-field col-md-12">
+            <label for="Description">
+                DESCRIPTION:
+            </label>
+            @Html.TextAreaFor(a => a.Description, new { @class = "fff" })
+        </div>
+        <div class="input-field col-md-12">
+            <label for="SearchTag">
+                SEARCH KEY:
+            </label>
+            @Html.TextAreaFor(a => a.SearchTag, new { @class = "fff" })
+        </div>
+        <div class="input-field col-md-6">
+            <label for="Price">
+                PAID AMOUNT (@Model.Currency):
+            </label>
+            @Html.EditorFor(a => a.Price)
+        </div>
+    </form>
+    <div class="gap"></div>
+    <div class="card-form row">
+        <h4 class="sub-title">@Common.Language.LanguageDefault.NewPostH3UploadPictures</h4>
+        <div class="image-field col-md-4 col-xs-12">
+            <button type="button" class="light-button btn-sm" id="UploadNP1">
+                ADD NEW PICTURE
+            </button>
+        </div>
+        <div class="image-field col-md-12 col-xs-12 col-sm-1-12 col-lg-12" id="imagePanelContainer">
+        </div>
+    </div>
+    <div class="gap"></div>
+    <div class="gap"></div>
+    <button id="btnSubmitShortContentPost" class="primary-button max" role="button">
+        @Common.Language.LanguageDefault.NewPostButtonSUBMITAD
+    </button>
+</div>

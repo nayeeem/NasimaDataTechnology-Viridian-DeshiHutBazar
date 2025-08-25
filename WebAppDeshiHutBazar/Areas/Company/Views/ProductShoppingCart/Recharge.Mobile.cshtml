@@ -1,0 +1,85 @@
+﻿@model WebDeshiHutBazar.BikashBillTransactonViewModel
+@{
+    ViewBag.Title = "Bkash Payment";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<div class="container" style="margin-top:15px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Url.Action("GetShoppingCart","ProductShoppingCart")">Shopping Cart</a></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("ReturnShippingAddress","ProductShoppingCart")">Customer And Shipping Information</a></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("ReturnSummary","ProductShoppingCart")">Summary And Pay</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Bkash Payment</li>
+        </ol>
+    </nav>
+</div>
+@using (Html.BeginForm("Recharge", "ProductShoppingCart"))
+{
+    <div class="container card-form" style="margin-top:15px;">
+        <h4 class="main-title">BKASH PAYMENT</h4>
+        <p class="note">
+            <b>NOTE:</b>
+            Please go to nearest Bkash Agent and pay to 0174 2600 276.
+            You can pay from your personal Bkash account also.
+            <br />
+            <span style="color:orange;">For any issues, please call at: 0176 580 5853.</span>
+            <br />
+            <br />
+        </p>
+        <h4 class="main-title">
+            Change shopping cart items:
+            <a class="light-button flex small" href="@Url.Action("GetShoppingCart", "ProductShoppingCart")">
+                Update Shopping Cart
+            </a>
+        </h4>
+        <h4 class="main-title">
+            Bkash Payment Details:
+        </h4>
+        <div class="row">
+
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.BikashBillId)
+            @Html.HiddenFor(model => model.AgentNumber)
+            <div class="input-field col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                <label>Payable Amount (Taka)</label>
+                @Html.EditorFor(model => model.ProductCartFinalTotalBillAmount, new { htmlAttributes = new { @class = "fff", disabled = "disabled" } })
+            </div>
+            <div class="input-field col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                <label>Agent Number</label>
+                @Html.EditorFor(model => model.AgentNumber, new { htmlAttributes = new { @class = "fff", disabled = "disabled" } })
+            </div>
+            <div class="input-field col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                <label>Bkash Transaction Number</label>
+                @Html.EditorFor(model => model.TransactionNumber, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(model => model.TransactionNumber, "", new { @class = "custom-inline-field-error" })
+            </div>
+            <div class="input-field col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                <label>Paid Amount (Taka)</label>
+                @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @class = "fff" } })
+                @Html.ValidationMessageFor(model => model.PaidAmount, "", new { @class = "custom-inline-field-error" })
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="submit-field col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-lg-offset-3 col-lg-6 col-xs-12">
+            <input type="submit"
+                   value="CONFIRM PAYMENT & FINISH"
+                   class="primary-button max" />
+        </div>
+    </div>
+}
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    </script>
+    <script src="~/Scripts/js/naimul.ui.editor.phone.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.editor.price.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/naimul.ui.validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+}
+
+
+
+

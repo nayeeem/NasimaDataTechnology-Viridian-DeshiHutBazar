@@ -1,0 +1,66 @@
+﻿@model WebDeshiHutBazar.AccountViewModel
+
+@{
+    if (Model.ListPackageDetails != null && Model.ListPackageDetails.Count > 0)
+    {
+        foreach (var item in Model.ListPackageDetails.ToList())
+        {
+            if (item != null)
+            {
+                @Html.Partial("../../Areas/Advertizer/Views/AccountSettings/_SinglePackageDetailsMobile", item)
+
+            }
+        }
+    }
+}
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h4>
+            @Common.Language.LanguageDefault.CreditBalance
+            &nbsp;
+            <span class="orange-color">
+                @Html.DisplayFor(a => a.AccountBalance)
+                &nbsp;
+                @Model.DisplayCurrency
+            </span>
+        </h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @if (Model.ListPackageDetails.Count > 0)
+        {
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <b>
+                                @Common.Language.LanguageDefault.Package1
+                            </b>
+                        </td>
+                        <td>
+                            <b>
+                                @Common.Language.LanguageDefault.Expires
+                            </b>
+                        </td>
+                        <td></td>
+                    </tr>
+                    @foreach (var item in Model.ListPackageDetails)
+                    {
+                        <tr>
+                            <td>@item.PackageName</td>
+                            <td>@item.DisplayExpiryDate</td>
+                            <td>
+                                <a data-toggle="modal"
+                                   class="btn btn-info btn-sm"
+                                   data-target="#modal-package-@item.UserPackageID.ToString().Trim()">
+                                    @Common.Language.LanguageDefault.SubscriptionVIEWDETAILS
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+    </div>
+</div>

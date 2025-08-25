@@ -1,0 +1,99 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    var heading = @Model.PostID + "heading";
+    var collapse = @Model.PostID + "colapse";
+    var guid = Guid.NewGuid();
+    var dataId = @Model.PostID;
+    var viewtabpanelid = "btnView-" + @Model.PostID + "tabpanel";
+    var btnViewId = "btnView-" + @Model.PostID;
+    var edittabpanelid = "btnEdit-" + @Model.PostID + "tabpanel";
+    var btnEditId = "btnEdit-" + @Model.PostID;
+}
+<div class="panel panel-default padding-margin-zero" style="border-bottom:2px solid gray;">
+    <div class="panel-heading "
+         role="tab"
+         id="@heading">  
+        <a role="button"
+           data-manage-post="collapse"
+           data-toggle="collapse"
+           data-parent="#accordion"
+           href="#@collapse"
+           aria-expanded="false"
+           aria-controls="@collapse">
+            <div class="row">
+                <div class="col-md-2 text-left">
+                    @Model.PublishDate.Value.ToShortDateString()
+                </div>
+                <div class="col-md-8 truncate text-left">
+                    @Model.Title
+                </div>
+                <div class="col-md-2 text-left  home-currency-font-color">
+                    @Model.FormattedPriceValue
+                </div>
+            </div>
+        </a>
+    </div>
+    <div id="@collapse"
+         class="panel-collapse collapse"
+         role="tabpanel"
+         aria-labelledby="@heading">
+        <div class="panel-body">
+                <ul class="nav nav-tabs" role="tablist" style="margin-bottom:10px;">
+                    <li role="presentation"
+                        class="active">
+                        <a class="btn-viewid-tab action-button"
+                           data-id="@dataId"
+                           id="@btnViewId"
+                           aria-controls="@viewtabpanelid"
+                           role="tab"
+                           data-toggle="tab">
+                            <i class="fa fa-eye"></i>
+                            &nbsp;
+                            @Common.Language.LanguageDefault.View1
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a class="btn-editid-tab action-button"
+                           data-id="@dataId"
+                           id="@btnEditId"
+                           aria-controls="@edittabpanelid"
+                           role="tab"
+                           data-toggle="tab">
+                            <i class="fa fa-pencil-square-o"></i>
+                            &nbsp;
+                            @Common.Language.LanguageDefault.Edit
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel"
+                         class="tab-pane active tab-pane-view-mode"
+                         id="@viewtabpanelid">
+                        <div id="dialogView-@Model.PostID"
+                             class="dialog-view"
+                             title="View Item">
+                            @Html.Partial("../../Areas/Admin/Views/Image/_ViewPost", Model)
+                        </div>
+                    </div>
+                    <div role="tabpanel"
+                         class="tab-pane tab-pane-edit-mode"
+                         id="@edittabpanelid">
+                        <div id="dialogEdit-@Model.PostID"
+                             class="dialog-edit"
+                             title="Edit Item">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+@section scriptsapp {
+
+    <script type="text/javascript">
+        $(function () {
+
+        });
+    </script>
+}

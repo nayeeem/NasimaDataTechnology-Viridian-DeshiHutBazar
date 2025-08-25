@@ -1,0 +1,25 @@
+﻿@model System.Byte[]
+@if (Model != null && Model.Length > 1)
+{
+    string imageBase64 = Convert.ToBase64String(Model);
+    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+    <img src="@imageSrc"
+         class="img-responsive"
+         alt="Responsive image"
+         style="height:100%;
+                max-height:100%;
+                max-width:100%;
+                width:100%;" />
+}
+else
+{
+    <img src="~/Images/Post/camera.png"
+         class="img-responsive"
+         alt="Responsive image"
+         style="height: 160px;
+                max-height: 160px;
+                max-width: 100%;
+                width: 100%;" />
+}
+
+

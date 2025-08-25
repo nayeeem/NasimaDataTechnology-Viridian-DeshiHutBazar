@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AudioAndSoundSystems" xml:space="preserve">
+    <value>অডিও ও সাউন্ড সিস্টেম</value>
+  </data>
+  <data name="BabyDiapers" xml:space="preserve">
+    <value>শিশুর ডায়াপার</value>
+  </data>
+  <data name="BabyGears" xml:space="preserve">
+    <value>বেবী গিয়ার্স</value>
+  </data>
+  <data name="BabyMaternity" xml:space="preserve">
+    <value>মাতৃকালীন পণ্য</value>
+  </data>
+  <data name="BathBedAndDecor" xml:space="preserve">
+    <value>বাথ, বিছানা এবং সজ্জা</value>
+  </data>
+  <data name="Beauty" xml:space="preserve">
+    <value>সৌন্দর্য</value>
+  </data>
+  <data name="BeautySupplements" xml:space="preserve">
+    <value>সৌন্দর্য সম্পূরক</value>
+  </data>
+  <data name="BeautyTools" xml:space="preserve">
+    <value>সৌন্দর্য সরঞ্জাম</value>
+  </data>
+  <data name="Beverages" xml:space="preserve">
+    <value>পানীয়</value>
+  </data>
+  <data name="CameraAndAccessories" xml:space="preserve">
+    <value>ক্যামেরা এবং আনুষাঙ্গিক</value>
+  </data>
+  <data name="CarEssentials" xml:space="preserve">
+    <value>গাড়ি/মোটরসাইকেল এসেনশিয়ালস</value>
+  </data>
+  <data name="CarOilFluids" xml:space="preserve">
+    <value>তেল ও লুব্রিকেন্ট</value>
+  </data>
+  <data name="CarServicesInstallations" xml:space="preserve">
+    <value>সেবা ও ইনস্টলেশন</value>
+  </data>
+  <data name="CoolingAndHeating" xml:space="preserve">
+    <value>শীতল এবং গরম</value>
+  </data>
+  <data name="DiyAndCleaning" xml:space="preserve">
+    <value>ধোয়া এবং পরিষ্কার</value>
+  </data>
+  <data name="Electronics" xml:space="preserve">
+    <value>ইলেক্ট্রনিক্স</value>
+  </data>
+  <data name="ExportImport" xml:space="preserve">
+    <value>আমদানী রপ্তানি</value>
+  </data>
+  <data name="ExportProducts" xml:space="preserve">
+    <value>রপ্তানি পণ্য</value>
+  </data>
+  <data name="FitnessAndLifeStyles" xml:space="preserve">
+    <value>ফিটনেস এবং লাইফ স্টাইল</value>
+  </data>
+  <data name="FitnessEquipments" xml:space="preserve">
+    <value>ফিটনেস সরঞ্জাম</value>
+  </data>
+  <data name="Furniture" xml:space="preserve">
+    <value>আসবাবপত্র</value>
+  </data>
+  <data name="GlobalFittness" xml:space="preserve">
+    <value>গ্লোবাল ফিটনেস</value>
+  </data>
+  <data name="Groceries" xml:space="preserve">
+    <value>মুদিখানা আইটেম</value>
+  </data>
+  <data name="GroceryEssentials" xml:space="preserve">
+    <value>মুদির অপরিহার্য</value>
+  </data>
+  <data name="HairBathBody" xml:space="preserve">
+    <value>চুল, বাথ এবং শরীর</value>
+  </data>
+  <data name="Health" xml:space="preserve">
+    <value>স্বাস্থ্য এবং সৌন্দর্য</value>
+  </data>
+  <data name="HireMe" xml:space="preserve">
+    <value>ভাড়া</value>
+  </data>
+  <data name="HomeAndLivings" xml:space="preserve">
+    <value>হোম, অফিস,লিভিং</value>
+  </data>
+  <data name="ImportProducts" xml:space="preserve">
+    <value>পণ্য আমদানি করুন</value>
+  </data>
+  <data name="KitchenAndDining" xml:space="preserve">
+    <value>রান্নাঘর ও ডাইনিং</value>
+  </data>
+  <data name="KitchenAppliances" xml:space="preserve">
+    <value>রান্নাঘর যন্ত্রপাতি</value>
+  </data>
+  <data name="LaptopAndComputer" xml:space="preserve">
+    <value>ল্যাপটপ এবং কম্পিউটার</value>
+  </data>
+  <data name="LargeAppliances" xml:space="preserve">
+    <value>বড় যন্ত্রপাতির</value>
+  </data>
+  <data name="Laundry" xml:space="preserve">
+    <value>লন্ড্রি</value>
+  </data>
+  <data name="Makeup" xml:space="preserve">
+    <value>মেকআপ</value>
+  </data>
+  <data name="MedicalSupplies" xml:space="preserve">
+    <value>চিকিৎসা সরঞ্জাম</value>
+  </data>
+  <data name="MenDresses" xml:space="preserve">
+    <value>পুরুষদের পোশাক</value>
+  </data>
+  <data name="MenFashion" xml:space="preserve">
+    <value>পুরুষদের ফ্যাশন</value>
+  </data>
+  <data name="MenFashionAccessories" xml:space="preserve">
+    <value>ফ্যাশন এক্সেসরিজ</value>
+  </data>
+  <data name="MenShoes" xml:space="preserve">
+    <value>পুরুষদের জুতা</value>
+  </data>
+  <data name="MensSportswear" xml:space="preserve">
+    <value>পুরুষদের স্পোর্টস কাপড়</value>
+  </data>
+  <data name="MenWaletBags" xml:space="preserve">
+    <value>ওয়ালেট এবং ব্যাগ</value>
+  </data>
+  <data name="MenWatches" xml:space="preserve">
+    <value>পুরুষদের ঘড়ি</value>
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>মোবাইল ফোন</value>
+  </data>
+  <data name="Motor" xml:space="preserve">
+    <value>মোটর</value>
+  </data>
+  <data name="MotorCycleEssentials" xml:space="preserve">
+    <value>মোটরসাইকেল অপরিহার্য</value>
+  </data>
+  <data name="MusicBooksGames" xml:space="preserve">
+    <value>সঙ্গীত, বই ও গেমস</value>
+  </data>
+  <data name="Nuts" xml:space="preserve">
+    <value>বাদাম</value>
+  </data>
+  <data name="OfficeFurniture" xml:space="preserve">
+    <value>অফিসের আসবাবপত্র</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>অন্যান্য</value>
+  </data>
+  <data name="OtherProductItems" xml:space="preserve">
+    <value>পণ্য</value>
+  </data>
+  <data name="OtherServiceItems" xml:space="preserve">
+    <value>সেবা</value>
+  </data>
+  <data name="PersonalCare" xml:space="preserve">
+    <value>ব্যক্তিগত যত্নের পন্য</value>
+  </data>
+  <data name="Pets" xml:space="preserve">
+    <value>পোষা প্রাণী</value>
+  </data>
+  <data name="Pharmacy" xml:space="preserve">
+    <value>ফার্মেসী পণ্য</value>
+  </data>
+  <data name="PhoneAccessorie" xml:space="preserve">
+    <value>ফোন এক্সেসরিজ</value>
+  </data>
+  <data name="SkinCare" xml:space="preserve">
+    <value>ত্বকের যত্ন পণ্য</value>
+  </data>
+  <data name="SnacksCookies" xml:space="preserve">
+    <value>খাবার কুকিজ</value>
+  </data>
+  <data name="Specticals" xml:space="preserve">
+    <value>চশমা</value>
+  </data>
+  <data name="TabletAndGadget" xml:space="preserve">
+    <value>ট্যাবলেট এবং গ্যাজেট</value>
+  </data>
+  <data name="ToysGames" xml:space="preserve">
+    <value>খেলনা এবং গেম</value>
+  </data>
+  <data name="ToysKidsAndBabies" xml:space="preserve">
+    <value>খেলনা, কিডস এবং শিশু</value>
+  </data>
+  <data name="TrainingHireTravels" xml:space="preserve">
+    <value>প্রশিক্ষণ, ভাড়া এবং ভ্রমণ</value>
+  </data>
+  <data name="TrainingPackages" xml:space="preserve">
+    <value>প্রশিক্ষণ প্যাকেজ</value>
+  </data>
+  <data name="TravelPackages" xml:space="preserve">
+    <value>ভ্রমণ প্যাকেজ</value>
+  </data>
+  <data name="TVAndHomeAudio" xml:space="preserve">
+    <value>টিভি ও ভিডিও আনুষাঙ্গিক</value>
+  </data>
+  <data name="TVHomeAppliances" xml:space="preserve">
+    <value>গৃহ সরঞ্জাম</value>
+  </data>
+  <data name="VacuumAndFloorCare" xml:space="preserve">
+    <value>ভ্যাকুয়াম এবং মেঝে কেয়ার</value>
+  </data>
+  <data name="Wellbeings" xml:space="preserve">
+    <value>নিজের যত্ন</value>
+  </data>
+  <data name="WomanFashion" xml:space="preserve">
+    <value>মহিলাদের ফ্যাশন</value>
+  </data>
+  <data name="WomenBags" xml:space="preserve">
+    <value>ব্যাগ</value>
+  </data>
+  <data name="WomenDresses" xml:space="preserve">
+    <value>মহিলাদের পোশাক</value>
+  </data>
+  <data name="WomenFashionAccessories" xml:space="preserve">
+    <value>ফ্যাশন আনুষাঙ্গিক</value>
+  </data>
+  <data name="WomenFashionWomenBoishakDress" xml:space="preserve">
+    <value>মহিলাদের বৈশাখ পোশাক</value>
+  </data>
+  <data name="WomenGolds" xml:space="preserve">
+    <value>অলংকার/গহনা</value>
+  </data>
+  <data name="WomensSportswear" xml:space="preserve">
+    <value>মহিলাদের ক্রীড়া পরিধান</value>
+  </data>
+  <data name="WomenWatches" xml:space="preserve">
+    <value>ঘড়ি</value>
+  </data>
+</root>

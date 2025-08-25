@@ -1,0 +1,91 @@
+﻿@model WebDeshiHutBazar.UserOrderViewModel
+
+<div class="modal fade new-modal" id="modal-@Model.UserOrderID.ToString().Trim()" tabindex="-1" role="dialog" aria-labelledby="@Model.UserOrderID-Title" aria-hidden="true">
+    <div class="new-modal-content">
+        <h4 class="main-title">
+            ORDER NUMBER:&nbsp; @Model.UserOrderID
+        </h4>
+        <div class="container-fluid">
+            <div class="col-md-12"><b>@Common.Language.LanguageDefault.OrderDate </b> &nbsp; @Model.OrderDate.ToShortDateString() </div>
+            <div class="col-md-12">
+                <b>@Common.Language.LanguageDefault.TotalBill </b> &nbsp;
+                @if (Model.TotalBill.HasValue)
+                {
+                    <span>
+                        @Model.TotalBill.Value
+                        @Common.Language.LanguageDefault.SingleOrderBDT
+                    </span>
+                }
+                else
+                {
+                    <span>
+                        @Common.Language.LanguageDefault.BDT11
+                    </span>
+                }
+            </div>
+            <div class="gap col-xs-12"></div>
+            <div class="gap col-xs-12"></div>
+            <table class="new">
+                <thead>
+                    <tr>
+                        <td>
+                            @Common.Language.LanguageDefault.Package1
+                        </td>
+                        <td>
+                            @Common.Language.LanguageDefault.PackagePrice
+                        </td>
+                        <td>
+                            @Common.Language.LanguageDefault.OrderQuota
+                        </td>
+                        <td>
+                            @Common.Language.LanguageDefault.OrderPayCycle
+                        </td>
+                        <td>
+                            @Common.Language.LanguageDefault.OrderAmountPayable
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListOrderDetails)
+                    {
+                        <tr>
+                        <td data-label="Package">@item.PackageName</td>
+                        <td data-label="PackagePrice">
+                            @item.ItemBillAomunt
+                        </td>
+                        <td data-label="Quota">@item.TotalFreePost</td>
+                        <td data-label="Cycle">
+                            @if (item.SubscriptionPeriod == Common.EnumPackageSubscriptionPeriod.Month)
+                            {
+                                <span>
+                                    @Common.Language.LanguageDefault.CycleOneMonth
+                                </span>
+                            }
+                            else if (item.SubscriptionPeriod == Common.EnumPackageSubscriptionPeriod.Year)
+                            {
+                                <span>
+                                    @Common.Language.LanguageDefault.CycleOneYear
+                                </span>
+                            }
+                            else
+                            {
+                                <span>
+                                    @Common.Language.LanguageDefault.UntillFinished
+                                </span>
+                            }
+                        </td>
+                        <td data-label="Amount Payable">
+                            @item.ItemBillAomunt
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="new-modal-footer">
+        <button type="button" class="flat-button flex pull-right" data-dismiss="modal">
+            @Common.Language.LanguageDefault.ModalButtonClose
+        </button>
+    </div>
+</div>

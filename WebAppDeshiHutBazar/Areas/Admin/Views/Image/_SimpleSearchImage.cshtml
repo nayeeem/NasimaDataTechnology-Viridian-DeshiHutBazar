@@ -1,0 +1,8 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+<form class="searchbar-container" method="post" action="@Url.Action("SimpleSearchImage", "Image")">
+    <input name="SimpleSearchKey"  type="search" placeholder="@Common.Language.LanguageDefault.SearchTypeToSearch"/>
+    <div data-adv-search="button" class="advance-search">@Common.Language.LanguageDefault.AdvancedSearch</div>
+    <button type="submit">
+        <i class="fa fa-search"></i>
+    </button>
+</form>

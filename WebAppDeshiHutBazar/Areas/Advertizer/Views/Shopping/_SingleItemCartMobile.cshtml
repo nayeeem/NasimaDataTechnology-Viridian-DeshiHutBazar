@@ -1,0 +1,63 @@
+﻿@model WebDeshiHutBazar.ShoppingCartViewModel
+
+<tr class="single-cart-row">
+    <td class="package-name truncate" style="width:80px;">
+        @Model.PackageName
+    </td>
+    <td class="payment-cycle" data-packageid="@Model.PackageConfigID">
+        @if (Model.SubscriptionPeriod == Common.EnumPackageSubscriptionPeriod.Month)
+        {
+            <a class="btn-sm btn btn-info pay-cycle" data-packageid="@Model.SlNo" data-valueid="1" data-valuetext="Monthly (Recurring payment)">
+                @Common.Language.LanguageDefault.MM
+            </a>
+            <a class="btn-sm btn btn-default  pay-cycle" data-packageid="@Model.SlNo" data-valueid="2" data-valuetext="Yearly (One time payment)">
+                @Common.Language.LanguageDefault.YY
+            </a>
+        }
+        else
+        {
+            <a class="btn-sm btn btn-default pay-cycle" data-packageid="@Model.SlNo" data-valueid="1" data-valuetext="Monthly (Recurring payment)">
+                @Common.Language.LanguageDefault.MM
+            </a>
+            <a class="btn-sm btn btn-info pay-cycle" data-packageid="@Model.SlNo" data-valueid="2" data-valuetext="Yearly (One time payment)">
+                @Common.Language.LanguageDefault.YY
+            </a>
+        }
+    </td>
+    <td class="package-fee">
+        @if (Model.SubscriptionPeriod == Common.EnumPackageSubscriptionPeriod.Month)
+        {
+            <span class="monthly-fee">
+                @Common.Language.LanguageDefault.MonthlyRecurringpay1
+                @Model.MonthlyFee
+                &nbsp;
+                @Common.Language.LanguageDefault.BDT
+            </span>
+            <span class="yearly-fee" style="display:none;">
+                @Common.Language.LanguageDefault.YearlyOnetimepay1
+                @Model.YearlyFee
+                &nbsp;
+                @Common.Language.LanguageDefault.BDT
+            </span>
+        }
+        else
+        {
+    <span class="monthly-fee" style="display:none;">
+        @Common.Language.LanguageDefault.MonthlyRecurringpay1
+        @Model.MonthlyFee
+        
+        &nbsp; @Model.Currency
+    </span>
+    <span class="yearly-fee">
+        @Common.Language.LanguageDefault.YearlyOnetimepay1
+        @Model.YearlyFee        
+        &nbsp; @Model.Currency
+    </span>
+        }
+    </td>
+    <td>
+        <button data-valueid="@Model.SlNo" class="btn btn-success btn-sm btn-cart-remove">
+            @Common.Language.LanguageDefault.REMOVE
+        </button>
+    </td>
+</tr>

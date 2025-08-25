@@ -1,0 +1,61 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+
+@{
+    var poster = "";
+
+    if (!string.IsNullOrEmpty(Model.PosterName))
+    {
+        poster = Model.PosterName;
+    }
+    else if (!string.IsNullOrEmpty(Model.ClientName))
+    {
+        poster = Model.ClientName;
+    }
+
+    var image = Model.Image ?? new byte[1];
+
+    var image1 = Model.ListImages.Count > 0 && Model.ListImages[0] != null && Model.ListImages[0].Image != null ? Model.ListImages[0].Image : new byte[1];
+    var image2 = Model.ListImages.Count > 1 && Model.ListImages[1] != null && Model.ListImages[1].Image != null ? Model.ListImages[1].Image : new byte[1];
+    var image3 = Model.ListImages.Count > 2 && Model.ListImages[2] != null && Model.ListImages[2].Image != null ? Model.ListImages[2].Image : new byte[1];
+    var image4 = Model.ListImages.Count > 3 && Model.ListImages[3] != null && Model.ListImages[3].Image != null ? Model.ListImages[3].Image : new byte[1];
+
+    // TODO: random premium
+    var isPreium = new Random().Next(2) % 2 == 0;
+    var cssClass = isPreium ? "premium" : "";
+}
+
+
+<div class="row home-row home-single-item">    
+    <h3 class="sub-title truncate">
+        @Model.Title  ( @Model.DisplayCategory - @Model.DisplaySubCategory )
+    </h3>
+
+    <div class="col-md-3">
+        @Html.Partial("../../Areas/LetItGo/Views/Portfolio/_Image", image1)
+    </div>
+    <div class="col-md-3">
+        @Html.Partial("../../Areas/LetItGo/Views/Portfolio/_Image", image2)
+    </div>
+    <div class="col-md-3">
+        @Html.Partial("../../Areas/LetItGo/Views/Portfolio/_Image", image3)
+    </div>
+    <div class="col-md-3">
+        @Html.Partial("../../Areas/LetItGo/Views/Portfolio/_Image", image4)
+    </div>
+
+    <div class="caption text-center">
+        <div class="home-currency-font-color">
+            @Model.FormattedPriceValue
+        </div>
+
+        <div>
+            @Model.Description
+        </div>
+        <div>
+            @Model.DisplayState | @Model.AreaDescription
+        </div>
+    </div>
+    </div>
+
+
+

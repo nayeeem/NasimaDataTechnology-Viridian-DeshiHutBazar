@@ -1,0 +1,80 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    var comments = Model.ListPostComments
+        .Where(item => (!string.IsNullOrEmpty(item.CommentDate) && !string.IsNullOrEmpty(item.Comment)));
+    var hasComments = comments.Any();
+}
+<div class="comment-container">
+    <ul class="col-md-12 comment-list">
+        @foreach (var item in comments)
+        {
+        <li>
+            <p class="comment">@item.Comment.Trim()</p>
+            <p class="date">@item.CommentDate.Trim()</p>
+            <div class="market-action">
+                <a class="sub-content-action">
+                    <i data-count-comment="@item.Like"
+                       data-id="@item.CommentID"
+                       data-like-comment
+                       class="like fa fa-fw fa-thumbs-up green-icon-inactive">
+                    </i>
+                </a>
+                <a class="sub-content"
+                   data-id="@item.CommentID">
+                    <span class="main"
+                          data-like-count-comment
+                          data-id="@item.CommentID">
+                        @item.Like
+                    </span>
+                    <span class="content">
+                        @Common.Language.LanguageDefault.MarketItemLikes
+                    </span>
+                </a>
+            </div>
+        </li>
+        }
+        @if (!hasComments)
+        {
+            <li id="noComment">
+                <p class="comment">No Comment yet!</p>
+                <p class="date">Leave your comment and be the first one to comment.</p>
+            </li>
+        }
+    </ul>
+    <div class="row new-comment">
+        @Html.HiddenFor(a => a.PostID)
+        <div class="col-md-12 input-field">
+            @Html.LabelFor(a => a.Comment)
+            @Html.TextAreaFor(a => a.Comment, new { @class = "fff" })
+        </div>
+        <button id="btnComment" data-id="@Model.PostID" type="submit" class="primary-button flex">
+            <i class="fa fa-comment fa-fw"></i>
+            @Common.Language.LanguageDefault.CommentCommentButton
+        </button>
+        <div class="gap"></div>
+        <p class="note">
+            <b>
+                @Common.Language.LanguageDefault.CommentPInfoNote
+            </b>
+            <br />
+            <ol>
+                <li>
+                    @Common.Language.LanguageDefault.CommentLI1
+                </li>
+                <li>
+                    @Common.Language.LanguageDefault.CommentLI3
+                </li>
+                <li>
+                    @Common.Language.LanguageDefault.CommentLI4
+                </li>
+                <li>
+                    @Common.Language.LanguageDefault.CommentLI5
+                </li>
+                <li>
+                    @Common.Language.LanguageDefault.CommentLI61 &nbsp;
+                    @Common.Language.LanguageDefault.CommentLI62
+                </li>
+            </ol>
+        </p>
+    </div>
+</div>

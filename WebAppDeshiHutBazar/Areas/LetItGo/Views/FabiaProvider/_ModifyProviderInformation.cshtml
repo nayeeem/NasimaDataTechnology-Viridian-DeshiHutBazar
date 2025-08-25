@@ -1,0 +1,32 @@
+﻿@model WebDeshiHutBazar.FabiaProviderViewModel
+@{
+    var formid = Model.ProviderID;
+    var dataId = Model.ProviderID;
+    byte[] img1 = null;
+    if (Model.ProfileImage != null)
+    {
+        img1 = Model.ProfileImage;
+    }
+}
+<form id="frmPostPart1" class="row">
+    <div class="input-field col-md-6 col-xs-12">
+        <label for="PersonName">
+            Provider Name*
+        </label>
+        @Html.EditorFor(a => a.ProviderName, new { htmlAttributes = new { @class = "fff" } })
+        @Html.ValidationMessageFor(m => m.ProviderName, "", new { @class = "custom-inline-field-error" })
+    </div>
+    <div class="input-field col-md-6 col-xs-12">
+        <label for="PrimaryPhone">
+            Primary Phone*
+        </label>
+        @Html.EditorFor(a => a.ProviderPhone, new { htmlAttributes = new { @class = "fff" } })
+        @Html.ValidationMessageFor(m => m.ProviderPhone, "", new { @class = "custom-inline-field-error" })
+    </div>    
+    <div class="input-field col-md-6 col-xs-12">
+        <label for="Website">
+            Website
+        </label>
+        @Html.EditorFor(a => a.Website, new { htmlAttributes = new { @class = "fff" } })
+    </div>
+</form>

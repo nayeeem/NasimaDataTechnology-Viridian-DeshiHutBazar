@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebDeshiHutBazar.FabiaProviderViewModel>
+@{
+    ViewBag.Title = "Your Fabia Providers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+<div class="container card-form">
+    <h4 class="main-title">Your Fabia Providers</h4>
+    <div class="col-md-12 col-xs-12">
+        <table class="new">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>Provider Name</th>
+                    <th>Service Category</th>
+                    <th>Service Title</th>
+                    <th>Service Charge</th>
+                    <th>Phone Number</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ToList())
+                {
+                    <tr>
+                        <td data-label="Service Title" style="width:10%;">
+                            @Html.DisplayFor(ModelIrtem => item.DisplayState)
+                        </td>
+                        <td data-label="Provider Name" style="width:20%;">
+                            @Html.DisplayFor(ModelIrtem => item.ProviderName)
+                        </td>
+                        <td data-label="Display Service Category" style="width:10%;">
+                            @Html.DisplayFor(ModelIrtem => item.DisplayServiceCategory)
+                        </td>
+                        <td data-label="Service Title" style="width:30%;">
+                            @Html.DisplayFor(ModelIrtem => item.ServiceTitle)
+                        </td>
+                        <td data-label="Service Charge" style="width:10%;">
+                            @Html.DisplayFor(ModelIrtem => item.ServiceCharge)
+                        </td>
+                        <td data-label="Provider Phone" style="width:10%;">
+                            @Html.DisplayFor(ModelIrtem => item.ProviderPhone)
+                        </td>
+                        <td data-label="Action" style="width:10%;">
+                            <a title="Manage" class="icon-button flex" href="@Url.Action("ManageSingleProvider", "FabiaProvider", new {providerId = item.ProviderID})"><i class="fa fa-eye"></i></a>
+                            <a title="Remove" class="icon-button flex" href="@Url.Action("DeleteSingleProvider", "FabiaProvider", new {providerId = item.ProviderID})"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

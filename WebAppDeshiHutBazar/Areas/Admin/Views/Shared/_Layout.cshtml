@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    var newadsense = "";
+    var seealladsense = "";
+    var newadsensepanel = "";
+    var seealladsensepanel = "";
+    var adspseSummary = "";
+    var adspsePending = "";
+    var adspseActive = "";
+    var summarytabpanelid = "";
+    var activetabpanelid = "";
+    var pendingtabpanelid = "";
+    var btnadsensemodifymodeupdate;
+
+    var cabcreatebanneradsense = '@Url.Action("CanCreateBannerAdsense", "ManageAdSense")';
+    var saveadsenseurl = '@Url.Action("SaveAdsense", "ManageAdSense")';
+    var unwanteraccessurladsense = '@Url.Action("UnwantedAccessError","Base")';
+    var typebanner = '@((int) Common.EnumAdsenseDisplayType.Banner)';
+    var modifyadsenseurl = '@Url.Action("UpdateAdsense", "ManageAdSense")';
+    var deactivateurl = '@Url.Action("DeactivateAdsSpace", "ManageAdsSpaces")';
+    var manageaddspaceurl = '@Url.Action("ManageAdsSpaces", "ManageAdsSpaces")';
+    var activateadspaceurl = '@Url.Action("ActivateAdsSpace", "ManageAdsSpaces")';
+</script>
+
+@RenderBody()
+
+@section scriptsapp {
+    @RenderSection("adminscriptsadsense", required: false)
+    @RenderSection("adminscriptsadspace", required: false)
+}

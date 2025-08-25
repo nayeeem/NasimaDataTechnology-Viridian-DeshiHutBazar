@@ -1,0 +1,45 @@
+﻿@model WebDeshiHutBazar.GroupPanelConfigurationViewModel
+
+<style type="text/css">
+    body.dragging, body.dragging * {
+        cursor: move !important;
+    }
+
+    .dragged {
+        position: absolute;
+        opacity: 0.5;
+        z-index: 2000;
+    }
+
+    tbody.example tr.placeholder {
+        position: relative;
+    }
+
+        tbody.example tr.placeholder:before {
+            position: absolute;
+        }
+</style>
+
+<table class="table sorted_table" style="width:100%;">
+    <thead></thead>
+    <tbody class="example sorted_head">
+        <tr class="placeholder" />
+        @if (Model.ListGroupTemplatePost != null && Model.ListGroupTemplatePost.Count > 0)
+        {
+            foreach (var item in Model.ListGroupTemplatePost.ToList())
+            {
+                <tr class="padding-margin-zero" style="border:0px;">
+                    <td class="padding-margin-zero" style="border:0px;">
+                        @Html.HiddenFor(a => item.GroupPostID, new { @class = "GroupPostID" })
+                        @Html.Partial("../../Areas/Admin/Views/ContentPanelConfiguration/_SingleGroupPost", (WebDeshiHutBazar.TemplateDisplayViewModel)item)
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+@section scriptsapp {
+    <script src="~/Scripts/js/LetItGo/naimul.letitgo.managepost.js" type="text/javascript"></script>
+}

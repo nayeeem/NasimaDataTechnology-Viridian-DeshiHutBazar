@@ -1,0 +1,74 @@
+﻿@model WebDeshiHutBazar.FabiaProviderViewModel
+
+<h4 class="sub-title">Working Days</h4>
+<form id="frmPostPart2" class="row">    
+    <div class="input-field col-md-3 col-xs-4">
+        <label for="Day1">
+            @Html.CheckBoxFor(a => a.Day1, false) Sunday
+        </label>
+    </div>
+    <div class="input-field col-md-3 col-xs-4">
+        <label for="Day2">
+            @Html.CheckBoxFor(a => a.Day2, false) Monday
+        </label>
+    </div>
+    <div class="input-field col-md-3 col-xs-4">
+        <label for="Day3">
+            @Html.CheckBoxFor(a => a.Day3, false) Tuesday
+        </label>
+    </div>
+    <div class="input-field col-md-3 col-xs-4">
+        <label for="Day4">
+            @Html.CheckBoxFor(a => a.Day4, false) Wednesday
+        </label>
+    </div>
+    <div class="input-field col-md-3 col-xs-4">
+        <label for="Day5">
+            @Html.CheckBoxFor(a => a.Day5, false) Thursday
+        </label>
+    </div>
+    <div class="input-field col-md-3 col-xs-4">
+        <label for="Day6">
+            @Html.CheckBoxFor(a => a.Day6, false) Friday
+        </label>
+    </div>
+    <div class="input-field col-md-3 col-xs-4">
+        <label for="Day7">
+            @Html.CheckBoxFor(a => a.Day7, false) Saturday
+        </label>
+    </div>
+</form>
+
+<form id="frmPostPart3" class="row">
+    <h4 class="sub-title">Working Hours</h4>
+    <div class="input-field col-md-6 col-xs-6">
+        <label for="HourSlot1">
+            @Html.CheckBoxFor(a => a.HourSlot1, false) 00.00AM to 04:00AM
+        </label>
+    </div>
+    <div class="input-field col-md-6 col-xs-6">
+        <label for="HourSlot2">
+            @Html.CheckBoxFor(a => a.HourSlot2, false) 04.00AM to 08:00AM
+        </label>
+    </div>
+    <div class="input-field col-md-6 col-xs-6">
+        <label for="HourSlot3">
+            @Html.CheckBoxFor(a => a.HourSlot3, false) 08.00AM to 12:00PM
+        </label>
+    </div>
+    <div class="input-field col-md-6 col-xs-6">
+        <label for="HourSlot4">
+            @Html.CheckBoxFor(a => a.HourSlot4, false) 12.00PM to 04:00PM
+        </label>
+    </div>
+    <div class="input-field col-md-6 col-xs-6">
+        <label for="HourSlot5">
+            @Html.CheckBoxFor(a => a.HourSlot5, false) 04.00PM to 08:00PM
+        </label>
+    </div>
+    <div class="input-field col-md-6 col-xs-6">
+        <label for="HourSlot6">
+            @Html.CheckBoxFor(a => a.HourSlot6, false) 08.00PM to 12:00PM
+        </label>
+    </div>
+</form>

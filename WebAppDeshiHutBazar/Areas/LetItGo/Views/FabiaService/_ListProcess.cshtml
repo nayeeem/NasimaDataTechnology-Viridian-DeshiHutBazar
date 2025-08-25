@@ -1,0 +1,75 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    var imageCategoryClass = "";
+    var columnClass = "";
+    imageCategoryClass = "desk-sub-banner-hr-";
+    if (Model.ListPostProcess.Count == 1)
+    {
+        imageCategoryClass += "12";
+        columnClass = "col-md-12";
+    }
+    else if (Model.ListPostProcess.Count == 2)
+    {
+        imageCategoryClass += "6";
+        columnClass = "col-md-6";
+    }
+    else if (Model.ListPostProcess.Count == 3)
+    {
+        imageCategoryClass += "4";
+        columnClass = "col-md-4";
+    }
+    else if (Model.ListPostProcess.Count == 4)
+    {
+        imageCategoryClass += "3";
+        columnClass = "col-md-3";
+    }
+    else
+    {
+        imageCategoryClass += "3";
+        columnClass = "col-md-3";
+    }
+}
+@if (Model.ListPostProcess != null)
+{
+    <div class="row ">
+        @foreach (var item in Model.ListPostProcess.ToList())
+        {
+            <div class="@columnClass home-single-item">
+                <a class="thumbnail @imageCategoryClass" style="padding-top:25px;">
+                    @if (item.StepImage != null)
+                    {
+                        @Html.Partial("../Shared/DesktopPostType/_Image", item.StepImage);
+                    }
+                    else
+                    {
+                        @Html.Partial("../Shared/DesktopPostType/_Image", new byte[1]);
+                    }
+                </a>
+                <div class="caption text-center">
+                    <div class="truncate sub-title">
+                        STEP: &nbsp; @item.StepName
+                    </div>
+                </div>
+                <div class="caption text-center">
+                    <div class="truncate sub-title">
+                        COMPLETION TIME: @item.AvailabilityDurationHour (HOUR/S)
+                    </div>
+                    <div class="truncate sub-title">
+                        PAYMENT: @item.Price (@Model.Currency)
+                    </div>
+                    <div class="truncate sub-title">
+                        PAID BY: @item.PaidBy
+                    </div>
+                    <div class="sub-title">
+                        PAYMENT REASON: @item.ReasonPayment
+                    </div>
+                </div>
+                <div class="caption text-justify" style="height:130px;max-height:130px;">
+                    <div>
+                        @item.Description
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

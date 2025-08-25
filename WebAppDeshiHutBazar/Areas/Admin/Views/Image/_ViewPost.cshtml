@@ -1,0 +1,84 @@
+﻿@model WebDeshiHutBazar.PostViewModel
+@{
+    var formid = Guid.NewGuid();
+}
+<form class="post-view-root">
+    <div class="row bottom-padding-10">
+        <div class="col-md-12 padding-margin-zero">
+            <h3 class="main-title padding-margin-zero">
+                @Model.Title
+            </h3>
+        </div>
+        <div class="col-md-3">
+            @if (Model.ListImages != null && Model.ListImages.Count > 0)
+            {
+                if (Model.ListImages[0] != null)
+                {
+                    <h3 class="sub-title">
+                        @Model.ListImages[0].FileID &nbsp; .JPG
+                    </h3>
+                    @Html.Partial("../../Areas/Admin/Views/Image/_Image", Model.ListImages[0])
+                    var file = Model.ListImages[0].FileID;
+                    <a href="@Url.Action("DownloadFile","Image")?fileID=@file&postID=@Model.PostID"
+                       class="light-button" >
+                        DOWNLOAD
+                    </a>
+                }
+            }
+        </div>
+        <div class="col-md-3">
+            @if (Model.ListImages != null && Model.ListImages.Count > 1)
+            {
+                if (Model.ListImages[1] != null)
+                {
+                   
+                    <h3 class="sub-title">
+                        @Model.ListImages[1].FileID &nbsp; .JPG
+                    </h3>
+                    @Html.Partial("../../Areas/Admin/Views/Image/_Image", Model.ListImages[1])
+                    var file = Model.ListImages[1].FileID;
+                    <a href="@Url.Action("DownloadFile","Image")?fileID=@file&postID=@Model.PostID"
+                       class="light-button">
+                        DOWNLOAD
+                    </a>
+                }
+            }
+        </div>
+        <div class="col-md-3">
+            @if (Model.ListImages != null && Model.ListImages.Count > 2)
+            {
+                if (Model.ListImages[2] != null)
+                {
+                  
+                    <h3  class="sub-title">
+                        @Model.ListImages[2].FileID &nbsp; .JPG
+                    </h3>
+                    @Html.Partial("../../Areas/Admin/Views/Image/_Image", Model.ListImages[2])
+                    var file = Model.ListImages[2].FileID;
+                    <a href="@Url.Action("DownloadFile","Image")?fileID=@file&postID=@Model.PostID"
+                       class="light-button">
+                        DOWNLOAD
+                    </a>
+                }
+            }
+        </div>
+        <div class="col-md-3">
+            @if (Model.ListImages != null && Model.ListImages.Count > 3)
+            {
+                if (Model.ListImages[3] != null)
+                {
+                   
+                    <h3 class="sub-title">
+                        @Model.ListImages[3].FileID &nbsp; .JPG
+                    </h3>
+                    @Html.Partial("../../Areas/Admin/Views/Image/_Image", Model.ListImages[3])
+                    var file = Model.ListImages[3].FileID;
+                    <a href="@Url.Action("DownloadFile","Image")?fileID=@file&postID=@Model.PostID"
+                       class="light-button">
+                        DOWNLOAD
+                    </a>
+                }
+            }
+        </div>
+    </div>
+</form>

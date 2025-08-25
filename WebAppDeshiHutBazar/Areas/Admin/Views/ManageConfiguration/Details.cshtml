@@ -1,0 +1,92 @@
+﻿@model WebDeshiHutBazar.PostPriceConfigurationViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ExcludeHeader = false;
+}
+
+<div class="container">
+    <h2>Price Configuration Details:</h2>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.DisplayCountryName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DisplayCountryName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Currency)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Currency)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DisplayPackageName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DisplayPackageName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DisplayOfferType)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DisplayOfferType)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OfferName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OfferName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DisplaySubCategory)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DisplaySubCategory)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FormattedPriceValue)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OfferDiscount)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OfferDiscount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NoFreePost)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NoFreePost)
+            </dd>
+        </dl>
+    </div>
+    <p>
+        <a href="@Url.Action("Edit","ManageConfiguration", new { id = Model.PostPriceConfigID })" class="btn btn-sm btn-success">EDIT ITEM</a>
+        <a href="@Url.Action("Index","ManageConfiguration")" class="btn btn-sm btn-default">BACK TO LIST</a>
+    </p>
+</div>
+
+
+@section scriptsapp {
+    <script type="text/javascript">
+        PAGE_NAME = '@Model.PageName';
+    </script>
+    <script src="~/Scripts/js/UserSession/naimul.letitgo.user.session.js" type="text/javascript"></script>
+}
+
+
+

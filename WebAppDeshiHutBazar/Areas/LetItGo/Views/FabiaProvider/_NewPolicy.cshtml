@@ -1,0 +1,50 @@
+﻿@model WebDeshiHutBazar.FabiaProviderViewModel
+@{
+    var formid = Model.ProviderID;
+    var dataId = Model.ProviderID;
+    byte[] img1 = null;
+    if (Model.ProfileImage != null)
+    {
+        img1 = Model.ProfileImage;
+    }
+}
+
+<h4 class="sub-title">Service & Transport Policy</h4>
+<div class="row">
+
+    <form id="frmPostPolicyPart1">
+        <div class="input-field col-md-4 col-xs-12">
+            <label for="PersonName">
+                Home Service
+            </label>
+            @Html.DropDownListFor(a => a.HomeServiceAvailable, Model.AV_HomeServiceAvailable, new { @class = "fff" })
+            @Html.ValidationMessageFor(m => m.HomeServiceAvailable, "", new { @class = "custom-inline-field-error" })
+        </div>
+        <div class="input-field col-md-4 col-xs-12">
+            <label for="CompanyName">
+                Transport Fee
+            </label>
+            @Html.DropDownListFor(a => a.TransportFeePaidBy, Model.AV_TransportFeePaidBy, new { @class = "fff" })
+            @Html.ValidationMessageFor(m => m.TransportFeePaidBy, "", new { @class = "custom-inline-field-error" })
+        </div>
+        <div class="input-field col-md-4 col-xs-12">
+            <label for="PrimaryPhone">
+                Purchase Paid By
+            </label>
+            @Html.DropDownListFor(a => a.PurchasePaidBy, Model.AV_PurchasePaidBy, new { @class = "fff" })
+            @Html.ValidationMessageFor(m => m.PurchasePaidBy, "", new { @class = "custom-inline-field-error" })
+        </div>
+        <div class="input-field col-md-6 col-xs-12">
+            <label for="TransportPolicy">
+                Transport Policy
+            </label>
+            @Html.EditorFor(a => a.TransportPolicy, new { htmlAttributes = new { @class = "fff" } })
+        </div>
+        <div class="input-field col-md-6 col-xs-12">
+            <label for="AreaDescription">
+                Remarks
+            </label>
+            @Html.EditorFor(a => a.Remarks, new { htmlAttributes = new { @class = "fff" } })
+        </div>
+    </form>
+</div>

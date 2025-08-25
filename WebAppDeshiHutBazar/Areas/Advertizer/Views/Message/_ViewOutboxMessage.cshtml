@@ -1,0 +1,22 @@
+﻿@model WebDeshiHutBazar.MessageViewModel
+
+<h4 class="sub-title">
+    @Common.Language.LanguageDefault.MessageSentOn &nbsp;
+    @Model.DateMsgSentString &nbsp;
+    @Common.Language.LanguageDefault.To
+</h4>
+<h4 class="sub-title">@Model.ReceiverClientName  (@Model.ReceiverEmail)</h4>
+<div class="gap"></div>
+<div class="input-field col-md-12">
+    <label for="messageDetail">
+        @Common.Language.LanguageDefault.MessageDetails
+    </label>
+    <textarea id="messageDetail" class="fff" disabled="disabled">  @Model.Message</textarea>
+</div>
+<p style="word-wrap: break-word; overflow: auto; white-space: pre-wrap;"></p>
+<form id="replyForm" method="post" role="form" class="reply-form">
+    @Html.HiddenFor(a => a.ReceiverUserID)
+    @Html.HiddenFor(a => a.SenderUserID)
+    @Html.HiddenFor(a => a.MessageID)
+    @Html.HiddenFor(a => a.ParentMessageID)
+</form>
