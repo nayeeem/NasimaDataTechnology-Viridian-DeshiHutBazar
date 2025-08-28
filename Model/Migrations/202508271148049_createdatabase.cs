@@ -1,9 +1,9 @@
-namespace Model
+﻿namespace Model
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class new_db : DbMigration
+    public partial class createdatabase : DbMigration
     {
         public override void Up()
         {
