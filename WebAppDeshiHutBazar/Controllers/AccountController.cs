@@ -115,12 +115,6 @@ namespace WebDeshiHutBazar
             //For both admin and advertiser
             //Later if admin fail with pin, just clear this session user.
             SetTempSessionUserId(user.UserID);
-
-            if (user.UserAccountType == EnumUserAccountType.SuperAdmin)
-            {                
-                return RedirectToAction("AdminLoginGateway", "Account");
-            }
-
             //Advertiser users
             FormsAuthentication.SetAuthCookie(user.Email, false);
             var authTicket = new FormsAuthenticationTicket(1, user.Email, DateTime.Now, DateTime.Now.AddMinutes(60), false, user.Roles);
@@ -140,6 +134,13 @@ namespace WebDeshiHutBazar
                 Email = user.Email,
                 IsVerifiedUser = user.IsVerifiedAccount
             });
+
+            if (user.UserAccountType == EnumUserAccountType.SuperAdmin)
+            {                
+                return RedirectToAction("AdminLoginGateway", "Account");
+            }
+
+           
             return RedirectToAction("Index", "Home", false);
         }
 
