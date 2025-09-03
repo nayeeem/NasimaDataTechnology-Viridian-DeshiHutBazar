@@ -594,6 +594,7 @@
     <Content Include="Content\LICENSE.txt" />
     <Content Include="Content\scss\site-new.css" />
     <Content Include="Content\scss\site-new.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\sprites\brands.svg" />
     <Content Include="Content\sprites\regular.svg" />
     <Content Include="Content\sprites\solid.svg" />
@@ -1994,7 +1995,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\company.jpg" />
